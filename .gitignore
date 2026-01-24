@@ -25,3 +25,7 @@ dist-ssr
 
 # Local npm cache
 .npm-local-cache
+
+# Cloudflare local env
+.dev.vars
+.wrangler/

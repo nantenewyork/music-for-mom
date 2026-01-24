@@ -1,5 +1,5 @@
 interface Env {
-    OPENAI_API_KEY: string
+    GEMINI_API_KEY: string
 }
 
 interface RequestBody {
@@ -24,60 +24,66 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
             )
         }
 
-        const apiKey = context.env.OPENAI_API_KEY
+        const apiKey = context.env.GEMINI_API_KEY
         if (!apiKey) {
             return new Response(
-                JSON.stringify({ error: 'OpenAI API key not configured' }),
+                JSON.stringify({ error: 'Gemini API key not configured' }),
                 { status: 500, headers: { 'Content-Type': 'application/json' } }
             )
         }
 
-        // Call OpenAI API
-        const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`,
-            },
-            body: JSON.stringify({
-                model: 'gpt-4o-mini',
-                messages: [
-                    {
-                        role: 'system',
-                        content: `You are a classical music expert specializing in music therapy for pregnant women. 
-            When given a mood, recommend ONE classical music piece that would be beneficial for a pregnant woman feeling that way.
-            
-            Respond ONLY with a valid JSON object in this exact format (no markdown, no code blocks):
+        const systemPrompt = `You are a classical music expert specializing in music therapy for pregnant women. 
+When given a mood, recommend ONE classical music piece that would be beneficial for a pregnant woman feeling that way.
+
+Respond ONLY with a valid JSON object in this exact format (no markdown, no code blocks):
+{
+  "composer": "Composer Name",
+  "title": "Music Title",
+  "youtubeId": "YouTube video ID (11 characters)",
+  "description": "A brief Korean description (2-3 sentences) of why this music is good for this mood"
+}
+
+Make sure the YouTube ID is valid and the video exists. Choose well-known, high-quality recordings.`
+
+        const userPrompt = `임산부가 "${mood}" 기분을 느끼고 있습니다. 이 기분에 맞는 클래식 음악 한 곡을 추천해주세요.`
+
+        // Call Gemini API
+        const geminiResponse = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
             {
-              "composer": "Composer Name",
-              "title": "Music Title",
-              "youtubeId": "YouTube video ID (11 characters)",
-              "description": "A brief Korean description (2-3 sentences) of why this music is good for this mood"
-            }
-            
-            Make sure the YouTube ID is valid and the video exists. Choose well-known, high-quality recordings.`
-                    },
-                    {
-                        role: 'user',
-                        content: `임산부가 "${mood}" 기분을 느끼고 있습니다. 이 기분에 맞는 클래식 음악 한 곡을 추천해주세요.`
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    contents: [
+                        {
+                            parts: [
+                                {
+                                    text: `${systemPrompt}\n\n${userPrompt}`
+                                }
+                            ]
+                        }
+                    ],
+                    generationConfig: {
+                        temperature: 0.7,
+                        maxOutputTokens: 2048,
                     }
-                ],
-                temperature: 0.7,
-                max_tokens: 500,
-            }),
-        })
+                }),
+            }
+        )
 
-        if (!openaiResponse.ok) {
-            const errorText = await openaiResponse.text()
-            console.error('OpenAI API error:', errorText)
+        if (!geminiResponse.ok) {
+            const errorText = await geminiResponse.text()
+            console.error('Gemini API error:', errorText)
             return new Response(
-                JSON.stringify({ error: 'Failed to get recommendation from OpenAI' }),
+                JSON.stringify({ error: 'Failed to get recommendation from Gemini' }),
                 { status: 500, headers: { 'Content-Type': 'application/json' } }
             )
         }
 
-        const openaiData = await openaiResponse.json() as any
-        const content = openaiData.choices[0]?.message?.content
+        const geminiData = await geminiResponse.json() as any
+        const content = geminiData.candidates?.[0]?.content?.parts?.[0]?.text
 
         if (!content) {
             return new Response(
@@ -86,14 +92,14 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
             )
         }
 
-        // Parse the JSON response from OpenAI
+        // Parse the JSON response from Gemini
         let recommendation: MusicRecommendation
         try {
             // Remove markdown code blocks if present
             const cleanContent = content.replace(/```json\n?|\n?```/g, '').trim()
             recommendation = JSON.parse(cleanContent)
         } catch (parseError) {
-            console.error('Failed to parse OpenAI response:', content)
+            console.error('Failed to parse Gemini response:', content)
             return new Response(
                 JSON.stringify({ error: 'Invalid response format from AI' }),
                 { status: 500, headers: { 'Content-Type': 'application/json' } }
