@@ -219,9 +219,14 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                         </div>
 
                         {/* CTA Button */}
-                        <div style={{ textAlign: 'center' }}>
-                            <PaymentButton onSuccess={onPurchaseSuccess} />
-                            <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: `${colors.warmSlate}66` }}>
+                        <div>
+                            <PaymentButton 
+                                onSuccess={onPurchaseSuccess} 
+                                onNavigateToTerms={() => onNavigate?.('terms')}
+                                onNavigateToRefund={() => onNavigate?.('refund')}
+                                onNavigateToPrivacy={() => onNavigate?.('privacy')}
+                            />
+                            <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: `${colors.warmSlate}66`, textAlign: 'center' }}>
                                 🔒 안전한 결제 by Polar
                             </p>
                         </div>
