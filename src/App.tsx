@@ -3,6 +3,7 @@ import MoodInput from './components/MoodInput'
 import ResultPage from './components/ResultPage'
 import LibraryPage from './components/LibraryPage'
 import PaywallPage from './components/PaywallPage'
+import PaymentSuccessPage from './components/PaymentSuccessPage'
 
 interface MusicRecommendation {
   composer: string
@@ -36,6 +37,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
   const [savedMusic, setSavedMusic] = useState<SavedMusic[]>([])
   const [isPurchased, setIsPurchased] = useState<boolean>(false)
+  const [showPaymentSuccess, setShowPaymentSuccess] = useState<boolean>(false)
 
   // 결제 여부 확인 및 저장된 음악 불러오기
   useEffect(() => {
@@ -62,7 +64,20 @@ function App() {
 
   // 결제 성공 핸들러
   const handlePurchaseSuccess = () => {
+    localStorage.setItem('aura-classical-purchased', 'true')
+    localStorage.setItem('aura-classical-purchase-date', new Date().toISOString())
+    setShowPaymentSuccess(true)
+  }
+
+  // 결제 완료 페이지에서 계속하기
+  const handleContinueAfterPurchase = () => {
+    setShowPaymentSuccess(false)
     setIsPurchased(true)
+  }
+
+  // 결제 완료 화면 표시
+  if (showPaymentSuccess) {
+    return <PaymentSuccessPage onContinue={handleContinueAfterPurchase} />
   }
 
   // 결제하지 않은 경우 Paywall 표시
