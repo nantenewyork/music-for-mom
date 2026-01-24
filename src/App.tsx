@@ -4,6 +4,9 @@ import ResultPage from './components/ResultPage'
 import LibraryPage from './components/LibraryPage'
 import PaywallPage from './components/PaywallPage'
 import PaymentSuccessPage from './components/PaymentSuccessPage'
+import TermsPage from './components/TermsPage'
+import RefundPage from './components/RefundPage'
+import PrivacyPage from './components/PrivacyPage'
 
 interface MusicRecommendation {
   composer: string
@@ -21,7 +24,7 @@ interface SavedMusic {
   mood: string
 }
 
-type Page = 'home' | 'result' | 'library' | 'paywall'
+type Page = 'home' | 'result' | 'library' | 'paywall' | 'terms' | 'refund' | 'privacy'
 
 const colors = {
   deepGold: '#b45309',
@@ -214,7 +217,7 @@ function App() {
 
   // 결제 페이지 표시 (기분 버튼 클릭 후)
   if (currentPage === 'paywall') {
-    return <PaywallPage onPurchaseSuccess={handlePurchaseSuccess} />
+    return <PaywallPage onPurchaseSuccess={handlePurchaseSuccess} onNavigate={(page) => setCurrentPage(page)} />
   }
 
   // 라이브러리 페이지 표시
@@ -226,6 +229,21 @@ function App() {
         onBack={handleReset}
       />
     )
+  }
+
+  // 서비스 약관 페이지
+  if (currentPage === 'terms') {
+    return <TermsPage onBack={handleReset} />
+  }
+
+  // 환불 규정 페이지
+  if (currentPage === 'refund') {
+    return <RefundPage onBack={handleReset} />
+  }
+
+  // 개인정보처리방침 페이지
+  if (currentPage === 'privacy') {
+    return <PrivacyPage onBack={handleReset} />
   }
 
   // 결과 페이지 표시
@@ -352,9 +370,9 @@ function App() {
               </p>
             </div>
             <div className="flex gap-8">
-              <a className="text-xs font-bold uppercase tracking-widest transition-colors" style={{ color: `${colors.deepGold}80` }} href="#">Support</a>
-              <a className="text-xs font-bold uppercase tracking-widest transition-colors" style={{ color: `${colors.deepGold}80` }} href="#">Privacy</a>
-              <a className="text-xs font-bold uppercase tracking-widest transition-colors" style={{ color: `${colors.deepGold}80` }} href="#">Terms</a>
+              <button onClick={() => setCurrentPage('terms')} className="text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>Terms</button>
+              <button onClick={() => setCurrentPage('refund')} className="text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>Refund</button>
+              <button onClick={() => setCurrentPage('privacy')} className="text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>Privacy</button>
             </div>
           </div>
         </div>

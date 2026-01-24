@@ -2,6 +2,7 @@ import PaymentButton from './PaymentButton'
 
 interface PaywallPageProps {
     onPurchaseSuccess: () => void
+    onNavigate?: (page: 'terms' | 'refund' | 'privacy') => void
 }
 
 const colors = {
@@ -55,7 +56,7 @@ const styles = {
     },
 }
 
-function PaywallPage({ onPurchaseSuccess }: PaywallPageProps) {
+function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
     return (
         <div 
             style={{ 
@@ -253,9 +254,9 @@ function PaywallPage({ onPurchaseSuccess }: PaywallPageProps) {
                             </p>
                         </div>
                         <div style={{ display: 'flex', gap: '2rem' }}>
-                            <a style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: `${colors.deepGold}80`, textDecoration: 'none' }} href="#">Support</a>
-                            <a style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: `${colors.deepGold}80`, textDecoration: 'none' }} href="#">Privacy</a>
-                            <a style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: `${colors.deepGold}80`, textDecoration: 'none' }} href="#">Terms</a>
+                            <button onClick={() => onNavigate?.('terms')} style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: `${colors.deepGold}80`, background: 'none', border: 'none', cursor: 'pointer' }}>Terms</button>
+                            <button onClick={() => onNavigate?.('refund')} style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: `${colors.deepGold}80`, background: 'none', border: 'none', cursor: 'pointer' }}>Refund</button>
+                            <button onClick={() => onNavigate?.('privacy')} style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: `${colors.deepGold}80`, background: 'none', border: 'none', cursor: 'pointer' }}>Privacy</button>
                         </div>
                     </div>
                 </div>
