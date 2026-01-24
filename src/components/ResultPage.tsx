@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import html2canvas from 'html2canvas'
 import YouTubeModal from './YouTubeModal'
 
 interface MusicRecommendation {
@@ -25,6 +26,8 @@ const colors = {
 
 function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveToLibrary, onGoToLibrary }: ResultPageProps) {
     const [showYouTubeModal, setShowYouTubeModal] = useState(false)
+    const [isCapturing, setIsCapturing] = useState(false)
+    const shareCardRef = useRef<HTMLDivElement>(null)
 
     // 기분에서 키워드 추출 (간단한 버전)
     const getMoodKeyword = (mood: string) => {
@@ -33,6 +36,92 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
         if (mood.includes('피곤') || mood.includes('쉬고')) return 'Seeking Rest'
         if (mood.includes('불안') || mood.includes('걱정')) return 'Finding Comfort'
         return 'Your Harmony'
+    }
+
+    // 이미지로 저장
+    const handleSaveAsImage = async () => {
+        if (!shareCardRef.current) return
+        
+        setIsCapturing(true)
+        try {
+            const canvas = await html2canvas(shareCardRef.current, {
+                scale: 2,
+                backgroundColor: '#FFFBF2',
+                useCORS: true,
+                allowTaint: true,
+            })
+            
+            const link = document.createElement('a')
+            link.download = `aura-classical-${recommendation.composer}-${recommendation.title}.png`
+            link.href = canvas.toDataURL('image/png')
+            link.click()
+        } catch (error) {
+            console.error('Failed to save image:', error)
+            alert('이미지 저장에 실패했습니다. 다시 시도해주세요.')
+        } finally {
+            setIsCapturing(false)
+        }
+    }
+
+    // 공유하기
+    const handleShare = async () => {
+        const shareText = `🎵 Aura Classical 추천 음악\n\n🎼 ${recommendation.title}\n🎹 ${recommendation.composer}\n\n"${recommendation.description}"\n\n✨ 나도 추천받기: ${window.location.origin}`
+        
+        // Web Share API 지원 확인
+        if (navigator.share) {
+            try {
+                // 이미지와 함께 공유 시도
+                if (shareCardRef.current) {
+                    setIsCapturing(true)
+                    const canvas = await html2canvas(shareCardRef.current, {
+                        scale: 2,
+                        backgroundColor: '#FFFBF2',
+                        useCORS: true,
+                        allowTaint: true,
+                    })
+                    
+                    canvas.toBlob(async (blob) => {
+                        if (blob) {
+                            const file = new File([blob], 'aura-classical.png', { type: 'image/png' })
+                            try {
+                                await navigator.share({
+                                    title: `${recommendation.title} - ${recommendation.composer}`,
+                                    text: shareText,
+                                    files: [file],
+                                })
+                            } catch (shareError) {
+                                // 파일 공유 실패 시 텍스트만 공유
+                                await navigator.share({
+                                    title: `${recommendation.title} - ${recommendation.composer}`,
+                                    text: shareText,
+                                })
+                            }
+                        }
+                        setIsCapturing(false)
+                    }, 'image/png')
+                } else {
+                    await navigator.share({
+                        title: `${recommendation.title} - ${recommendation.composer}`,
+                        text: shareText,
+                    })
+                }
+            } catch (error) {
+                // 사용자가 공유 취소한 경우
+                setIsCapturing(false)
+                if ((error as Error).name !== 'AbortError') {
+                    console.error('Share failed:', error)
+                }
+            }
+        } else {
+            // Web Share API 미지원 시 클립보드에 복사
+            try {
+                await navigator.clipboard.writeText(shareText)
+                alert('클립보드에 복사되었습니다! 📋')
+            } catch (error) {
+                console.error('Clipboard copy failed:', error)
+                alert('공유 기능을 사용할 수 없습니다.')
+            }
+        }
     }
 
     return (
@@ -85,17 +174,27 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                     </h1>
                 </div>
 
-                {/* Result Card */}
-                <div className="w-full max-w-5xl fade-in">
-                    <div className="glass-panel-warm painterly-shadow rounded-[3rem] p-8 md:p-12 flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+                {/* Shareable Card (for capture) */}
+                <div 
+                    ref={shareCardRef}
+                    className="w-full max-w-5xl fade-in"
+                    style={{ backgroundColor: '#FFFBF2' }}
+                >
+                    <div 
+                        className="glass-panel-warm painterly-shadow rounded-[3rem] p-8 md:p-12 flex flex-col lg:flex-row gap-12 lg:gap-16 items-center"
+                        style={{
+                            background: 'linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(254,243,199,0.3) 100%)',
+                            border: '1px solid rgba(255,255,255,0.5)',
+                        }}
+                    >
                         {/* Image */}
                         <div className="relative w-full lg:w-1/2 flex justify-center items-center">
                             <div className="organic-frame w-full max-w-md aspect-square relative group">
                                 <div 
-                                    className="h-full w-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 impressionist-image-filter"
+                                    className="h-full w-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 impressionist-image-filter rounded-2xl"
                                     style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAx3KTb0WdXFsKKL4mNBiXTYlr9whWo-hdSc4WlXMfD2ljyzKHaVNULu4L_oRI2tlcFOK15YPuYyxH2XasnYq54lobFyDox6DlKAH3acNi-pbrOdasMhsDDxwk5Vi87fdnjtApcRHltSlmeFd2aajRxH82IuAyknWyqpu9sRYyrhPD_rvAG2v1_6rqtBru-WMgI_2eakavyVO8babfyqu45XnLSSFD2f7-wL9RpkL9YFXp54yITBvl12edYf9Jqebm6QyU_VXPSdwM')" }}
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-tr from-amber-200/30 to-transparent mix-blend-overlay"></div>
+                                <div className="absolute inset-0 bg-gradient-to-tr from-amber-200/30 to-transparent mix-blend-overlay rounded-2xl"></div>
                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
                                     <button
                                         onClick={() => setShowYouTubeModal(true)}
@@ -152,34 +251,69 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                                 </p>
                             </div>
 
-                            {/* Buttons */}
-                            <div className="flex flex-col gap-4 pt-2">
-                                <button
-                                    onClick={() => setShowYouTubeModal(true)}
-                                    className="yt-button flex w-full items-center justify-center gap-3 rounded-full px-8 py-5 text-lg font-bold text-white shadow-xl"
-                                >
-                                    <span className="material-symbols-outlined">play_circle</span>
-                                    Watch on YouTube
-                                </button>
-                                <div className="flex flex-col sm:flex-row gap-3">
-                                    <button 
-                                        onClick={onGenerateAnother}
-                                        className="flex flex-1 items-center justify-center gap-2 rounded-full bg-white/40 px-6 py-4 text-sm font-bold hover:bg-white/60 transition-all shadow-sm"
-                                        style={{ color: colors.deepGold, border: `1px solid ${colors.deepGold}33` }}
-                                    >
-                                        <span className="material-symbols-outlined text-xl">refresh</span>
-                                        Generate Another
-                                    </button>
-                                    <button 
-                                        onClick={onSaveToLibrary}
-                                        className="flex flex-1 items-center justify-center gap-2 rounded-full bg-white/40 px-6 py-4 text-sm font-bold hover:bg-white/60 transition-all shadow-sm"
-                                        style={{ color: colors.deepGold, border: `1px solid ${colors.deepGold}33` }}
-                                    >
-                                        <span className="material-symbols-outlined text-xl">favorite</span>
-                                        Save to Library
-                                    </button>
-                                </div>
+                            {/* Branding for share card */}
+                            <div className="flex items-center gap-2 opacity-60">
+                                <span className="material-symbols-outlined text-sm" style={{ color: colors.deepGold }}>auto_awesome</span>
+                                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: colors.deepGold }}>
+                                    Aura Classical AI
+                                </span>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Action Buttons (outside the capture area) */}
+                <div className="w-full max-w-5xl mt-8 fade-in">
+                    <div className="flex flex-col gap-4">
+                        {/* Primary Button */}
+                        <button
+                            onClick={() => setShowYouTubeModal(true)}
+                            className="yt-button flex w-full items-center justify-center gap-3 rounded-full px-8 py-5 text-lg font-bold text-white shadow-xl"
+                        >
+                            <span className="material-symbols-outlined">play_circle</span>
+                            Watch on YouTube
+                        </button>
+
+                        {/* Secondary Buttons */}
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <button 
+                                onClick={onGenerateAnother}
+                                className="flex items-center justify-center gap-2 rounded-full bg-white/40 px-4 py-4 text-sm font-bold hover:bg-white/60 transition-all shadow-sm"
+                                style={{ color: colors.deepGold, border: `1px solid ${colors.deepGold}33` }}
+                            >
+                                <span className="material-symbols-outlined text-xl">refresh</span>
+                                <span className="hidden sm:inline">다시 추천</span>
+                            </button>
+                            <button 
+                                onClick={onSaveToLibrary}
+                                className="flex items-center justify-center gap-2 rounded-full bg-white/40 px-4 py-4 text-sm font-bold hover:bg-white/60 transition-all shadow-sm"
+                                style={{ color: colors.deepGold, border: `1px solid ${colors.deepGold}33` }}
+                            >
+                                <span className="material-symbols-outlined text-xl">favorite</span>
+                                <span className="hidden sm:inline">저장</span>
+                            </button>
+                            <button 
+                                onClick={handleSaveAsImage}
+                                disabled={isCapturing}
+                                className="flex items-center justify-center gap-2 rounded-full bg-white/40 px-4 py-4 text-sm font-bold hover:bg-white/60 transition-all shadow-sm disabled:opacity-50"
+                                style={{ color: colors.deepGold, border: `1px solid ${colors.deepGold}33` }}
+                            >
+                                <span className="material-symbols-outlined text-xl">
+                                    {isCapturing ? 'hourglass_empty' : 'download'}
+                                </span>
+                                <span className="hidden sm:inline">{isCapturing ? '저장 중...' : '이미지 저장'}</span>
+                            </button>
+                            <button 
+                                onClick={handleShare}
+                                disabled={isCapturing}
+                                className="flex items-center justify-center gap-2 rounded-full px-4 py-4 text-sm font-bold text-white transition-all shadow-sm disabled:opacity-50"
+                                style={{ 
+                                    background: `linear-gradient(135deg, ${colors.deepGold} 0%, ${colors.primaryWarm} 100%)`,
+                                }}
+                            >
+                                <span className="material-symbols-outlined text-xl">share</span>
+                                <span className="hidden sm:inline">공유하기</span>
+                            </button>
                         </div>
                     </div>
                 </div>
