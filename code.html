@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aura Classical | Impressionist Serenity</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Montserrat:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "impressionist-gold": "#E9C46A",
+                        "impressionist-orange": "#E76F51",
+                        "impressionist-peach": "#F4A261",
+                        "impressionist-cream": "#FDF7E7",
+                        "impressionist-green": "#76937F",
+                        "impressionist-teal": "#2A9D8F",
+                        "background-warm": "#FFFBF2",
+                        "ink": "#264653",
+                    },
+                    fontFamily: {
+                        "display": ["Montserrat", "sans-serif"],
+                        "serif": ["Cormorant Garamond", "serif"],
+                        "heading": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1.5rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                background-color: #FFFBF2;
+                color: #264653;
+            }
+        }
+        .painterly-bg {
+            background-color: #FFFBF2;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(231, 111, 81, 0.12) 0%, transparent 45%), 
+                radial-gradient(circle at 85% 85%, rgba(118, 147, 127, 0.12) 0%, transparent 45%), 
+                radial-gradient(circle at 50% 50%, rgba(233, 196, 106, 0.08) 0%, transparent 65%);
+            position: relative;
+        }
+        .painterly-bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            pointer-events: none;
+            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAR4pEcV2LZgxiR5P_Qe55ZbAS0s2cTNjNEH932g_Ll0pzQFZlrsu6X68gp5HFoF9TXY92YZPaZZt7uDcLrNhmgzjDfT3SabO-GBU0uUVaFOXwlbNwfiJj5vPw_SH2_R3qKGG92ecYptmVmCRhtlH3XsMwknNRQu5lHx9U0YJeQvy6ug3itpMunA5-ahmjNis00xL8H-n2z7FTu_z5l4jzN9zZIrcvWk3eCl1jX-ZUnYQAqTXZRC6j0nY_Pxfb-6fd3BlWB3Ky2SNA');
+            background-size: cover;
+            mix-blend-mode: overlay;
+        }
+        .glass-warm {
+            background: rgba(255, 251, 242, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(231, 111, 81, 0.15);
+        }
+        .organic-frame {
+            border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+            transition: border-radius 1s ease-in-out;
+        }
+        .photo-overlay {
+            background: linear-gradient(to top, rgba(231, 111, 81, 0.25), transparent);
+            mix-blend-mode: soft-light;
+        }
+        .soft-shadow {
+            box-shadow: 0 10px 30px -10px rgba(38, 70, 83, 0.12);
+        }
+        .input-glow:focus-within {
+            box-shadow: 0 0 0 4px rgba(231, 111, 81, 0.1);
+        }
+    </style>
+</head>
+<body class="font-display">
+<div class="painterly-bg min-h-screen flex flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 w-full glass-warm">
+<div class="mx-auto max-w-7xl px-6 lg:px-10">
+<div class="flex h-20 items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-impressionist-orange text-white shadow-lg shadow-impressionist-orange/20">
+<span class="material-symbols-outlined text-2xl">palette</span>
+</div>
+<h2 class="font-heading text-2xl font-semibold tracking-tight text-ink">Aura Classical</h2>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-semibold text-ink/80 hover:text-impressionist-orange transition-colors" href="#">Our Philosophy</a>
+<a class="text-sm font-semibold text-ink/80 hover:text-impressionist-orange transition-colors" href="#">The Science</a>
+<a class="text-sm font-semibold text-ink/80 hover:text-impressionist-orange transition-colors" href="#">Curations</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:block text-sm font-bold text-ink/70 hover:text-ink">Log In</button>
+<button class="rounded-full bg-impressionist-teal px-7 py-3 text-sm font-bold text-white shadow-lg shadow-impressionist-teal/20 hover:brightness-105 transition-all">
+                            Begin Journey
+                        </button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<section class="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-24">
+<div class="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
+<div class="flex flex-col gap-10 order-2 lg:order-1">
+<div class="flex flex-col gap-5">
+<span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-impressionist-orange">
+<span class="h-[2px] w-8 bg-impressionist-orange/40"></span> Inspired by the Light of Life
+                            </span>
+<h1 class="font-serif text-5xl font-medium leading-[1.1] text-ink md:text-6xl lg:text-7xl">
+                                Paint Your Mood in <br/>
+<span class="italic text-impressionist-orange font-normal">Timeless Harmony</span>
+</h1>
+<p class="max-w-lg text-xl text-ink/70 font-serif italic leading-relaxed">
+                                A curated symphony of Impressionist classical music, specifically tailored by AI to nurture the radiant bond between you and your child.
+                            </p>
+</div>
+<div class="flex flex-col gap-8">
+<div class="input-glow group relative flex w-full max-w-xl items-center rounded-full bg-white/90 p-2 soft-shadow border border-impressionist-peach/20 transition-all">
+<div class="flex flex-1 items-center px-4">
+<span class="material-symbols-outlined text-impressionist-green/70 mr-3">auto_fix_high</span>
+<input class="w-full border-none bg-transparent p-0 text-ink placeholder:text-ink/30 focus:ring-0 text-lg font-serif italic" placeholder="Describe your morning light..." type="text"/>
+</div>
+<button class="flex h-14 items-center gap-2 rounded-full bg-impressionist-orange px-10 font-bold text-white transition-all hover:scale-[1.03] active:scale-95 shadow-xl shadow-impressionist-orange/30">
+<span>Curate</span>
+<span class="material-symbols-outlined text-lg">music_note</span>
+</button>
+</div>
+<div class="flex flex-col gap-4">
+<p class="text-[10px] font-bold text-ink/40 uppercase tracking-[0.2em] px-2">Select your current atmosphere</p>
+<div class="flex flex-wrap gap-3">
+<button class="flex h-11 items-center justify-center gap-2 rounded-full border border-impressionist-peach/20 bg-white/60 px-6 text-sm font-bold text-ink hover:bg-impressionist-gold/20 hover:border-impressionist-gold/40 transition-all">
+<span class="material-symbols-outlined text-base">wb_sunny</span> Sunset Glow
+                                    </button>
+<button class="flex h-11 items-center justify-center gap-2 rounded-full border border-impressionist-peach/20 bg-white/60 px-6 text-sm font-bold text-ink hover:bg-impressionist-orange/20 hover:border-impressionist-orange/40 transition-all">
+<span class="material-symbols-outlined text-base">filter_drama</span> Misty Morning
+                                    </button>
+<button class="flex h-11 items-center justify-center gap-2 rounded-full border border-impressionist-peach/20 bg-white/60 px-6 text-sm font-bold text-ink hover:bg-impressionist-green/20 hover:border-impressionist-green/40 transition-all">
+<span class="material-symbols-outlined text-base">nature_people</span> Garden Walk
+                                    </button>
+<button class="flex h-11 items-center justify-center gap-2 rounded-full border border-impressionist-peach/20 bg-white/60 px-6 text-sm font-bold text-ink hover:bg-impressionist-teal/20 hover:border-impressionist-teal/40 transition-all">
+<span class="material-symbols-outlined text-base">water_drop</span> Calm Waters
+                                    </button>
+</div>
+</div>
+</div>
+<div class="pt-2">
+<button class="flex items-center gap-3 px-10 py-5 rounded-full bg-impressionist-orange text-white font-bold transition-all hover:brightness-105 hover:-translate-y-1 shadow-2xl shadow-impressionist-orange/30">
+<span class="material-symbols-outlined">play_circle</span>
+                                Watch Impressionist Concert
+                            </button>
+</div>
+</div>
+<div class="relative order-1 lg:order-2 flex justify-center">
+<div class="absolute -top-16 -right-16 h-80 w-80 rounded-full bg-impressionist-gold/15 blur-3xl"></div>
+<div class="absolute -bottom-16 -left-16 h-80 w-80 rounded-full bg-impressionist-green/10 blur-3xl"></div>
+<div class="relative organic-frame overflow-hidden aspect-[4/5] w-full max-w-md shadow-[0_30px_60px_-15px_rgba(231,111,81,0.2)] border-[16px] border-white/80">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-1000 hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAx3KTb0WdXFsKKL4mNBiXTYlr9whWo-hdSc4WlXMfD2ljyzKHaVNULu4L_oRI2tlcFOK15YPuYyxH2XasnYq54lobFyDox6DlKAH3acNi-pbrOdasMhsDDxwk5Vi87fdnjtApcRHltSlmeFd2aajRxH82IuAyknWyqpu9sRYyrhPD_rvAG2v1_6rqtBru-WMgI_2eakavyVO8babfyqu45XnLSSFD2f7-wL9RpkL9YFXp54yITBvl12edYf9Jqebm6QyU_VXPSdwM');">
+<div class="absolute inset-0 photo-overlay"></div>
+</div>
+<div class="absolute bottom-10 left-10 right-10 glass-warm p-6 rounded-[2rem] border border-white/60 shadow-xl">
+<div class="flex items-center gap-4">
+<div class="h-12 w-12 rounded-full bg-impressionist-orange/20 flex items-center justify-center text-impressionist-orange">
+<span class="material-symbols-outlined fill-1">play_arrow</span>
+</div>
+<div>
+<p class="text-[9px] font-bold uppercase tracking-widest text-ink/50">Now Resonating</p>
+<p class="font-serif text-lg font-semibold text-ink italic leading-tight">Debussy: Clair de Lune</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-gradient-to-b from-impressionist-peach/10 to-transparent py-24 border-t border-impressionist-orange/5 relative overflow-hidden">
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDiJZugxbdyrvmWRrFRdfai-Eh3TJ9nqgI0M3gS8TqIfjEyWxYECdLreRytYK4VIi8ldoctjHnN9fYRN9AtXaP0tozFz9cyyEZp3JXX3pXJXUFLVg6u255MWvBrXLTz_sCJmba7emlSO4RBT2JrmOUUX0xp3iCWgjU1vydVI4JwI0sabFPMl-CDhYJCi5Zfvq3HbO1VYSCuUaOAygzgKPDtSI1KDCphdEPCb2yYv5HyHqu61aHBHtRrCusVu4BatFZywHNIADYbsxg'); background-size: 400px;"></div>
+<div class="mx-auto max-w-7xl px-6 lg:px-10">
+<div class="mb-20 flex flex-col items-center text-center">
+<h2 class="font-serif text-4xl md:text-5xl font-medium mb-6 text-ink">The Art of Maternal Wellbeing</h2>
+<p class="max-w-2xl text-xl text-ink/60 font-serif italic">Like a master's delicate brushstroke, specific sound frequencies create a living masterpiece of calm for both mother and child.</p>
+</div>
+<div class="grid grid-cols-1 gap-10 md:grid-cols-3">
+<div class="group flex flex-col gap-8 rounded-[3rem] p-10 bg-white/50 border border-white/40 transition-all hover:-translate-y-2 hover:bg-white/80 hover:shadow-2xl hover:shadow-impressionist-orange/5">
+<div class="flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-impressionist-gold/15 text-impressionist-gold">
+<span class="material-symbols-outlined text-4xl">flare</span>
+</div>
+<div>
+<h3 class="font-serif text-2xl font-bold mb-3 text-ink">Golden Serenity</h3>
+<p class="text-ink/70 leading-relaxed font-display text-sm font-medium">Harmonic frequencies reduce maternal cortisol levels, inviting a state of pure, golden relaxation during pregnancy.</p>
+</div>
+</div>
+<div class="group flex flex-col gap-8 rounded-[3rem] p-10 bg-white/50 border border-white/40 transition-all hover:-translate-y-2 hover:bg-white/80 hover:shadow-2xl hover:shadow-impressionist-orange/5">
+<div class="flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-impressionist-green/15 text-impressionist-green">
+<span class="material-symbols-outlined text-4xl">eco</span>
+</div>
+<div>
+<h3 class="font-serif text-2xl font-bold mb-3 text-ink">Natural Growth</h3>
+<p class="text-ink/70 leading-relaxed font-display text-sm font-medium">Complex melodic patterns act as organic stimuli for early neural pathways in your baby's delicate development.</p>
+</div>
+</div>
+<div class="group flex flex-col gap-8 rounded-[3rem] p-10 bg-white/50 border border-white/40 transition-all hover:-translate-y-2 hover:bg-white/80 hover:shadow-2xl hover:shadow-impressionist-orange/5">
+<div class="flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-impressionist-orange/15 text-impressionist-orange">
+<span class="material-symbols-outlined text-4xl">brush</span>
+</div>
+<div>
+<h3 class="font-serif text-2xl font-bold mb-3 text-ink">Soulful Connection</h3>
+<p class="text-ink/70 leading-relaxed font-display text-sm font-medium">Shared auditory textures foster an emotional resonance that paints a unique, lifelong bond between you.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-impressionist-orange/10 py-16 bg-white/40 backdrop-blur-md">
+<div class="mx-auto max-w-7xl px-6 lg:px-10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-10">
+<div class="flex items-center gap-3">
+<div class="flex h-9 w-9 items-center justify-center rounded-full bg-impressionist-orange text-white">
+<span class="material-symbols-outlined text-xl">palette</span>
+</div>
+<h2 class="font-heading text-xl font-semibold text-ink">Aura Classical</h2>
+</div>
+<p class="text-xs font-bold text-ink/40 uppercase tracking-[0.2em]">© 2024 Aura Classical. A symphony of love and light.</p>
+<div class="flex gap-8">
+<a class="text-ink/40 hover:text-impressionist-orange transition-colors" href="#"><span class="material-symbols-outlined">radio</span></a>
+<a class="text-ink/40 hover:text-impressionist-orange transition-colors" href="#"><span class="material-symbols-outlined">auto_stories</span></a>
+<a class="text-ink/40 hover:text-impressionist-orange transition-colors" href="#"><span class="material-symbols-outlined">contact_support</span></a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>
