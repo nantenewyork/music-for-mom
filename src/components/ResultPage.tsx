@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import html2canvas from 'html2canvas'
-import YouTubeModal from './YouTubeModal'
 
 interface MusicRecommendation {
     composer: string
@@ -25,8 +24,14 @@ const colors = {
 }
 
 function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveToLibrary, onGoToLibrary }: ResultPageProps) {
-    const [showYouTubeModal, setShowYouTubeModal] = useState(false)
     const [isCapturing, setIsCapturing] = useState(false)
+
+    // YouTube 검색 URL 생성 및 열기
+    const handleWatchOnYouTube = () => {
+        const searchQuery = `${recommendation.composer} ${recommendation.title}`
+        const youtubeUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`
+        window.open(youtubeUrl, '_blank')
+    }
 
     // 기분에서 키워드 추출 (간단한 버전)
     const getMoodKeyword = (mood: string) => {
@@ -283,7 +288,7 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                                 <div className="absolute inset-0 bg-gradient-to-tr from-amber-200/30 to-transparent mix-blend-overlay rounded-2xl"></div>
                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
                                     <button
-                                        onClick={() => setShowYouTubeModal(true)}
+                                        onClick={handleWatchOnYouTube}
                                         className="h-20 w-20 rounded-full bg-white/60 backdrop-blur-md flex items-center justify-center border border-white/40 hover:scale-110 transition-transform"
                                     >
                                         <span className="material-symbols-outlined text-4xl" style={{ color: colors.deepGold }}>play_arrow</span>
@@ -353,7 +358,7 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                     <div className="flex flex-col gap-4">
                         {/* Primary Button */}
                         <button
-                            onClick={() => setShowYouTubeModal(true)}
+                            onClick={handleWatchOnYouTube}
                             className="yt-button flex w-full items-center justify-center gap-3 rounded-full px-8 py-5 text-lg font-bold text-white shadow-xl"
                         >
                             <span className="material-symbols-outlined">play_circle</span>
@@ -439,13 +444,6 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                 </div>
             </footer>
 
-            {/* YouTube Modal */}
-            <YouTubeModal
-                isOpen={showYouTubeModal}
-                onClose={() => setShowYouTubeModal(false)}
-                composer={recommendation.composer}
-                title={recommendation.title}
-            />
         </div>
     )
 }
