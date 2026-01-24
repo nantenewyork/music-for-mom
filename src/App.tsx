@@ -21,7 +21,7 @@ interface SavedMusic {
   mood: string
 }
 
-type Page = 'home' | 'result' | 'library'
+type Page = 'home' | 'result' | 'library' | 'paywall'
 
 const colors = {
   deepGold: '#b45309',
@@ -38,6 +38,7 @@ function App() {
   const [savedMusic, setSavedMusic] = useState<SavedMusic[]>([])
   const [isPurchased, setIsPurchased] = useState<boolean>(false)
   const [showPaymentSuccess, setShowPaymentSuccess] = useState<boolean>(false)
+  const [pendingMood, setPendingMood] = useState<string | null>(null) // 결제 후 처리할 기분
 
   // 결제 여부 확인 및 저장된 음악 불러오기
   useEffect(() => {
@@ -73,16 +74,13 @@ function App() {
   const handleContinueAfterPurchase = () => {
     setShowPaymentSuccess(false)
     setIsPurchased(true)
-  }
-
-  // 결제 완료 화면 표시
-  if (showPaymentSuccess) {
-    return <PaymentSuccessPage onContinue={handleContinueAfterPurchase} />
-  }
-
-  // 결제하지 않은 경우 Paywall 표시
-  if (!isPurchased) {
-    return <PaywallPage onPurchaseSuccess={handlePurchaseSuccess} />
+    setCurrentPage('home')
+    
+    // 대기 중인 기분이 있으면 추천 요청
+    if (pendingMood) {
+      fetchRecommendation(pendingMood)
+      setPendingMood(null)
+    }
   }
 
   // 음악 저장
@@ -152,7 +150,8 @@ function App() {
     },
   ]
 
-  const handleMoodSubmit = async (mood: string) => {
+  // 추천 음악 가져오기 (실제 API 호출)
+  const fetchRecommendation = async (mood: string) => {
     setLoading(true)
     setError(null)
     setCurrentMood(mood)
@@ -172,13 +171,28 @@ function App() {
 
       const data = await response.json()
       setRecommendation(data)
+      setCurrentPage('result')
     } catch (err) {
       // API 실패 시 fallback 음악 사용
       const randomIndex = Math.floor(Math.random() * fallbackRecommendations.length)
       setRecommendation(fallbackRecommendations[randomIndex])
+      setCurrentPage('result')
     } finally {
       setLoading(false)
     }
+  }
+
+  // 기분 제출 핸들러 (결제 여부 확인)
+  const handleMoodSubmit = async (mood: string) => {
+    // 결제 안 됐으면 결제창으로 이동
+    if (!isPurchased) {
+      setPendingMood(mood) // 결제 후 처리할 기분 저장
+      setCurrentPage('paywall')
+      return
+    }
+
+    // 결제 됐으면 바로 추천 요청
+    await fetchRecommendation(mood)
   }
 
   const handleReset = () => {
@@ -189,8 +203,18 @@ function App() {
 
   const handleGenerateAnother = () => {
     if (currentMood) {
-      handleMoodSubmit(currentMood)
+      fetchRecommendation(currentMood)
     }
+  }
+
+  // 결제 완료 화면 표시
+  if (showPaymentSuccess) {
+    return <PaymentSuccessPage onContinue={handleContinueAfterPurchase} />
+  }
+
+  // 결제 페이지 표시 (기분 버튼 클릭 후)
+  if (currentPage === 'paywall') {
+    return <PaywallPage onPurchaseSuccess={handlePurchaseSuccess} />
   }
 
   // 라이브러리 페이지 표시
@@ -205,7 +229,7 @@ function App() {
   }
 
   // 결과 페이지 표시
-  if (recommendation) {
+  if (currentPage === 'result' && recommendation) {
     return (
       <ResultPage 
         recommendation={recommendation} 
