@@ -27,6 +27,33 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
         PolarEmbedCheckout.init()
     }, [])
 
+    // 자동 환불 처리 함수
+    const handleAutoRefund = async (checkoutId: string, reason: string) => {
+        try {
+            console.log('Attempting auto refund for checkout:', checkoutId)
+            const refundResponse = await fetch('/api/refund', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    checkoutId, 
+                    reason 
+                }),
+            })
+            
+            const refundData = await refundResponse.json()
+            console.log('Refund response:', refundData)
+            
+            if (refundData.success) {
+                alert('⚠️ 결제 처리 중 오류가 발생했습니다.\n\n자동으로 환불 처리되었습니다.\n다시 시도해주세요.')
+            } else {
+                alert(`⚠️ 결제 처리 중 오류가 발생했습니다.\n\n환불 처리에 실패했습니다.\n아래 정보와 함께 고객센터로 문의해주세요:\n\nCheckout ID: ${checkoutId}\n\n📧 support@auraclassical.com`)
+            }
+        } catch (refundError) {
+            console.error('Auto refund error:', refundError)
+            alert(`⚠️ 결제 처리 중 오류가 발생했습니다.\n\n고객센터로 문의해주세요:\n📧 support@auraclassical.com\n\nCheckout ID: ${checkoutId}`)
+        }
+    }
+
     const handleCheckout = async () => {
         if (!allAgreed) {
             alert('모든 약관에 동의해주세요.')
@@ -34,6 +61,7 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
         }
 
         setLoading(true)
+        let currentCheckoutId: string | null = null
         
         try {
             // Create checkout session
@@ -43,6 +71,7 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
             })
             
             const data = await response.json()
+            currentCheckoutId = data.id
             
             if (data.url) {
                 // Open embedded checkout
@@ -55,12 +84,32 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
 
                 // Listen for success
                 checkout.addEventListener('success', () => {
-                    // Save purchase status to localStorage
-                    localStorage.setItem('aura-classical-purchased', 'true')
-                    localStorage.setItem('aura-classical-purchase-date', new Date().toISOString())
+                    try {
+                        // Save purchase status to localStorage
+                        localStorage.setItem('aura-classical-purchased', 'true')
+                        localStorage.setItem('aura-classical-purchase-date', new Date().toISOString())
+                        localStorage.setItem('aura-classical-checkout-id', currentCheckoutId || '')
+                        
+                        if (onSuccess) {
+                            onSuccess()
+                        }
+                    } catch (successError) {
+                        // 결제는 성공했지만 후처리 실패 시 자동 환불
+                        console.error('Post-payment error:', successError)
+                        if (currentCheckoutId) {
+                            handleAutoRefund(currentCheckoutId, 'post_payment_error')
+                        }
+                    }
+                })
+
+                // Listen for error
+                checkout.addEventListener('error', (event: CustomEvent) => {
+                    console.error('Checkout error event:', event.detail)
+                    setLoading(false)
                     
-                    if (onSuccess) {
-                        onSuccess()
+                    // 결제 에러 발생 시 자동 환불 시도
+                    if (currentCheckoutId) {
+                        handleAutoRefund(currentCheckoutId, 'checkout_error')
                     }
                 })
 
@@ -71,6 +120,13 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
         } catch (error) {
             console.error('Checkout error:', error)
             setLoading(false)
+            
+            // 결제 생성 중 에러 발생 시 환불 시도
+            if (currentCheckoutId) {
+                handleAutoRefund(currentCheckoutId, 'checkout_creation_error')
+            } else {
+                alert('결제 처리 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요.')
+            }
         }
     }
 
