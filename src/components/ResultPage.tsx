@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import YouTubeModal from './YouTubeModal'
+
 interface MusicRecommendation {
     composer: string
     title: string
@@ -19,8 +22,7 @@ const colors = {
 }
 
 function ResultPage({ recommendation, mood, onReset, onGenerateAnother }: ResultPageProps) {
-    const searchQuery = `${recommendation.composer} ${recommendation.title}`
-    const youtubeUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`
+    const [showYouTubeModal, setShowYouTubeModal] = useState(false)
 
     // 기분에서 키워드 추출 (간단한 버전)
     const getMoodKeyword = (mood: string) => {
@@ -93,14 +95,12 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother }: Result
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-tr from-amber-200/30 to-transparent mix-blend-overlay"></div>
                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                                    <a
-                                        href={youtubeUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                    <button
+                                        onClick={() => setShowYouTubeModal(true)}
                                         className="h-20 w-20 rounded-full bg-white/60 backdrop-blur-md flex items-center justify-center border border-white/40 hover:scale-110 transition-transform"
                                     >
                                         <span className="material-symbols-outlined text-4xl" style={{ color: colors.deepGold }}>play_arrow</span>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -152,15 +152,13 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother }: Result
 
                             {/* Buttons */}
                             <div className="flex flex-col gap-4 pt-2">
-                                <a
-                                    href={youtubeUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                <button
+                                    onClick={() => setShowYouTubeModal(true)}
                                     className="yt-button flex w-full items-center justify-center gap-3 rounded-full px-8 py-5 text-lg font-bold text-white shadow-xl"
                                 >
                                     <span className="material-symbols-outlined">play_circle</span>
                                     Watch on YouTube
-                                </a>
+                                </button>
                                 <div className="flex flex-col sm:flex-row gap-3">
                                     <button 
                                         onClick={onGenerateAnother}
@@ -217,6 +215,14 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother }: Result
                     </div>
                 </div>
             </footer>
+
+            {/* YouTube Modal */}
+            <YouTubeModal
+                isOpen={showYouTubeModal}
+                onClose={() => setShowYouTubeModal(false)}
+                composer={recommendation.composer}
+                title={recommendation.title}
+            />
         </div>
     )
 }
