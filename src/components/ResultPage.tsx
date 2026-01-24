@@ -37,8 +37,21 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
         return 'Your Harmony'
     }
 
+    // 날짜 포맷 함수
+    const formatDate = () => {
+        const now = new Date()
+        const year = now.getFullYear()
+        const month = now.getMonth() + 1
+        const day = now.getDate()
+        const weekdays = ['일', '월', '화', '수', '목', '금', '토']
+        const weekday = weekdays[now.getDay()]
+        return `${year}년 ${month}월 ${day}일 (${weekday})`
+    }
+
     // 이미지로 저장
     const handleSaveAsImage = async () => {
+        const today = formatDate()
+        
         // 공유용 카드 동적 생성
         const shareCard = document.createElement('div')
         shareCard.style.cssText = `
@@ -51,14 +64,19 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
             top: 0;
         `
         shareCard.innerHTML = `
-            <div style="text-align: center; margin-bottom: 32px;">
-                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(180,83,9,0.1); padding: 8px 16px; border-radius: 9999px; margin-bottom: 16px;">
+            <div style="text-align: center; margin-bottom: 24px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(180,83,9,0.1); padding: 8px 16px; border-radius: 9999px; margin-bottom: 12px;">
                     <span style="color: #b45309; font-size: 14px;">✨</span>
                     <span style="color: #b45309; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;">Aura Classical</span>
                 </div>
+                <p style="color: #475569; font-size: 13px; opacity: 0.6; margin-bottom: 4px;">📅 ${today}</p>
                 <p style="color: #475569; font-size: 14px; opacity: 0.7;">AI가 추천한 클래식 음악</p>
             </div>
             <div style="background: rgba(255,255,255,0.6); border-radius: 24px; padding: 40px; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 20px 60px rgba(180,83,9,0.1);">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                    <span style="font-size: 16px;">💭</span>
+                    <p style="color: #b45309; font-size: 14px; font-weight: 600;">오늘의 기분: "${mood}"</p>
+                </div>
                 <p style="color: #b45309; font-size: 12px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 8px; opacity: 0.7;">Now Curated for You</p>
                 <h2 style="color: #475569; font-size: 32px; font-weight: 500; margin-bottom: 8px; font-family: 'Playfair Display', serif; line-height: 1.2;">${recommendation.title}</h2>
                 <p style="color: #b45309; font-size: 20px; font-style: italic; margin-bottom: 24px; font-family: 'Playfair Display', serif;">${recommendation.composer}</p>
@@ -94,6 +112,7 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
 
     // 공유용 카드 생성 함수
     const createShareCard = (): HTMLDivElement => {
+        const today = formatDate()
         const shareCard = document.createElement('div')
         shareCard.style.cssText = `
             width: 600px;
@@ -105,14 +124,19 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
             top: 0;
         `
         shareCard.innerHTML = `
-            <div style="text-align: center; margin-bottom: 32px;">
-                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(180,83,9,0.1); padding: 8px 16px; border-radius: 9999px; margin-bottom: 16px;">
+            <div style="text-align: center; margin-bottom: 24px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(180,83,9,0.1); padding: 8px 16px; border-radius: 9999px; margin-bottom: 12px;">
                     <span style="color: #b45309; font-size: 14px;">✨</span>
                     <span style="color: #b45309; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;">Aura Classical</span>
                 </div>
+                <p style="color: #475569; font-size: 13px; opacity: 0.6; margin-bottom: 4px;">📅 ${today}</p>
                 <p style="color: #475569; font-size: 14px; opacity: 0.7;">AI가 추천한 클래식 음악</p>
             </div>
             <div style="background: rgba(255,255,255,0.6); border-radius: 24px; padding: 40px; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 20px 60px rgba(180,83,9,0.1);">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                    <span style="font-size: 16px;">💭</span>
+                    <p style="color: #b45309; font-size: 14px; font-weight: 600;">오늘의 기분: "${mood}"</p>
+                </div>
                 <p style="color: #b45309; font-size: 12px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 8px; opacity: 0.7;">Now Curated for You</p>
                 <h2 style="color: #475569; font-size: 32px; font-weight: 500; margin-bottom: 8px; font-family: 'Playfair Display', serif; line-height: 1.2;">${recommendation.title}</h2>
                 <p style="color: #b45309; font-size: 20px; font-style: italic; margin-bottom: 24px; font-family: 'Playfair Display', serif;">${recommendation.composer}</p>
