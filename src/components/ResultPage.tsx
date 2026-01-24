@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import html2canvas from 'html2canvas'
 import YouTubeModal from './YouTubeModal'
 
@@ -27,7 +27,6 @@ const colors = {
 function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveToLibrary, onGoToLibrary }: ResultPageProps) {
     const [showYouTubeModal, setShowYouTubeModal] = useState(false)
     const [isCapturing, setIsCapturing] = useState(false)
-    const shareCardRef = useRef<HTMLDivElement>(null)
 
     // 기분에서 키워드 추출 (간단한 버전)
     const getMoodKeyword = (mood: string) => {
@@ -40,27 +39,92 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
 
     // 이미지로 저장
     const handleSaveAsImage = async () => {
-        if (!shareCardRef.current) return
+        // 공유용 카드 동적 생성
+        const shareCard = document.createElement('div')
+        shareCard.style.cssText = `
+            width: 600px;
+            padding: 48px;
+            background: linear-gradient(135deg, #FFFBF2 0%, #FEF3C7 50%, #FDF2F8 100%);
+            font-family: 'Manrope', sans-serif;
+            position: fixed;
+            left: -9999px;
+            top: 0;
+        `
+        shareCard.innerHTML = `
+            <div style="text-align: center; margin-bottom: 32px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(180,83,9,0.1); padding: 8px 16px; border-radius: 9999px; margin-bottom: 16px;">
+                    <span style="color: #b45309; font-size: 14px;">✨</span>
+                    <span style="color: #b45309; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;">Aura Classical</span>
+                </div>
+                <p style="color: #475569; font-size: 14px; opacity: 0.7;">AI가 추천한 클래식 음악</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.6); border-radius: 24px; padding: 40px; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 20px 60px rgba(180,83,9,0.1);">
+                <p style="color: #b45309; font-size: 12px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 8px; opacity: 0.7;">Now Curated for You</p>
+                <h2 style="color: #475569; font-size: 32px; font-weight: 500; margin-bottom: 8px; font-family: 'Playfair Display', serif; line-height: 1.2;">${recommendation.title}</h2>
+                <p style="color: #b45309; font-size: 20px; font-style: italic; margin-bottom: 24px; font-family: 'Playfair Display', serif;">${recommendation.composer}</p>
+                <div style="background: rgba(180,83,9,0.05); border-radius: 16px; padding: 20px; border-left: 4px solid #b45309;">
+                    <p style="color: #475569; font-size: 14px; line-height: 1.7; font-style: italic; opacity: 0.9;">"${recommendation.description}"</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 24px;">
+                <p style="color: #b45309; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; opacity: 0.6;">🎵 music-for-mom.pages.dev</p>
+            </div>
+        `
+        document.body.appendChild(shareCard)
         
         setIsCapturing(true)
         try {
-            const canvas = await html2canvas(shareCardRef.current, {
+            const canvas = await html2canvas(shareCard, {
                 scale: 2,
                 backgroundColor: '#FFFBF2',
-                useCORS: true,
-                allowTaint: true,
             })
             
             const link = document.createElement('a')
-            link.download = `aura-classical-${recommendation.composer}-${recommendation.title}.png`
+            link.download = `aura-classical-${recommendation.title.replace(/\s+/g, '-')}.png`
             link.href = canvas.toDataURL('image/png')
             link.click()
         } catch (error) {
             console.error('Failed to save image:', error)
             alert('이미지 저장에 실패했습니다. 다시 시도해주세요.')
         } finally {
+            document.body.removeChild(shareCard)
             setIsCapturing(false)
         }
+    }
+
+    // 공유용 카드 생성 함수
+    const createShareCard = (): HTMLDivElement => {
+        const shareCard = document.createElement('div')
+        shareCard.style.cssText = `
+            width: 600px;
+            padding: 48px;
+            background: linear-gradient(135deg, #FFFBF2 0%, #FEF3C7 50%, #FDF2F8 100%);
+            font-family: 'Manrope', sans-serif;
+            position: fixed;
+            left: -9999px;
+            top: 0;
+        `
+        shareCard.innerHTML = `
+            <div style="text-align: center; margin-bottom: 32px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(180,83,9,0.1); padding: 8px 16px; border-radius: 9999px; margin-bottom: 16px;">
+                    <span style="color: #b45309; font-size: 14px;">✨</span>
+                    <span style="color: #b45309; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;">Aura Classical</span>
+                </div>
+                <p style="color: #475569; font-size: 14px; opacity: 0.7;">AI가 추천한 클래식 음악</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.6); border-radius: 24px; padding: 40px; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 20px 60px rgba(180,83,9,0.1);">
+                <p style="color: #b45309; font-size: 12px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 8px; opacity: 0.7;">Now Curated for You</p>
+                <h2 style="color: #475569; font-size: 32px; font-weight: 500; margin-bottom: 8px; font-family: 'Playfair Display', serif; line-height: 1.2;">${recommendation.title}</h2>
+                <p style="color: #b45309; font-size: 20px; font-style: italic; margin-bottom: 24px; font-family: 'Playfair Display', serif;">${recommendation.composer}</p>
+                <div style="background: rgba(180,83,9,0.05); border-radius: 16px; padding: 20px; border-left: 4px solid #b45309;">
+                    <p style="color: #475569; font-size: 14px; line-height: 1.7; font-style: italic; opacity: 0.9;">"${recommendation.description}"</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 24px;">
+                <p style="color: #b45309; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; opacity: 0.6;">🎵 music-for-mom.pages.dev</p>
+            </div>
+        `
+        return shareCard
     }
 
     // 공유하기
@@ -70,43 +134,43 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
         // Web Share API 지원 확인
         if (navigator.share) {
             try {
-                // 이미지와 함께 공유 시도
-                if (shareCardRef.current) {
-                    setIsCapturing(true)
-                    const canvas = await html2canvas(shareCardRef.current, {
-                        scale: 2,
-                        backgroundColor: '#FFFBF2',
-                        useCORS: true,
-                        allowTaint: true,
-                    })
-                    
-                    canvas.toBlob(async (blob) => {
-                        if (blob) {
-                            const file = new File([blob], 'aura-classical.png', { type: 'image/png' })
+                setIsCapturing(true)
+                
+                // 공유 카드 생성 및 캡처
+                const shareCard = createShareCard()
+                document.body.appendChild(shareCard)
+                
+                const canvas = await html2canvas(shareCard, {
+                    scale: 2,
+                    backgroundColor: '#FFFBF2',
+                })
+                
+                document.body.removeChild(shareCard)
+                
+                canvas.toBlob(async (blob) => {
+                    if (blob) {
+                        const file = new File([blob], 'aura-classical.png', { type: 'image/png' })
+                        try {
+                            await navigator.share({
+                                title: `${recommendation.title} - ${recommendation.composer}`,
+                                text: shareText,
+                                files: [file],
+                            })
+                        } catch {
+                            // 파일 공유 실패 시 텍스트만 공유
                             try {
                                 await navigator.share({
                                     title: `${recommendation.title} - ${recommendation.composer}`,
                                     text: shareText,
-                                    files: [file],
                                 })
-                            } catch (shareError) {
-                                // 파일 공유 실패 시 텍스트만 공유
-                                await navigator.share({
-                                    title: `${recommendation.title} - ${recommendation.composer}`,
-                                    text: shareText,
-                                })
+                            } catch {
+                                // 사용자가 취소한 경우
                             }
                         }
-                        setIsCapturing(false)
-                    }, 'image/png')
-                } else {
-                    await navigator.share({
-                        title: `${recommendation.title} - ${recommendation.composer}`,
-                        text: shareText,
-                    })
-                }
+                    }
+                    setIsCapturing(false)
+                }, 'image/png')
             } catch (error) {
-                // 사용자가 공유 취소한 경우
                 setIsCapturing(false)
                 if ((error as Error).name !== 'AbortError') {
                     console.error('Share failed:', error)
@@ -174,11 +238,9 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                     </h1>
                 </div>
 
-                {/* Shareable Card (for capture) */}
+                {/* Main Card */}
                 <div 
-                    ref={shareCardRef}
                     className="w-full max-w-5xl fade-in"
-                    style={{ backgroundColor: '#FFFBF2' }}
                 >
                     <div 
                         className="glass-panel-warm painterly-shadow rounded-[3rem] p-8 md:p-12 flex flex-col lg:flex-row gap-12 lg:gap-16 items-center"
