@@ -49,80 +49,60 @@ function PaymentSuccessPage({ onContinue }: PaymentSuccessPageProps) {
 
     return (
         <div 
+            className="min-h-screen flex items-center justify-center px-4 sm:px-6"
             style={{ 
                 ...styles.impressionistBg,
                 color: colors.warmSlate,
                 fontFamily: 'Manrope, sans-serif',
-                minHeight: '100vh',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '1.5rem',
             }}
         >
             <div 
+                className="w-full max-w-md rounded-2xl sm:rounded-[2.5rem] p-6 sm:p-10 text-center"
                 style={{
                     ...styles.glassPanelWarm,
-                    borderRadius: '2.5rem',
-                    padding: '3rem',
-                    maxWidth: '28rem',
-                    width: '100%',
-                    textAlign: 'center',
                 }}
             >
                 {/* Success Icon */}
                 <div 
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6"
                     style={{
-                        width: '5rem',
-                        height: '5rem',
-                        borderRadius: '50%',
                         backgroundColor: '#10b981',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        margin: '0 auto 1.5rem',
                         animation: 'pulse 2s ease-in-out infinite',
                     }}
                 >
-                    <span className="material-symbols-outlined" style={{ fontSize: '2.5rem', color: 'white' }}>
+                    <span className="material-symbols-outlined text-3xl sm:text-4xl text-white">
                         check_circle
                     </span>
                 </div>
 
                 {/* Title */}
                 <h1 
+                    className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3"
                     style={{ 
                         fontFamily: 'Playfair Display, serif',
-                        fontSize: '2rem',
-                        fontWeight: 600,
                         color: colors.warmSlate,
-                        marginBottom: '0.75rem',
                     }}
                 >
                     결제 완료! 🎉
                 </h1>
 
                 {/* Subtitle */}
-                <p style={{ fontSize: '1.125rem', color: `${colors.warmSlate}99`, marginBottom: '1.5rem' }}>
+                <p className="text-sm sm:text-lg mb-4 sm:mb-6" style={{ color: `${colors.warmSlate}99` }}>
                     Aura Classical을 구매해주셔서 감사합니다
                 </p>
 
                 {/* Features unlocked */}
                 <div 
+                    className="rounded-xl sm:rounded-2xl p-4 sm:p-5 mb-6 sm:mb-8"
                     style={{
                         backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                        borderRadius: '1rem',
-                        padding: '1rem',
-                        marginBottom: '2rem',
                     }}
                 >
-                    <p style={{ fontSize: '0.875rem', color: '#059669', fontWeight: 600 }}>
+                    <p className="text-xs sm:text-sm font-semibold" style={{ color: '#059669' }}>
                         ✨ 모든 기능이 활성화되었습니다
                     </p>
-                    <ul style={{ 
-                        fontSize: '0.875rem', 
+                    <ul className="text-xs sm:text-sm mt-2 space-y-1" style={{ 
                         color: `${colors.warmSlate}99`, 
-                        marginTop: '0.5rem',
                         listStyle: 'none',
                         padding: 0,
                     }}>
@@ -135,14 +115,9 @@ function PaymentSuccessPage({ onContinue }: PaymentSuccessPageProps) {
                 {/* Continue Button */}
                 <button
                     onClick={onContinue}
+                    className="w-full py-3 sm:py-4 px-6 sm:px-8 rounded-full text-sm sm:text-base font-bold text-white"
                     style={{
-                        width: '100%',
-                        padding: '1rem 2rem',
-                        borderRadius: '9999px',
                         background: `linear-gradient(135deg, ${colors.deepGold} 0%, ${colors.primaryWarm} 100%)`,
-                        color: 'white',
-                        fontSize: '1rem',
-                        fontWeight: 700,
                         border: 'none',
                         cursor: 'pointer',
                         boxShadow: `0 10px 25px -5px ${colors.deepGold}66`,
@@ -152,7 +127,7 @@ function PaymentSuccessPage({ onContinue }: PaymentSuccessPageProps) {
                 </button>
 
                 {/* Skip text */}
-                <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: `${colors.warmSlate}66` }}>
+                <p className="mt-3 sm:mt-4 text-[10px] sm:text-xs" style={{ color: `${colors.warmSlate}66` }}>
                     클릭하면 바로 시작할 수 있어요
                 </p>
             </div>
