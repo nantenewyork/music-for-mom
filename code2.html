@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Recommendation Results | Aura Classical</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-warm": "#d97706",
+                        "soft-pink": "#fdf2f2",
+                        "ochre-glow": "#fef3c7",
+                        "sage-green": "#f0fdf4",
+                        "warm-slate": "#475569",
+                        "deep-gold": "#b45309",
+                        "brand-gold": "#c68a12"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .premium-serif { font-family: 'Playfair Display', serif; }
+        .body-sans { font-family: 'Manrope', sans-serif; }
+        .impressionist-bg {
+            background: 
+                radial-gradient(circle at 15% 15%, rgba(254, 243, 199, 0.7) 0%, transparent 40%),
+                radial-gradient(circle at 85% 20%, rgba(251, 207, 232, 0.6) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(255, 251, 235, 1) 0%, transparent 100%),
+                radial-gradient(circle at 80% 80%, rgba(254, 215, 170, 0.5) 0%, transparent 50%),
+                url('https://www.transparenttextures.com/patterns/cream-paper.png'),
+                linear-gradient(to bottom right, #fff7ed, #fdf2f2, #fffbeb);
+            background-attachment: fixed;
+        }
+        .glass-panel-warm {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px) saturate(140%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 12px 40px 0 rgba(180, 83, 9, 0.08);
+        }
+        .organic-frame {
+            border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+            overflow: hidden;
+            box-shadow: 0 20px 40px -10px rgba(180, 83, 9, 0.2);
+            border: 8px solid rgba(255, 255, 255, 0.5);
+        }
+        .painterly-shadow {
+            box-shadow: 0 20px 50px -12px rgba(180, 83, 9, 0.12);
+        }
+        .impressionist-image-filter {
+            filter: sepia(0.2) contrast(0.9) brightness(1.05) saturate(1.2) opacity(0.95);
+            mix-blend-mode: multiply;
+        }
+        .yt-button {
+            background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .yt-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(180, 83, 9, 0.4);
+        }
+    </style>
+</head>
+<body class="impressionist-bg body-sans text-warm-slate min-h-screen overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col">
+<header class="sticky top-0 z-50 w-full border-b border-white/20 glass-panel-warm">
+<div class="mx-auto max-w-7xl px-6 lg:px-10">
+<div class="flex h-20 items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-deep-gold text-white shadow-lg">
+<span class="material-symbols-outlined text-2xl">auto_awesome</span>
+</div>
+<h2 class="premium-serif text-2xl font-semibold tracking-tight text-deep-gold">Aura Classical</h2>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-semibold text-deep-gold/80 hover:text-deep-gold transition-colors" href="#">Library</a>
+<a class="text-sm font-semibold text-deep-gold/80 hover:text-deep-gold transition-colors" href="#">Science</a>
+<a class="text-sm font-semibold text-deep-gold/80 hover:text-deep-gold transition-colors" href="#">Profile</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex h-10 w-10 items-center justify-center rounded-full border border-deep-gold/20 bg-white/40 hover:bg-white/60 transition-colors">
+<span class="material-symbols-outlined text-xl text-deep-gold">settings</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center px-6 py-12 lg:py-20">
+<div class="mb-12 text-center">
+<div class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-100/30 px-4 py-1.5 mb-6 shadow-sm">
+<span class="material-symbols-outlined text-sm text-deep-gold">auto_awesome</span>
+<span class="text-xs font-bold uppercase tracking-[0.2em] text-deep-gold">Aura Insight</span>
+</div>
+<h1 class="premium-serif text-4xl md:text-5xl text-warm-slate font-light leading-tight">
+                Based on your mood: <span class="italic text-deep-gold">Finding Peace</span>
+</h1>
+</div>
+<div class="w-full max-w-5xl">
+<div class="glass-panel-warm painterly-shadow rounded-[3rem] p-8 md:p-12 flex flex-col lg:flex-row gap-16 items-center lg:items-center">
+<div class="relative w-full lg:w-1/2 flex justify-center items-center">
+<div class="organic-frame w-full max-w-md aspect-square relative group">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 impressionist-image-filter" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAx3KTb0WdXFsKKL4mNBiXTYlr9whWo-hdSc4WlXMfD2ljyzKHaVNULu4L_oRI2tlcFOK15YPuYyxH2XasnYq54lobFyDox6DlKAH3acNi-pbrOdasMhsDDxwk5Vi87fdnjtApcRHltSlmeFd2aajRxH82IuAyknWyqpu9sRYyrhPD_rvAG2v1_6rqtBru-WMgI_2eakavyVO8babfyqu45XnLSSFD2f7-wL9RpkL9YFXp54yITBvl12edYf9Jqebm6QyU_VXPSdwM');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-tr from-amber-200/30 to-transparent mix-blend-overlay"></div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+<div class="h-20 w-20 rounded-full bg-white/60 backdrop-blur-md flex items-center justify-center border border-white/40">
+<span class="material-symbols-outlined text-4xl text-deep-gold fill-1">play_arrow</span>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-1/2 flex flex-col justify-center gap-8">
+<div class="flex flex-col gap-2">
+<p class="text-xs font-bold tracking-[0.3em] text-deep-gold/60 uppercase">Now Curated for You</p>
+<h2 class="premium-serif text-5xl md:text-6xl font-medium leading-tight text-warm-slate">Clair de Lune</h2>
+<p class="text-2xl text-deep-gold/80 italic premium-serif">Claude Debussy</p>
+</div>
+<div class="space-y-4 bg-white/30 p-8 rounded-3xl border border-white/40 shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-deep-gold">flare</span>
+<p class="text-sm font-bold uppercase tracking-widest text-deep-gold/70">Why this harmony?</p>
+</div>
+<p class="text-lg leading-relaxed text-warm-slate/90 italic font-light body-sans">
+                            "This Impressionist masterpiece uses gentle rhythmic undulations that echo a calm resting breath. The soft golds and pinks of your mood today find a perfect sonic companion in Debussy’s ethereal textures, fostering a serene environment for both you and your little one."
+                        </p>
+</div>
+<div class="flex flex-col gap-5 pt-4">
+<button class="yt-button flex w-full items-center justify-center gap-3 rounded-full px-8 py-5 text-lg font-bold text-white shadow-xl">
+<span class="material-symbols-outlined">play_circle</span>
+                            Watch on YouTube
+                        </button>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="flex flex-1 items-center justify-center gap-2 rounded-full border border-deep-gold/20 bg-white/40 px-6 py-4 text-sm font-bold text-deep-gold hover:bg-white/60 transition-all shadow-sm">
+<span class="material-symbols-outlined text-xl">refresh</span>
+                                Generate Another
+                            </button>
+<button class="flex flex-1 items-center justify-center gap-2 rounded-full border border-deep-gold/20 bg-white/40 px-6 py-4 text-sm font-bold text-deep-gold hover:bg-white/60 transition-all shadow-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+                                Save to Library
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16 max-w-2xl text-center">
+<p class="text-deep-gold/70 text-sm font-medium leading-relaxed body-sans">
+                Classical music during pregnancy can reduce cortisol and enhance prenatal bonding.
+                <br/>
+<a class="text-deep-gold font-bold border-b border-deep-gold/30 hover:border-deep-gold transition-all" href="#">Explore our scientific approach</a>
+</p>
+</div>
+</main>
+<footer class="border-t border-white/30 py-10 mt-auto glass-panel-warm">
+<div class="mx-auto max-w-7xl px-6 lg:px-10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-deep-gold text-sm">auto_awesome</span>
+<p class="text-xs font-bold text-deep-gold/50 uppercase tracking-widest">© 2024 Aura Classical AI</p>
+</div>
+<div class="flex gap-8">
+<a class="text-xs font-bold text-deep-gold/50 hover:text-deep-gold transition-colors uppercase tracking-widest" href="#">Support</a>
+<a class="text-xs font-bold text-deep-gold/50 hover:text-deep-gold transition-colors uppercase tracking-widest" href="#">Privacy</a>
+<a class="text-xs font-bold text-deep-gold/50 hover:text-deep-gold transition-colors uppercase tracking-widest" href="#">Terms</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>
