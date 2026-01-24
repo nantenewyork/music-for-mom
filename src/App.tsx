@@ -21,6 +21,34 @@ function App() {
   const [error, setError] = useState<string | null>(null)
   const [currentMood, setCurrentMood] = useState<string>('')
 
+  // 기본 추천 음악 (API 실패 시 fallback)
+  const fallbackRecommendations = [
+    {
+      composer: 'Claude Debussy',
+      title: 'Clair de Lune',
+      youtubeId: '',
+      description: '이 인상주의 걸작은 잔잔한 호흡처럼 부드러운 리듬의 물결을 사용합니다. 드뷔시의 몽환적인 질감은 당신과 아기 모두에게 고요한 환경을 조성하는 완벽한 음향 동반자입니다.'
+    },
+    {
+      composer: 'Johann Pachelbel',
+      title: 'Canon in D Major',
+      youtubeId: '',
+      description: '이 곡은 부드럽고 평화로운 선율로 임산부에게 안정감과 행복감을 선사합니다. 반복되는 아름다운 화음은 마음을 편안하게 하고, 아기와 함께하는 순간의 기쁨을 더욱 깊게 느낄 수 있도록 도와줍니다.'
+    },
+    {
+      composer: 'Ludwig van Beethoven',
+      title: 'Moonlight Sonata',
+      youtubeId: '',
+      description: '달빛 소나타의 첫 악장은 깊은 평온함과 명상적인 분위기를 자아냅니다. 고요하고 서정적인 멜로디가 마음의 안정을 가져다주어 임산부의 휴식에 이상적입니다.'
+    },
+    {
+      composer: 'Antonio Vivaldi',
+      title: 'The Four Seasons - Spring',
+      youtubeId: '',
+      description: '봄의 생동감과 기쁨을 표현하며, 따뜻하고 활기찬 멜로디가 듣는 이에게 행복감을 선사합니다. 임산부가 느끼는 행복한 감정을 더욱 풍요롭게 해줍니다.'
+    },
+  ]
+
   const handleMoodSubmit = async (mood: string) => {
     setLoading(true)
     setError(null)
@@ -42,8 +70,9 @@ function App() {
       const data = await response.json()
       setRecommendation(data)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred')
-      setLoading(false)
+      // API 실패 시 fallback 음악 사용
+      const randomIndex = Math.floor(Math.random() * fallbackRecommendations.length)
+      setRecommendation(fallbackRecommendations[randomIndex])
     } finally {
       setLoading(false)
     }
