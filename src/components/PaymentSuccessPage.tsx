@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface PaymentSuccessPageProps {
     onContinue: () => void
@@ -30,6 +31,7 @@ const styles = {
 }
 
 function PaymentSuccessPage({ onContinue }: PaymentSuccessPageProps) {
+    const { t } = useTranslation()
     const [countdown, setCountdown] = useState(5)
 
     useEffect(() => {
@@ -83,12 +85,12 @@ function PaymentSuccessPage({ onContinue }: PaymentSuccessPageProps) {
                         color: colors.warmSlate,
                     }}
                 >
-                    결제 완료! 🎉
+                    {t('paymentSuccess.title')}
                 </h1>
 
                 {/* Subtitle */}
                 <p className="text-sm sm:text-lg mb-4 sm:mb-6" style={{ color: `${colors.warmSlate}99` }}>
-                    Aura Classical을 구매해주셔서 감사합니다
+                    {t('paymentSuccess.subtitle')}
                 </p>
 
                 {/* Features unlocked */}
@@ -99,16 +101,16 @@ function PaymentSuccessPage({ onContinue }: PaymentSuccessPageProps) {
                     }}
                 >
                     <p className="text-xs sm:text-sm font-semibold" style={{ color: '#059669' }}>
-                        ✨ 모든 기능이 활성화되었습니다
+                        {t('paymentSuccess.activated')}
                     </p>
                     <ul className="text-xs sm:text-sm mt-2 space-y-1" style={{ 
                         color: `${colors.warmSlate}99`, 
                         listStyle: 'none',
                         padding: 0,
                     }}>
-                        <li>• AI 맞춤 클래식 음악 추천</li>
-                        <li>• 개인 라이브러리 저장</li>
-                        <li>• YouTube 연동</li>
+                        <li>• {t('paymentSuccess.feature1')}</li>
+                        <li>• {t('paymentSuccess.feature2')}</li>
+                        <li>• {t('paymentSuccess.feature3')}</li>
                     </ul>
                 </div>
 
@@ -123,12 +125,12 @@ function PaymentSuccessPage({ onContinue }: PaymentSuccessPageProps) {
                         boxShadow: `0 10px 25px -5px ${colors.deepGold}66`,
                     }}
                 >
-                    시작하기 ({countdown}초)
+                    {t('paymentSuccess.startNow')} ({countdown}{t('paymentSuccess.seconds')})
                 </button>
 
                 {/* Skip text */}
                 <p className="mt-3 sm:mt-4 text-[10px] sm:text-xs" style={{ color: `${colors.warmSlate}66` }}>
-                    클릭하면 바로 시작할 수 있어요
+                    {t('paymentSuccess.clickToStart')}
                 </p>
             </div>
         </div>

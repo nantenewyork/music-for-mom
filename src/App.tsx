@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import MoodInput from './components/MoodInput'
 import ResultPage from './components/ResultPage'
 import LibraryPage from './components/LibraryPage'
@@ -7,6 +8,7 @@ import PaymentSuccessPage from './components/PaymentSuccessPage'
 import TermsPage from './components/TermsPage'
 import RefundPage from './components/RefundPage'
 import PrivacyPage from './components/PrivacyPage'
+import LanguageSwitch from './components/LanguageSwitch'
 
 interface MusicRecommendation {
   composer: string
@@ -33,6 +35,7 @@ const colors = {
 }
 
 function App() {
+  const { t } = useTranslation()
   const [recommendation, setRecommendation] = useState<MusicRecommendation | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -103,14 +106,14 @@ function App() {
     )
     
     if (isDuplicate) {
-      alert('이미 라이브러리에 저장된 곡이에요!')
+      alert(t('share.alreadySaved'))
       return
     }
     
     const updated = [...savedMusic, newSavedMusic]
     setSavedMusic(updated)
     localStorage.setItem('aura-classical-library', JSON.stringify(updated))
-    alert('라이브러리에 저장되었어요! 💕')
+    alert(t('share.savedToLibrary'))
   }
 
   // 음악 삭제
@@ -275,15 +278,17 @@ function App() {
                 <span className="material-symbols-outlined text-lg sm:text-2xl">auto_awesome</span>
               </div>
               <h2 className="premium-serif text-lg sm:text-2xl font-semibold tracking-tight" style={{ color: colors.deepGold }}>
-                Aura Classical
+                {t('common.appName')}
               </h2>
             </div>
             <nav className="hidden md:flex items-center gap-10">
-              <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>Library</button>
-              <a className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }} href="#">Science</a>
-              <a className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }} href="#">Profile</a>
+              <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>{t('header.library')}</button>
+              <a className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }} href="#">{t('header.science')}</a>
+              <a className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }} href="#">{t('header.profile')}</a>
             </nav>
             <div className="flex items-center gap-2 sm:gap-4">
+              {/* Language Switch */}
+              <LanguageSwitch />
               {/* Mobile Library Button */}
               <button 
                 onClick={handleGoToLibrary}
@@ -312,13 +317,13 @@ function App() {
             style={{ backgroundColor: 'rgba(254, 243, 199, 0.5)', border: '1px solid rgba(217, 119, 6, 0.2)' }}
           >
             <span className="material-symbols-outlined text-xs sm:text-sm" style={{ color: colors.deepGold }}>auto_awesome</span>
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest" style={{ color: colors.deepGold }}>Aura Insight</span>
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest" style={{ color: colors.deepGold }}>{t('home.badge')}</span>
           </div>
           <h1 className="premium-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight px-2" style={{ color: colors.warmSlate }}>
-            당신의 기분을 <br className="sm:hidden" /><span className="italic" style={{ color: colors.deepGold }}>클래식 하모니</span>로
+            {t('home.title')} <br className="sm:hidden" /><span className="italic" style={{ color: colors.deepGold }}>{t('home.titleHighlight')}</span>{t('home.titleEnd')}
           </h1>
           <p className="mt-4 sm:mt-6 text-sm sm:text-lg max-w-2xl mx-auto px-2" style={{ color: `${colors.warmSlate}b3` }}>
-            AI가 맞춤 선별한 클래식 음악으로, 당신과 아이 사이의 빛나는 유대를 키워드립니다.
+            {t('home.subtitle')}
           </p>
         </div>
 
@@ -327,7 +332,7 @@ function App() {
           <div className="text-center fade-in py-12 sm:py-20">
             <div className="spinner mx-auto mb-4 sm:mb-6"></div>
             <p className="premium-serif text-base sm:text-xl italic px-4" style={{ color: `${colors.warmSlate}b3` }}>
-              당신을 위한 완벽한 음악을 찾고 있어요...
+              {t('home.findingMusic')}
             </p>
           </div>
         ) : (
@@ -346,7 +351,7 @@ function App() {
               className="mt-3 sm:mt-4 text-sm font-bold"
               style={{ color: colors.deepGold }}
             >
-              다시 시도
+              {t('common.retry')}
             </button>
           </div>
         )}
@@ -354,14 +359,14 @@ function App() {
         {/* Info Section */}
         <div className="mt-12 sm:mt-20 max-w-2xl text-center px-4">
           <p className="text-xs sm:text-sm font-medium leading-relaxed" style={{ color: `${colors.deepGold}b3` }}>
-            임신 중 클래식 음악은 코르티솔을 낮추고 태아와의 유대감을 강화합니다.
+            {t('home.scienceInfo')}
             <br/>
             <a 
               className="font-bold transition-all"
               style={{ color: colors.deepGold, borderBottom: `1px solid ${colors.deepGold}4d` }}
               href="#"
             >
-              과학적 접근 방식 알아보기
+              {t('home.learnMore')}
             </a>
           </p>
         </div>
@@ -374,13 +379,13 @@ function App() {
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-xs sm:text-sm" style={{ color: colors.deepGold }}>auto_awesome</span>
               <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest" style={{ color: `${colors.deepGold}80` }}>
-                © 2024 Aura Classical AI
+                {t('footer.copyright')}
               </p>
             </div>
             <div className="flex gap-4 sm:gap-8">
-              <button onClick={() => setCurrentPage('terms')} className="text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>Terms</button>
-              <button onClick={() => setCurrentPage('refund')} className="text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>Refund</button>
-              <button onClick={() => setCurrentPage('privacy')} className="text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>Privacy</button>
+              <button onClick={() => setCurrentPage('terms')} className="text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>{t('footer.terms')}</button>
+              <button onClick={() => setCurrentPage('refund')} className="text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>{t('footer.refund')}</button>
+              <button onClick={() => setCurrentPage('privacy')} className="text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>{t('footer.privacy')}</button>
             </div>
           </div>
         </div>

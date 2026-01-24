@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface MoodInputProps {
     onSubmit: (mood: string) => void
@@ -11,15 +12,16 @@ const colors = {
     warmSlate: '#475569',
 }
 
-const MOOD_SUGGESTIONS = [
-    { icon: 'wb_sunny', label: '평온함 찾기', mood: '평화롭고 고요해요' },
-    { icon: 'favorite', label: '기쁨 느끼기', mood: '행복하고 설레요' },
-    { icon: 'spa', label: '휴식 취하기', mood: '피곤하고 쉬고 싶어요' },
-    { icon: 'cloud', label: '위로 받기', mood: '불안하고 걱정돼요' },
-]
-
 function MoodInput({ onSubmit, loading }: MoodInputProps) {
+    const { t } = useTranslation()
     const [mood, setMood] = useState('')
+
+    const MOOD_SUGGESTIONS = [
+        { icon: 'wb_sunny', labelKey: 'moods.peace', moodKey: 'moods.peaceMood' },
+        { icon: 'favorite', labelKey: 'moods.joy', moodKey: 'moods.joyMood' },
+        { icon: 'spa', labelKey: 'moods.rest', moodKey: 'moods.restMood' },
+        { icon: 'cloud', labelKey: 'moods.comfort', moodKey: 'moods.comfortMood' },
+    ]
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
@@ -28,10 +30,11 @@ function MoodInput({ onSubmit, loading }: MoodInputProps) {
         }
     }
 
-    const handleSuggestionClick = (suggestion: string) => {
+    const handleSuggestionClick = (moodKey: string) => {
         if (!loading) {
-            setMood(suggestion)
-            onSubmit(suggestion)
+            const moodText = t(moodKey)
+            setMood(moodText)
+            onSubmit(moodText)
         }
     }
 
@@ -54,7 +57,7 @@ function MoodInput({ onSubmit, loading }: MoodInputProps) {
                         <input
                             className="w-full border-none bg-transparent p-0 focus:ring-0 focus:outline-none text-base sm:text-lg"
                             style={{ color: colors.warmSlate }}
-                            placeholder="오늘의 기분을 표현해주세요..."
+                            placeholder={t('home.inputPlaceholder')}
                             type="text"
                             value={mood}
                             onChange={(e) => setMood(e.target.value)}
@@ -66,7 +69,7 @@ function MoodInput({ onSubmit, loading }: MoodInputProps) {
                         disabled={!mood.trim() || loading}
                         className="yt-button flex h-12 sm:h-14 items-center justify-center gap-2 rounded-full px-6 sm:px-10 font-bold text-white disabled:opacity-50 disabled:hover:transform-none text-sm sm:text-base"
                     >
-                        <span>{loading ? '찾는 중...' : '큐레이션'}</span>
+                        <span>{loading ? t('home.searching') : t('home.curate')}</span>
                         <span className="material-symbols-outlined text-base sm:text-lg">music_note</span>
                     </button>
                 </div>
@@ -78,14 +81,14 @@ function MoodInput({ onSubmit, loading }: MoodInputProps) {
                     className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] px-2 text-center"
                     style={{ color: `${colors.warmSlate}99` }}
                 >
-                    또는 분위기를 선택하세요
+                    {t('home.orSelectMood')}
                 </p>
                 {/* Mobile: 2x2 그리드, Desktop: 가로 나열 */}
                 <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3 justify-center">
                     {MOOD_SUGGESTIONS.map((suggestion) => (
                         <button
-                            key={suggestion.label}
-                            onClick={() => handleSuggestionClick(suggestion.mood)}
+                            key={suggestion.labelKey}
+                            onClick={() => handleSuggestionClick(suggestion.moodKey)}
                             disabled={loading}
                             className="flex h-11 sm:h-12 items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-white/60 px-3 sm:px-6 text-xs sm:text-sm font-semibold transition-all disabled:opacity-50 hover:bg-white/90 hover:shadow-md"
                             style={{ 
@@ -94,7 +97,7 @@ function MoodInput({ onSubmit, loading }: MoodInputProps) {
                             }}
                         >
                             <span className="material-symbols-outlined text-sm sm:text-base">{suggestion.icon}</span>
-                            <span className="whitespace-nowrap">{suggestion.label}</span>
+                            <span className="whitespace-nowrap">{t(suggestion.labelKey)}</span>
                         </button>
                     ))}
                 </div>

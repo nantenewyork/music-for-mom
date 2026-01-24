@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { PolarEmbedCheckout } from '@polar-sh/checkout/embed'
 
 interface PaymentButtonProps {
@@ -15,6 +16,7 @@ const colors = {
 }
 
 function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNavigateToPrivacy }: PaymentButtonProps) {
+    const { t } = useTranslation()
     const [loading, setLoading] = useState(false)
     const [agreedTerms, setAgreedTerms] = useState(false)
     const [agreedPrivacy, setAgreedPrivacy] = useState(false)
@@ -44,19 +46,19 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
             console.log('Refund response:', refundData)
             
             if (refundData.success) {
-                alert('⚠️ 결제 처리 중 오류가 발생했습니다.\n\n자동으로 환불 처리되었습니다.\n다시 시도해주세요.')
+                alert(t('alerts.autoRefundSuccess'))
             } else {
-                alert(`⚠️ 결제 처리 중 오류가 발생했습니다.\n\n자동 환불 처리에 실패했습니다.\n아래 정보와 함께 이메일로 문의해주세요.\n빠르게 환불 처리해 드리겠습니다.\n\n📧 nantenewyork@gmail.com\n\n[Checkout ID: ${checkoutId}]`)
+                alert(`${t('alerts.autoRefundFailed')}\n\n${t('alerts.checkoutId', { id: checkoutId })}`)
             }
         } catch (refundError) {
             console.error('Auto refund error:', refundError)
-            alert(`⚠️ 결제 처리 중 오류가 발생했습니다.\n\n아래 정보와 함께 이메일로 문의해주세요.\n빠르게 환불 처리해 드리겠습니다.\n\n📧 nantenewyork@gmail.com\n\n[Checkout ID: ${checkoutId}]`)
+            alert(`${t('alerts.autoRefundFailed')}\n\n${t('alerts.checkoutId', { id: checkoutId })}`)
         }
     }
 
     const handleCheckout = async () => {
         if (!allAgreed) {
-            alert('모든 약관에 동의해주세요.')
+            alert(t('alerts.pleaseAgree'))
             return
         }
 
@@ -114,7 +116,7 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
             if (currentCheckoutId) {
                 handleAutoRefund(currentCheckoutId, 'checkout_creation_error')
             } else {
-                alert('결제 처리 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요.')
+                alert(t('alerts.paymentError'))
             }
         }
     }
@@ -161,7 +163,7 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                         }}
                     />
                     <span style={{ fontWeight: 700, color: colors.warmSlate }}>
-                        전체 동의
+                        {t('payment.agreeAll')}
                     </span>
                 </label>
 
@@ -187,7 +189,7 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                             }}
                         />
                         <span style={{ fontSize: '0.875rem', color: `${colors.warmSlate}cc` }}>
-                            <span style={{ color: '#ef4444' }}>[필수]</span>{' '}
+                            <span style={{ color: '#ef4444' }}>{t('payment.required')}</span>{' '}
                             <button 
                                 onClick={(e) => { e.preventDefault(); onNavigateToTerms?.() }}
                                 style={{ 
@@ -200,9 +202,9 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                                     fontSize: '0.875rem',
                                 }}
                             >
-                                서비스 이용약관
+                                {t('payment.agreeTerms')}
                             </button>
-                            에 동의합니다
+                            {t('payment.agreeTermsSuffix')}
                         </span>
                     </label>
 
@@ -226,7 +228,7 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                             }}
                         />
                         <span style={{ fontSize: '0.875rem', color: `${colors.warmSlate}cc` }}>
-                            <span style={{ color: '#ef4444' }}>[필수]</span>{' '}
+                            <span style={{ color: '#ef4444' }}>{t('payment.required')}</span>{' '}
                             <button 
                                 onClick={(e) => { e.preventDefault(); onNavigateToPrivacy?.() }}
                                 style={{ 
@@ -239,9 +241,9 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                                     fontSize: '0.875rem',
                                 }}
                             >
-                                개인정보 처리방침
+                                {t('payment.agreePrivacy')}
                             </button>
-                            에 동의합니다
+                            {t('payment.agreePrivacySuffix')}
                         </span>
                     </label>
 
@@ -265,8 +267,8 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                             }}
                         />
                         <span style={{ fontSize: '0.875rem', color: `${colors.warmSlate}cc` }}>
-                            <span style={{ color: '#ef4444' }}>[필수]</span>{' '}
-                            결제를 위한{' '}
+                            <span style={{ color: '#ef4444' }}>{t('payment.required')}</span>{' '}
+                            {t('payment.agreeThirdParty')}{' '}
                             <button 
                                 onClick={(e) => { e.preventDefault(); onNavigateToPrivacy?.() }}
                                 style={{ 
@@ -279,9 +281,9 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                                     fontSize: '0.875rem',
                                 }}
                             >
-                                제3자(Polar) 정보 제공
+                                {t('payment.agreeThirdPartyLink')}
                             </button>
-                            에 동의합니다
+                            {t('payment.agreeThirdPartySuffix')}
                         </span>
                     </label>
 
@@ -296,7 +298,7 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                             color: `${colors.warmSlate}99`,
                         }}
                     >
-                        💡 구매 전{' '}
+                        {t('payment.refundNotice')}{' '}
                         <button 
                             onClick={(e) => { e.preventDefault(); onNavigateToRefund?.() }}
                             style={{ 
@@ -309,9 +311,9 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                                 fontSize: '0.75rem',
                             }}
                         >
-                            환불 규정
+                            {t('payment.refundPolicy')}
                         </button>
-                        을 확인해주세요. (7일 이내 전액 환불 가능)
+                        {t('payment.refundNoticeSuffix')}
                     </div>
                 </div>
             </div>
@@ -334,12 +336,12 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                         <div 
                             className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"
                         />
-                        처리 중...
+                        {t('payment.processing')}
                     </>
                 ) : (
                     <>
                         <span className="material-symbols-outlined">shopping_cart</span>
-                        {allAgreed ? '지금 구매하기 - $9.90' : '약관에 동의해주세요'}
+                        {allAgreed ? t('payment.buyNow') : t('payment.pleaseAgree')}
                     </>
                 )}
             </button>

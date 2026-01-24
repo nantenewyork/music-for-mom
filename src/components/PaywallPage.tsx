@@ -1,4 +1,6 @@
+import { useTranslation } from 'react-i18next'
 import PaymentButton from './PaymentButton'
+import LanguageSwitch from './LanguageSwitch'
 
 interface PaywallPageProps {
     onPurchaseSuccess: () => void
@@ -10,29 +12,6 @@ const colors = {
     primaryWarm: '#d97706',
     warmSlate: '#475569',
 }
-
-const features = [
-    {
-        icon: 'auto_awesome',
-        title: 'AI 맞춤 큐레이션',
-        description: '기분에 맞는 클래식 음악을 AI가 추천'
-    },
-    {
-        icon: 'youtube_activity',
-        title: 'YouTube 연동',
-        description: '실제 YouTube 검색 결과로 바로 감상'
-    },
-    {
-        icon: 'favorite',
-        title: '개인 라이브러리',
-        description: '마음에 드는 곡을 저장하고 관리'
-    },
-    {
-        icon: 'all_inclusive',
-        title: '평생 이용권',
-        description: '한 번 구매로 영원히 사용'
-    },
-]
 
 const styles = {
     impressionistBg: {
@@ -57,6 +36,31 @@ const styles = {
 }
 
 function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
+    const { t } = useTranslation()
+    
+    const features = [
+        {
+            icon: 'auto_awesome',
+            titleKey: 'paywall.feature1Title',
+            descKey: 'paywall.feature1Desc'
+        },
+        {
+            icon: 'youtube_activity',
+            titleKey: 'paywall.feature2Title',
+            descKey: 'paywall.feature2Desc'
+        },
+        {
+            icon: 'favorite',
+            titleKey: 'paywall.feature3Title',
+            descKey: 'paywall.feature3Desc'
+        },
+        {
+            icon: 'all_inclusive',
+            titleKey: 'paywall.feature4Title',
+            descKey: 'paywall.feature4Desc'
+        },
+    ]
+    
     return (
         <div 
             style={{ 
@@ -79,7 +83,7 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                 }}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                    <div className="flex h-16 sm:h-20 items-center justify-center">
+                    <div className="flex h-16 sm:h-20 items-center justify-between">
                         <div className="flex items-center gap-2 sm:gap-3">
                             <div 
                                 className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full text-white shadow-lg"
@@ -94,9 +98,10 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                                     color: colors.deepGold,
                                 }}
                             >
-                                Aura Classical
+                                {t('common.appName')}
                             </h2>
                         </div>
+                        <LanguageSwitch />
                     </div>
                 </div>
             </header>
@@ -115,7 +120,7 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                     >
                         <span className="material-symbols-outlined text-xs sm:text-sm" style={{ color: colors.deepGold }}>verified</span>
                         <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest" style={{ color: colors.deepGold }}>
-                            Lifetime Access
+                            {t('paywall.badge')}
                         </span>
                     </div>
                     
@@ -126,12 +131,12 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                             color: colors.warmSlate,
                         }}
                     >
-                        임산부를 위한<br />
-                        <span style={{ fontStyle: 'italic', color: colors.deepGold }}>AI 클래식 음악</span> 큐레이션
+                        {t('paywall.title')}<br />
+                        <span style={{ fontStyle: 'italic', color: colors.deepGold }}>{t('paywall.titleHighlight')}</span> {t('paywall.titleEnd')}
                     </h1>
                     
                     <p className="text-sm sm:text-lg max-w-lg mx-auto" style={{ color: `${colors.warmSlate}99` }}>
-                        오늘의 기분에 맞는 클래식 음악으로, 당신과 아기의 특별한 순간을 더욱 빛나게 해드립니다.
+                        {t('paywall.subtitle')}
                     </p>
                 </div>
 
@@ -147,20 +152,20 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                         {/* Price */}
                         <div className="text-center mb-6 sm:mb-8">
                             <div className="flex items-center justify-center gap-2 mb-1">
-                                <span className="text-lg sm:text-xl line-through" style={{ color: `${colors.warmSlate}66` }}>$29</span>
+                                <span className="text-lg sm:text-xl line-through" style={{ color: `${colors.warmSlate}66` }}>{t('paywall.originalPrice')}</span>
                                 <span 
                                     className="px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold text-white"
                                     style={{ backgroundColor: '#ef4444' }}
                                 >
-                                    59% OFF
+                                    {t('paywall.discount')}
                                 </span>
                             </div>
                             <div className="flex items-baseline justify-center gap-1">
-                                <span className="text-4xl sm:text-5xl font-bold" style={{ color: colors.deepGold }}>$12</span>
-                                <span className="text-sm sm:text-lg" style={{ color: `${colors.warmSlate}99` }}>USD</span>
+                                <span className="text-4xl sm:text-5xl font-bold" style={{ color: colors.deepGold }}>{t('paywall.price')}</span>
+                                <span className="text-sm sm:text-lg" style={{ color: `${colors.warmSlate}99` }}>{t('paywall.currency')}</span>
                             </div>
                             <p className="mt-2 text-xs sm:text-sm" style={{ color: `${colors.warmSlate}66` }}>
-                                일회성 결제 • 평생 이용
+                                {t('paywall.oneTime')}
                             </p>
                         </div>
 
@@ -177,8 +182,8 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                                         </span>
                                     </div>
                                     <div>
-                                        <h3 className="text-sm sm:text-base font-bold" style={{ color: colors.warmSlate }}>{feature.title}</h3>
-                                        <p className="text-xs sm:text-sm" style={{ color: `${colors.warmSlate}99` }}>{feature.description}</p>
+                                        <h3 className="text-sm sm:text-base font-bold" style={{ color: colors.warmSlate }}>{t(feature.titleKey)}</h3>
+                                        <p className="text-xs sm:text-sm" style={{ color: `${colors.warmSlate}99` }}>{t(feature.descKey)}</p>
                                     </div>
                                 </div>
                             ))}
@@ -193,7 +198,7 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                                 onNavigateToPrivacy={() => onNavigate?.('privacy')}
                             />
                             <p className="mt-3 sm:mt-4 text-[10px] sm:text-xs text-center" style={{ color: `${colors.warmSlate}66` }}>
-                                🔒 안전한 결제 by Polar
+                                {t('paywall.securePayment')}
                             </p>
                         </div>
                     </div>
@@ -202,7 +207,7 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                 {/* Benefits */}
                 <div className="mt-8 sm:mt-12 max-w-lg text-center px-4">
                     <p className="text-xs sm:text-sm font-medium leading-relaxed" style={{ color: `${colors.deepGold}b3` }}>
-                        💕 임신 중 클래식 음악은 스트레스를 줄이고 태아와의 유대감을 높여줍니다.
+                        {t('paywall.benefit')}
                     </p>
                 </div>
             </main>
@@ -220,13 +225,13 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                         <div className="flex items-center gap-2">
                             <span className="material-symbols-outlined text-xs sm:text-sm" style={{ color: colors.deepGold }}>auto_awesome</span>
                             <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider" style={{ color: `${colors.deepGold}80` }}>
-                                © 2024 Aura Classical AI
+                                {t('footer.copyright')}
                             </p>
                         </div>
                         <div className="flex gap-4 sm:gap-8">
-                            <button onClick={() => onNavigate?.('terms')} className="text-[10px] sm:text-xs font-bold uppercase tracking-wider" style={{ color: `${colors.deepGold}80`, background: 'none', border: 'none', cursor: 'pointer' }}>Terms</button>
-                            <button onClick={() => onNavigate?.('refund')} className="text-[10px] sm:text-xs font-bold uppercase tracking-wider" style={{ color: `${colors.deepGold}80`, background: 'none', border: 'none', cursor: 'pointer' }}>Refund</button>
-                            <button onClick={() => onNavigate?.('privacy')} className="text-[10px] sm:text-xs font-bold uppercase tracking-wider" style={{ color: `${colors.deepGold}80`, background: 'none', border: 'none', cursor: 'pointer' }}>Privacy</button>
+                            <button onClick={() => onNavigate?.('terms')} className="text-[10px] sm:text-xs font-bold uppercase tracking-wider" style={{ color: `${colors.deepGold}80`, background: 'none', border: 'none', cursor: 'pointer' }}>{t('footer.terms')}</button>
+                            <button onClick={() => onNavigate?.('refund')} className="text-[10px] sm:text-xs font-bold uppercase tracking-wider" style={{ color: `${colors.deepGold}80`, background: 'none', border: 'none', cursor: 'pointer' }}>{t('footer.refund')}</button>
+                            <button onClick={() => onNavigate?.('privacy')} className="text-[10px] sm:text-xs font-bold uppercase tracking-wider" style={{ color: `${colors.deepGold}80`, background: 'none', border: 'none', cursor: 'pointer' }}>{t('footer.privacy')}</button>
                         </div>
                     </div>
                 </div>
