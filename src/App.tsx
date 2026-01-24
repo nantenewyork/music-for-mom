@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import MoodInput from './components/MoodInput'
 import ResultPage from './components/ResultPage'
 import LibraryPage from './components/LibraryPage'
+import PaywallPage from './components/PaywallPage'
 
 interface MusicRecommendation {
   composer: string
@@ -34,14 +35,40 @@ function App() {
   const [currentMood, setCurrentMood] = useState<string>('')
   const [currentPage, setCurrentPage] = useState<Page>('home')
   const [savedMusic, setSavedMusic] = useState<SavedMusic[]>([])
+  const [isPurchased, setIsPurchased] = useState<boolean>(false)
 
-  // localStorage에서 저장된 음악 불러오기
+  // 결제 여부 확인 및 저장된 음악 불러오기
   useEffect(() => {
+    // 결제 여부 확인
+    const purchased = localStorage.getItem('aura-classical-purchased') === 'true'
+    setIsPurchased(purchased)
+
+    // URL에서 checkout success 확인
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.get('checkout') === 'success') {
+      localStorage.setItem('aura-classical-purchased', 'true')
+      localStorage.setItem('aura-classical-purchase-date', new Date().toISOString())
+      setIsPurchased(true)
+      // URL 정리
+      window.history.replaceState({}, '', window.location.pathname)
+    }
+
+    // 저장된 음악 불러오기
     const saved = localStorage.getItem('aura-classical-library')
     if (saved) {
       setSavedMusic(JSON.parse(saved))
     }
   }, [])
+
+  // 결제 성공 핸들러
+  const handlePurchaseSuccess = () => {
+    setIsPurchased(true)
+  }
+
+  // 결제하지 않은 경우 Paywall 표시
+  if (!isPurchased) {
+    return <PaywallPage onPurchaseSuccess={handlePurchaseSuccess} />
+  }
 
   // 음악 저장
   const handleSaveToLibrary = (music: MusicRecommendation, mood: string) => {
