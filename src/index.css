@@ -1,12 +1,25 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-impressionist-gold: #E9C46A;
+  --color-impressionist-orange: #E76F51;
+  --color-impressionist-peach: #F4A261;
+  --color-impressionist-cream: #FDF7E7;
+  --color-impressionist-green: #76937F;
+  --color-impressionist-teal: #2A9D8F;
+  --color-background-warm: #FFFBF2;
+  --color-ink: #264653;
+  
+  --font-display: "Montserrat", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-heading: "Playfair Display", serif;
+}
 
 @layer base {
   body {
     background-color: #FFFBF2;
     color: #264653;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
   }
 }
 
@@ -43,19 +56,17 @@
   .input-glow:focus-within {
     box-shadow: 0 0 0 4px rgba(231, 111, 81, 0.1);
   }
-}
-
-@layer utilities {
+  
   .font-serif {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
   }
   
   .font-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
   }
   
   .font-display {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
   }
 }
 
