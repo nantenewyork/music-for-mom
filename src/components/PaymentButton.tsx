@@ -102,17 +102,6 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                     }
                 })
 
-                // Listen for error
-                checkout.addEventListener('error', (event: CustomEvent) => {
-                    console.error('Checkout error event:', event.detail)
-                    setLoading(false)
-                    
-                    // 결제 에러 발생 시 자동 환불 시도
-                    if (currentCheckoutId) {
-                        handleAutoRefund(currentCheckoutId, 'checkout_error')
-                    }
-                })
-
                 checkout.addEventListener('close', () => {
                     setLoading(false)
                 })
