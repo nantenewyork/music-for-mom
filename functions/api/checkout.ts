@@ -2,7 +2,7 @@ interface Env {
     POLAR_ACCESS_TOKEN: string;
 }
 
-const PRODUCT_ID = '8bd56886-2595-44f7-b938-027d24d7c0ed';
+const PRODUCT_ID = '5d190fd3-1633-4d52-940a-728a0c0c3827';
 
 // Sandbox 환경 사용 (테스트용)
 const POLAR_API_URL = 'https://sandbox-api.polar.sh/v1';
