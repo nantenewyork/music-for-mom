@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 interface YouTubeModalProps {
     isOpen: boolean
     onClose: () => void
@@ -5,96 +7,68 @@ interface YouTubeModalProps {
     title: string
 }
 
+interface YouTubeVideo {
+    id: string
+    title: string
+    channel: string
+    thumbnail: string
+    duration: string
+    views: string
+}
+
 const colors = {
     primary: '#d41132',
     text: '#1b0d10',
 }
 
-// 썸네일 이미지들
-const thumbnails = [
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuAzLlNIgcb9yZU9z-aIke6CIcakiPq91XM69pIfrCRqnRP1CNSxFVi5uKmBlRIRsX1I_vHvUaVJBbOTqvfMvo1sIn8CwnbcPN0TBnbysc-quhLB5taKwEG1UiuIoOm-8F1rbTVVeL3WCTfM7Sv2VUP1snSZf3bZIEB4PUCCjWyvRiK4ytUmjCB4Xp5b5lJqei4g0sHlQwYbzBM6XNEp29zDneai-3v8_gyOz6F61UnIN2dCXE5j6c_7nwDbwhazhqiIs8Ig7Mi_iHA',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuCvYPIFQzdo7gyYT6u9IuhagAsfCHCaUbeF5nuJUxNRTcqBzx_XrHfYMWg8jbicSsLC-qskOd5XPOr_4r4HZAc_pHb7PTkeQioxUNN5oGuaAWpSCtfA9vxSgNk7hNZqyVZKKHdPFZvokW0vMRMvjjmteYMv0JKTXTzEjUZoUlyprNWpZBsGpx3cBH_xsuYx3gVArgwbcVjYbdON10ZSsku5T1L5WPAhu37cOYeHG7ssMjtijaf3mqCiySsUEXAvuu6knpaTgERMHIU',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuDfFSBBYyYFLMDacHQWwRmDwGU9rHYCfc69rnCub2s6zo759H96KnFu-QpeUAiCjpKkgzKjGR3z1cdOzVic4NvvMtUxSwbID-SIlPH-6GasUwYytDvUHrheUAEWSI3RwRmDE77DVXY5nR_rQ_pVNv2pI0s4EflwEyLWw0voyIOJT_-qsejo9q83gT7_7Ia_wIegYgmPesDJXYAh42GviPFEgWqYJmblvHocaZUws25ON4An-Qf4rGxGdnmIpP72u6e-qWCdSVHCKpU',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuBpNeU5mmoAdxZU9oI2h1wsFJ_rQiLatMC3N4SK-kzIpWPUmHUnKMTgy2tzDmJTD3UA1KazA3mum8u_GIaHmkgZQx1yLcetmTroQvbyVMEE3YUPJ9Yp1ylG0bGy5hEB47ZUpX6EFqxHmIT8joWVJMNJpVejEnPxbANKlQBnKN1fRYEWOcbXIKXKv60Fj9jdqYFf5eqRIXpABffiN86JP_0nbOq0ZqFc9UJaG4nQwvY2DbWr6EsFRriL34phDBH-XQM28vGaXEAZqjk',
-]
-
-// 작곡가별 관련 곡 목록
-const composerRelatedTracks: Record<string, { title: string, duration: string }[]> = {
-    'Claude Debussy': [
-        { title: 'Arabesque No. 1', duration: '4:15' },
-        { title: 'Rêverie', duration: '4:30' },
-        { title: 'Prélude à l\'après-midi d\'un faune', duration: '10:45' },
-    ],
-    'Johann Pachelbel': [
-        { title: 'Chaconne in F minor', duration: '6:20' },
-        { title: 'Magnificat Fugue', duration: '3:45' },
-        { title: 'Toccata in E minor', duration: '5:10' },
-    ],
-    'Ludwig van Beethoven': [
-        { title: 'Für Elise', duration: '3:00' },
-        { title: 'Symphony No. 9 - Ode to Joy', duration: '24:30' },
-        { title: 'Piano Sonata No. 8 (Pathétique)', duration: '18:45' },
-    ],
-    'Antonio Vivaldi': [
-        { title: 'The Four Seasons - Summer', duration: '11:00' },
-        { title: 'The Four Seasons - Autumn', duration: '10:30' },
-        { title: 'The Four Seasons - Winter', duration: '9:15' },
-    ],
-    'Wolfgang Amadeus Mozart': [
-        { title: 'Piano Sonata No. 11 (Alla Turca)', duration: '20:00' },
-        { title: 'Eine kleine Nachtmusik', duration: '17:30' },
-        { title: 'Symphony No. 40', duration: '28:00' },
-    ],
-    'Frédéric Chopin': [
-        { title: 'Nocturne Op. 9 No. 2', duration: '4:30' },
-        { title: 'Waltz in C# minor', duration: '3:45' },
-        { title: 'Ballade No. 1', duration: '9:30' },
-    ],
-}
-
-// 기본 관련 곡 (작곡가를 못 찾을 경우)
-const defaultRelatedTracks = [
-    { title: 'Mozart - Piano Concerto No. 21', duration: '28:15' },
-    { title: 'Bach - Air on the G String', duration: '5:30' },
-    { title: 'Chopin - Nocturne Op. 9 No. 2', duration: '4:30' },
-]
-
 function YouTubeModal({ isOpen, onClose, composer, title }: YouTubeModalProps) {
-    if (!isOpen) return null
+    const [videos, setVideos] = useState<YouTubeVideo[]>([])
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<string | null>(null)
 
-    const searchQuery = `${composer} - ${title}`
+    const searchQuery = `${composer} ${title}`
     const youtubeUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`
 
-    // 추천받은 음악을 첫 번째로, 관련 곡들을 그 다음에 표시
-    const getRelatedTracks = () => {
-        const tracks = composerRelatedTracks[composer] || defaultRelatedTracks
-        return tracks.map((track, index) => ({
-            title: tracks === defaultRelatedTracks ? track.title : `${composer} - ${track.title}`,
-            channel: 'Classical Music',
-            duration: track.duration,
-            views: `${Math.floor(Math.random() * 50 + 5)}M views`,
-            thumbnail: thumbnails[(index + 1) % thumbnails.length],
-        }))
+    // 모달이 열릴 때 YouTube 검색 실행
+    useEffect(() => {
+        if (isOpen) {
+            fetchYouTubeResults()
+        }
+    }, [isOpen, composer, title])
+
+    const fetchYouTubeResults = async () => {
+        setLoading(true)
+        setError(null)
+        
+        try {
+            const response = await fetch('/api/youtube-search', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: searchQuery })
+            })
+            
+            const data = await response.json()
+            
+            if (data.results && data.results.length > 0) {
+                setVideos(data.results)
+            } else {
+                setError('검색 결과가 없습니다')
+            }
+        } catch (err) {
+            setError('YouTube 검색에 실패했습니다')
+        } finally {
+            setLoading(false)
+        }
     }
 
-    const videos = [
-        {
-            title: `${composer} - ${title}`,
-            channel: 'Recommended for You',
-            duration: '~5:00',
-            views: 'Best Match',
-            thumbnail: thumbnails[0],
-            isMain: true,
-        },
-        ...getRelatedTracks().map(track => ({ ...track, isMain: false }))
-    ]
+    if (!isOpen) return null
 
     const handleOpenYouTube = () => {
         window.open(youtubeUrl, '_blank')
     }
 
-    const handleVideoClick = (videoTitle: string) => {
-        const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(videoTitle)}`
+    const handleVideoClick = (videoId: string) => {
+        const url = `https://www.youtube.com/watch?v=${videoId}`
         window.open(url, '_blank')
     }
 
@@ -177,20 +151,48 @@ function YouTubeModal({ isOpen, onClose, composer, title }: YouTubeModalProps) {
 
                 {/* Video Results List */}
                 <div className="flex flex-col p-4 gap-2 max-h-[400px] overflow-y-auto">
-                    {videos.map((video, index) => (
+                    {loading && (
+                        <div className="flex items-center justify-center py-12">
+                            <div className="flex flex-col items-center gap-3">
+                                <div 
+                                    className="w-8 h-8 border-3 border-t-transparent rounded-full animate-spin"
+                                    style={{ borderColor: `${colors.primary}40`, borderTopColor: 'transparent' }}
+                                />
+                                <p className="text-sm" style={{ color: colors.primary }}>YouTube 검색 중...</p>
+                            </div>
+                        </div>
+                    )}
+
+                    {error && !loading && (
+                        <div className="flex flex-col items-center justify-center py-12 gap-4">
+                            <span className="material-symbols-outlined text-4xl" style={{ color: `${colors.primary}66` }}>
+                                search_off
+                            </span>
+                            <p className="text-sm" style={{ color: `${colors.text}99` }}>{error}</p>
+                            <button
+                                onClick={handleOpenYouTube}
+                                className="px-4 py-2 rounded-lg text-sm font-medium text-white"
+                                style={{ backgroundColor: colors.primary }}
+                            >
+                                YouTube에서 직접 검색
+                            </button>
+                        </div>
+                    )}
+
+                    {!loading && !error && videos.map((video, index) => (
                         <div 
-                            key={index}
-                            onClick={() => handleVideoClick(video.title)}
+                            key={video.id || index}
+                            onClick={() => handleVideoClick(video.id)}
                             className="flex gap-5 p-4 rounded-lg transition-all cursor-pointer group"
                             style={{ 
-                                backgroundColor: video.isMain ? `${colors.primary}0a` : 'transparent',
-                                border: video.isMain ? `2px solid ${colors.primary}40` : '2px solid transparent'
+                                backgroundColor: index === 0 ? `${colors.primary}0a` : 'transparent',
+                                border: index === 0 ? `2px solid ${colors.primary}40` : '2px solid transparent'
                             }}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.backgroundColor = `${colors.primary}15`
                             }}
                             onMouseLeave={(e) => {
-                                e.currentTarget.style.backgroundColor = video.isMain ? `${colors.primary}0a` : 'transparent'
+                                e.currentTarget.style.backgroundColor = index === 0 ? `${colors.primary}0a` : 'transparent'
                             }}
                         >
                             {/* Thumbnail */}
@@ -210,13 +212,19 @@ function YouTubeModal({ isOpen, onClose, composer, title }: YouTubeModalProps) {
                                         </span>
                                     </div>
                                 </div>
-                                {/* Best Match Badge */}
-                                {video.isMain && (
+                                {/* Top Result Badge */}
+                                {index === 0 && (
                                     <div 
                                         className="absolute -top-2 -right-2 px-2 py-1 rounded-full text-xs font-bold text-white"
                                         style={{ backgroundColor: colors.primary }}
                                     >
-                                        ✨ 추천
+                                        #1
+                                    </div>
+                                )}
+                                {/* Duration Badge */}
+                                {video.duration && (
+                                    <div className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded text-xs font-medium text-white bg-black/80">
+                                        {video.duration}
                                     </div>
                                 )}
                             </div>
@@ -224,32 +232,34 @@ function YouTubeModal({ isOpen, onClose, composer, title }: YouTubeModalProps) {
                             {/* Info */}
                             <div className="flex flex-1 flex-col justify-center">
                                 <p 
-                                    className="text-lg font-bold leading-tight transition-colors"
-                                    style={{ color: video.isMain ? colors.primary : colors.text }}
+                                    className="text-base font-bold leading-tight transition-colors line-clamp-2"
+                                    style={{ color: index === 0 ? colors.primary : colors.text }}
                                 >
                                     {video.title}
                                 </p>
                                 <div className="flex items-center gap-2 mt-1">
                                     <span 
                                         className="text-sm font-medium"
-                                        style={{ color: video.isMain ? colors.primary : `${colors.primary}cc` }}
+                                        style={{ color: `${colors.primary}cc` }}
                                     >
                                         {video.channel}
                                     </span>
-                                    <span className="text-gray-400 text-xs">•</span>
-                                    <span className="text-gray-500 text-xs">
-                                        {video.duration} • {video.views}
-                                    </span>
+                                    {video.views && (
+                                        <>
+                                            <span className="text-gray-400 text-xs">•</span>
+                                            <span className="text-gray-500 text-xs">{video.views}</span>
+                                        </>
+                                    )}
                                 </div>
                             </div>
 
                             {/* Play Button */}
                             <button 
                                 className="self-center transition-colors"
-                                style={{ color: video.isMain ? colors.primary : `${colors.primary}66` }}
+                                style={{ color: index === 0 ? colors.primary : `${colors.primary}66` }}
                                 onClick={(e) => {
                                     e.stopPropagation()
-                                    handleVideoClick(video.title)
+                                    handleVideoClick(video.id)
                                 }}
                             >
                                 <span className="material-symbols-outlined text-2xl">play_circle</span>
