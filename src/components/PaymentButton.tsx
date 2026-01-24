@@ -46,11 +46,11 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
             if (refundData.success) {
                 alert('⚠️ 결제 처리 중 오류가 발생했습니다.\n\n자동으로 환불 처리되었습니다.\n다시 시도해주세요.')
             } else {
-                alert(`⚠️ 결제 처리 중 오류가 발생했습니다.\n\n환불 처리에 실패했습니다.\n아래 정보와 함께 고객센터로 문의해주세요:\n\nCheckout ID: ${checkoutId}\n\n📧 support@auraclassical.com`)
+                alert(`⚠️ 결제 처리 중 오류가 발생했습니다.\n\n자동 환불 처리에 실패했습니다.\n아래 정보와 함께 이메일로 문의해주세요.\n빠르게 환불 처리해 드리겠습니다.\n\n📧 nantenewyork@gmail.com\n\n[Checkout ID: ${checkoutId}]`)
             }
         } catch (refundError) {
             console.error('Auto refund error:', refundError)
-            alert(`⚠️ 결제 처리 중 오류가 발생했습니다.\n\n고객센터로 문의해주세요:\n📧 support@auraclassical.com\n\nCheckout ID: ${checkoutId}`)
+            alert(`⚠️ 결제 처리 중 오류가 발생했습니다.\n\n아래 정보와 함께 이메일로 문의해주세요.\n빠르게 환불 처리해 드리겠습니다.\n\n📧 nantenewyork@gmail.com\n\n[Checkout ID: ${checkoutId}]`)
         }
     }
 
