@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import MoodInput from './components/MoodInput'
 import ResultPage from './components/ResultPage'
+import LibraryPage from './components/LibraryPage'
 
 interface MusicRecommendation {
   composer: string
@@ -8,6 +9,17 @@ interface MusicRecommendation {
   youtubeId: string
   description: string
 }
+
+interface SavedMusic {
+  id: string
+  composer: string
+  title: string
+  description: string
+  savedAt: string
+  mood: string
+}
+
+type Page = 'home' | 'result' | 'library'
 
 const colors = {
   deepGold: '#b45309',
@@ -20,6 +32,55 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [currentMood, setCurrentMood] = useState<string>('')
+  const [currentPage, setCurrentPage] = useState<Page>('home')
+  const [savedMusic, setSavedMusic] = useState<SavedMusic[]>([])
+
+  // localStorage에서 저장된 음악 불러오기
+  useEffect(() => {
+    const saved = localStorage.getItem('aura-classical-library')
+    if (saved) {
+      setSavedMusic(JSON.parse(saved))
+    }
+  }, [])
+
+  // 음악 저장
+  const handleSaveToLibrary = (music: MusicRecommendation, mood: string) => {
+    const newSavedMusic: SavedMusic = {
+      id: Date.now().toString(),
+      composer: music.composer,
+      title: music.title,
+      description: music.description,
+      savedAt: new Date().toISOString(),
+      mood: mood
+    }
+    
+    // 중복 체크
+    const isDuplicate = savedMusic.some(
+      m => m.composer === music.composer && m.title === music.title
+    )
+    
+    if (isDuplicate) {
+      alert('이미 라이브러리에 저장된 곡이에요!')
+      return
+    }
+    
+    const updated = [...savedMusic, newSavedMusic]
+    setSavedMusic(updated)
+    localStorage.setItem('aura-classical-library', JSON.stringify(updated))
+    alert('라이브러리에 저장되었어요! 💕')
+  }
+
+  // 음악 삭제
+  const handleRemoveFromLibrary = (id: string) => {
+    const updated = savedMusic.filter(m => m.id !== id)
+    setSavedMusic(updated)
+    localStorage.setItem('aura-classical-library', JSON.stringify(updated))
+  }
+
+  // 라이브러리 페이지로 이동
+  const handleGoToLibrary = () => {
+    setCurrentPage('library')
+  }
 
   // 기본 추천 음악 (API 실패 시 fallback)
   const fallbackRecommendations = [
@@ -81,12 +142,24 @@ function App() {
   const handleReset = () => {
     setRecommendation(null)
     setCurrentMood('')
+    setCurrentPage('home')
   }
 
   const handleGenerateAnother = () => {
     if (currentMood) {
       handleMoodSubmit(currentMood)
     }
+  }
+
+  // 라이브러리 페이지 표시
+  if (currentPage === 'library') {
+    return (
+      <LibraryPage 
+        savedMusic={savedMusic}
+        onRemove={handleRemoveFromLibrary}
+        onBack={handleReset}
+      />
+    )
   }
 
   // 결과 페이지 표시
@@ -97,6 +170,8 @@ function App() {
         mood={currentMood}
         onReset={handleReset}
         onGenerateAnother={handleGenerateAnother}
+        onSaveToLibrary={() => handleSaveToLibrary(recommendation, currentMood)}
+        onGoToLibrary={handleGoToLibrary}
       />
     )
   }
@@ -120,7 +195,7 @@ function App() {
               </h2>
             </div>
             <nav className="hidden md:flex items-center gap-10">
-              <a className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }} href="#">Library</a>
+              <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>Library</button>
               <a className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }} href="#">Science</a>
               <a className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }} href="#">Profile</a>
             </nav>

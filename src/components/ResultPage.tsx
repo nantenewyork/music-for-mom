@@ -13,6 +13,8 @@ interface ResultPageProps {
     mood: string
     onReset: () => void
     onGenerateAnother: () => void
+    onSaveToLibrary: () => void
+    onGoToLibrary: () => void
 }
 
 const colors = {
@@ -21,7 +23,7 @@ const colors = {
     warmSlate: '#475569',
 }
 
-function ResultPage({ recommendation, mood, onReset, onGenerateAnother }: ResultPageProps) {
+function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveToLibrary, onGoToLibrary }: ResultPageProps) {
     const [showYouTubeModal, setShowYouTubeModal] = useState(false)
 
     // 기분에서 키워드 추출 (간단한 버전)
@@ -51,7 +53,7 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother }: Result
                             </h2>
                         </button>
                         <nav className="hidden md:flex items-center gap-10">
-                            <a className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }} href="#">Library</a>
+                            <button onClick={onGoToLibrary} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>Library</button>
                             <a className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }} href="#">Science</a>
                             <a className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }} href="#">Profile</a>
                         </nav>
@@ -169,6 +171,7 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother }: Result
                                         Generate Another
                                     </button>
                                     <button 
+                                        onClick={onSaveToLibrary}
                                         className="flex flex-1 items-center justify-center gap-2 rounded-full bg-white/40 px-6 py-4 text-sm font-bold hover:bg-white/60 transition-all shadow-sm"
                                         style={{ color: colors.deepGold, border: `1px solid ${colors.deepGold}33` }}
                                     >
