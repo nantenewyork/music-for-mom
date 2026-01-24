@@ -59,33 +59,6 @@
     font-size: 1rem;
 }
 
-.search-query-box {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    padding: 12px 20px;
-    margin-bottom: 24px;
-    display: inline-block;
-}
-
-.search-label {
-    color: var(--text-secondary);
-    margin-right: 8px;
-}
-
-.search-text {
-    color: var(--text-primary);
-    font-family: inherit;
-    font-size: 1rem;
-    background: none;
-}
-
-.youtube-buttons {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
 .youtube-btn {
     display: inline-flex;
     align-items: center;
@@ -106,25 +79,6 @@
 .youtube-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
-}
-
-.copy-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-primary);
-    padding: 16px 24px;
-    border-radius: 12px;
-    font-size: 1rem;
-    border: 1px solid var(--card-border);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.copy-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
 }
 
 .music-footer {

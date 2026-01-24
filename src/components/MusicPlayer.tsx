@@ -16,11 +16,6 @@ function MusicPlayer({ recommendation }: MusicPlayerProps) {
     const searchQuery = `${recommendation.composer} ${recommendation.title}`
     const youtubeUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`
 
-    const handleCopyUrl = () => {
-        navigator.clipboard.writeText(youtubeUrl)
-        alert('URL이 복사되었습니다! 브라우저에 붙여넣기 하세요.')
-    }
-
     return (
         <div className="music-player-container glass-card fade-in">
             <div className="music-info">
@@ -33,27 +28,14 @@ function MusicPlayer({ recommendation }: MusicPlayerProps) {
                 <div className="music-icon">🎵</div>
                 <p className="youtube-instruction">YouTube에서 음악을 감상하세요</p>
                 
-                <div className="search-query-box">
-                    <span className="search-label">🔍 검색어:</span>
-                    <code className="search-text">{searchQuery}</code>
-                </div>
-
-                <div className="youtube-buttons">
-                    <a 
-                        href={youtubeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-primary youtube-btn"
-                    >
-                        ▶️ YouTube 열기
-                    </a>
-                    <button 
-                        onClick={handleCopyUrl}
-                        className="btn btn-secondary copy-btn"
-                    >
-                        📋 URL 복사
-                    </button>
-                </div>
+                <a 
+                    href={youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary youtube-btn"
+                >
+                    ▶️ YouTube에서 듣기
+                </a>
             </div>
 
             <div className="music-footer">
