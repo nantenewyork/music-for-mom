@@ -42,7 +42,7 @@ function ContactPage({ onBack = () => window.history.back() }: ContactPageProps)
                         <div className="p-8 rounded-3xl border-2 border-dashed" style={{ borderColor: `${colors.deepGold}33`, backgroundColor: 'rgba(255,255,255,0.3)' }}>
                             <p className="text-sm uppercase tracking-widest mb-2" style={{ color: colors.deepGold }}>이메일 문의</p>
                             <p className="text-xl md:text-2xl font-bold" style={{ color: colors.warmSlate }}>
-                                support@auraclassical.com
+                                nantenewyork@gmail.com
                             </p>
                         </div>
 

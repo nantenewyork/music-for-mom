@@ -14,7 +14,7 @@ function PrivacyPage({ onBack }: PrivacyPageProps) {
             <header className="sticky top-0 z-50 w-full glass-panel-warm border-b border-white/20">
                 <div className="mx-auto max-w-4xl px-6">
                     <div className="flex h-16 items-center gap-4">
-                        <button 
+                        <button
                             onClick={onBack}
                             className="flex items-center gap-2 text-sm font-semibold transition-colors"
                             style={{ color: colors.deepGold }}
@@ -38,7 +38,7 @@ function PrivacyPage({ onBack }: PrivacyPageProps) {
 
                     <div className="space-y-8 text-base leading-relaxed" style={{ color: `${colors.warmSlate}e6` }}>
                         {/* 하이라이트 박스 */}
-                        <div 
+                        <div
                             className="p-6 rounded-2xl border-l-4"
                             style={{ backgroundColor: `${colors.deepGold}10`, borderColor: colors.deepGold }}
                         >
@@ -54,7 +54,7 @@ function PrivacyPage({ onBack }: PrivacyPageProps) {
                         <section>
                             <h2 className="text-xl font-bold mb-3" style={{ color: colors.warmSlate }}>1. 수집하는 개인정보</h2>
                             <p className="mb-4">Aura Classical은 서비스 제공을 위해 최소한의 정보만 수집합니다.</p>
-                            
+
                             <h4 className="font-semibold mt-4 mb-2">필수 정보</h4>
                             <ul className="list-disc pl-6 space-y-1">
                                 <li><strong>이메일 주소</strong>: 결제 확인 및 고객 지원용 (Polar를 통해 수집)</li>
@@ -96,7 +96,7 @@ function PrivacyPage({ onBack }: PrivacyPageProps) {
                         <section>
                             <h2 className="text-xl font-bold mb-3" style={{ color: colors.warmSlate }}>4. 제3자 서비스</h2>
                             <p className="mb-4">서비스 운영을 위해 다음의 제3자 서비스를 이용합니다.</p>
-                            
+
                             <div className="space-y-4">
                                 <div className="p-4 rounded-xl" style={{ backgroundColor: 'rgba(255,255,255,0.5)' }}>
                                     <h4 className="font-semibold" style={{ color: colors.deepGold }}>Polar (결제 처리)</h4>
@@ -124,8 +124,8 @@ function PrivacyPage({ onBack }: PrivacyPageProps) {
                         <section>
                             <h2 className="text-xl font-bold mb-3" style={{ color: colors.warmSlate }}>5. 쿠키 및 로컬 스토리지</h2>
                             <p>
-                                본 서비스는 쿠키를 사용하지 않습니다. 대신 브라우저의 로컬 스토리지를 사용하여 
-                                구매 상태와 저장된 음악 라이브러리를 저장합니다. 이 데이터는 사용자의 기기에만 저장되며, 
+                                본 서비스는 쿠키를 사용하지 않습니다. 대신 브라우저의 로컬 스토리지를 사용하여
+                                구매 상태와 저장된 음악 라이브러리를 저장합니다. 이 데이터는 사용자의 기기에만 저장되며,
                                 서버로 전송되지 않습니다.
                             </p>
                             <p className="mt-2">
@@ -163,7 +163,7 @@ function PrivacyPage({ onBack }: PrivacyPageProps) {
                         <section>
                             <h2 className="text-xl font-bold mb-3" style={{ color: colors.warmSlate }}>8. 아동의 개인정보</h2>
                             <p>
-                                본 서비스는 만 14세 미만의 아동을 대상으로 하지 않습니다. 
+                                본 서비스는 만 14세 미만의 아동을 대상으로 하지 않습니다.
                                 만 14세 미만 아동의 개인정보가 수집된 사실을 알게 된 경우, 즉시 해당 정보를 삭제합니다.
                             </p>
                         </section>
@@ -171,7 +171,7 @@ function PrivacyPage({ onBack }: PrivacyPageProps) {
                         <section>
                             <h2 className="text-xl font-bold mb-3" style={{ color: colors.warmSlate }}>9. 개인정보처리방침 변경</h2>
                             <p>
-                                본 개인정보처리방침은 법령 및 서비스 변경에 따라 수정될 수 있습니다. 
+                                본 개인정보처리방침은 법령 및 서비스 변경에 따라 수정될 수 있습니다.
                                 중요한 변경사항이 있을 경우, 서비스 내 공지를 통해 안내드립니다.
                             </p>
                         </section>
@@ -184,7 +184,7 @@ function PrivacyPage({ onBack }: PrivacyPageProps) {
                             <div className="mt-4 p-4 rounded-xl" style={{ backgroundColor: 'rgba(255,255,255,0.5)' }}>
                                 <p><strong>개인정보 보호책임자</strong></p>
                                 <p className="mt-2 font-semibold" style={{ color: colors.deepGold }}>
-                                    📧 privacy@auraclassical.com
+                                    📧 nantenewyork@gmail.com
                                 </p>
                             </div>
                         </section>

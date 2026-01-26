@@ -14,7 +14,7 @@ function RefundPage({ onBack }: RefundPageProps) {
             <header className="sticky top-0 z-50 w-full glass-panel-warm border-b border-white/20">
                 <div className="mx-auto max-w-4xl px-6">
                     <div className="flex h-16 items-center gap-4">
-                        <button 
+                        <button
                             onClick={onBack}
                             className="flex items-center gap-2 text-sm font-semibold transition-colors"
                             style={{ color: colors.deepGold }}
@@ -38,7 +38,7 @@ function RefundPage({ onBack }: RefundPageProps) {
 
                     <div className="space-y-8 text-base leading-relaxed" style={{ color: `${colors.warmSlate}e6` }}>
                         {/* 하이라이트 박스 */}
-                        <div 
+                        <div
                             className="p-6 rounded-2xl border-l-4"
                             style={{ backgroundColor: `${colors.deepGold}10`, borderColor: colors.deepGold }}
                         >
@@ -53,7 +53,7 @@ function RefundPage({ onBack }: RefundPageProps) {
                         <section>
                             <h2 className="text-xl font-bold mb-3" style={{ color: colors.warmSlate }}>1. 환불 가능 기간</h2>
                             <p>
-                                Aura Classical은 구매일로부터 <strong>7일 이내</strong>에 환불을 요청하실 수 있습니다. 
+                                Aura Classical은 구매일로부터 <strong>7일 이내</strong>에 환불을 요청하실 수 있습니다.
                                 7일이 경과한 후에는 원칙적으로 환불이 불가합니다.
                             </p>
                         </section>
@@ -82,20 +82,20 @@ function RefundPage({ onBack }: RefundPageProps) {
                             <h2 className="text-xl font-bold mb-3" style={{ color: colors.warmSlate }}>4. 환불 절차</h2>
                             <div className="space-y-4">
                                 <div className="flex items-start gap-4">
-                                    <div 
+                                    <div
                                         className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
                                         style={{ backgroundColor: colors.deepGold }}
                                     >1</div>
                                     <div>
                                         <h4 className="font-semibold">환불 요청</h4>
                                         <p className="text-sm" style={{ color: `${colors.warmSlate}99` }}>
-                                            이메일(support@auraclassical.com)로 환불 요청을 보내주세요. 
+                                            이메일(nantenewyork@gmail.com)로 환불 요청을 보내주세요.
                                             결제 시 사용한 이메일과 결제 ID를 함께 알려주세요.
                                         </p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <div 
+                                    <div
                                         className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
                                         style={{ backgroundColor: colors.deepGold }}
                                     >2</div>
@@ -107,14 +107,14 @@ function RefundPage({ onBack }: RefundPageProps) {
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <div 
+                                    <div
                                         className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
                                         style={{ backgroundColor: colors.deepGold }}
                                     >3</div>
                                     <div>
                                         <h4 className="font-semibold">환불 처리</h4>
                                         <p className="text-sm" style={{ color: `${colors.warmSlate}99` }}>
-                                            Polar를 통해 원래 결제 수단으로 환불됩니다. 
+                                            Polar를 통해 원래 결제 수단으로 환불됩니다.
                                             카드사에 따라 환불 반영까지 3~7 영업일이 소요될 수 있습니다.
                                         </p>
                                     </div>
@@ -125,7 +125,7 @@ function RefundPage({ onBack }: RefundPageProps) {
                         <section>
                             <h2 className="text-xl font-bold mb-3" style={{ color: colors.warmSlate }}>5. 부분 환불</h2>
                             <p>
-                                본 서비스는 일회성 구매(Lifetime Access) 상품으로, 부분 환불은 제공되지 않습니다. 
+                                본 서비스는 일회성 구매(Lifetime Access) 상품으로, 부분 환불은 제공되지 않습니다.
                                 환불 시 전액 환불 또는 환불 불가 중 하나로 처리됩니다.
                             </p>
                         </section>
@@ -133,13 +133,13 @@ function RefundPage({ onBack }: RefundPageProps) {
                         <section>
                             <h2 className="text-xl font-bold mb-3" style={{ color: colors.warmSlate }}>6. 결제 대행사 (Polar)</h2>
                             <p>
-                                모든 결제 및 환불은 Polar를 통해 처리됩니다. 
+                                모든 결제 및 환불은 Polar를 통해 처리됩니다.
                                 Polar의 결제 시스템과 관련된 문의는 Polar 고객센터를 통해서도 가능합니다.
                             </p>
                             <p className="mt-2">
-                                <a 
-                                    href="https://polar.sh" 
-                                    target="_blank" 
+                                <a
+                                    href="https://polar.sh"
+                                    target="_blank"
                                     rel="noopener noreferrer"
                                     className="font-semibold underline"
                                     style={{ color: colors.deepGold }}
@@ -155,7 +155,7 @@ function RefundPage({ onBack }: RefundPageProps) {
                                 환불 관련 문의사항이 있으시면 아래로 연락해주세요.
                             </p>
                             <p className="mt-2 font-semibold" style={{ color: colors.deepGold }}>
-                                📧 support@auraclassical.com
+                                📧 nantenewyork@gmail.com
                             </p>
                         </section>
                     </div>
