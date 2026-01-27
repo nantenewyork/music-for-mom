@@ -22,6 +22,22 @@ const BlogPost = () => {
 
     return (
         <div className="mx-auto max-w-4xl px-4 sm:px-6 py-12">
+            {/* SEO/GEO JSON-LD */}
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": post.title,
+                    "description": post.excerpt,
+                    "datePublished": post.date,
+                    "author": {
+                        "@type": "Organization",
+                        "name": "Aura Classical"
+                    },
+                    "articleBody": post.content.replace(/<[^>]*>?/gm, '')
+                })}
+            </script>
+
             <button
                 onClick={() => navigate('/blog')}
                 className="flex items-center gap-2 text-sm font-semibold mb-8 hover:opacity-70 transition-opacity"
