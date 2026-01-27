@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const CookieConsent = () => {
-    const { t } = useTranslation()
+    const { } = useTranslation()
     const [isVisible, setIsVisible] = useState(false)
     const colors = {
         deepGold: '#b45309',

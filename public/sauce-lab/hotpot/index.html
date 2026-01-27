@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sauce Lab | 훠궈 프로젝트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #FFF0F0 0%, #FFD1C1 100%);
+        }
+
+        .hero h1 {
+            color: #A6210E;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hotpot-header">
+        <div class="container navbar">
+            <a href="../index.html" class="brand">Sauce Lab</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="index.html" class="active">Hot Pot Intro</a></li>
+                    <li><a href="sauces.html">Sauces</a></li>
+                    <li><a href="tips.html">Tips</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <span class="card-tag">Project #1</span>
+                <h1>훠궈 (Hot Pot)</h1>
+                <p>끓는 육수에 다양한 재료를 익혀 먹는 중국의 보양식.<br>하지만 훠궈의 완성은 '소스'에 있습니다.</p>
+                <div style="margin-top: 1rem;">
+                    <a href="sauces.html" class="btn">소스 레시피 보기</a>
+                    <a href="tips.html" class="btn"
+                        style="background: white; color: var(--color-primary); margin-left: 10px;">먹는 팁</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <div>
+                    <h2>나만의 소스 찾기</h2>
+                    <p>훠궈 식당에 가면 수십 가지의 소스 재료 앞에서 당황한 적 없으신가요?<br>
+                        땅콩 소스의 고소함을 좋아하는 '마장파', 깔끔한 참기름을 선호하는 '오리지널파' 등<br>
+                        당신의 취향을 저격할 최고의 배합 비율을 공개합니다.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem;">
+                <h3 style="text-align: center; margin-bottom: 2rem; color: var(--color-primary);">🔥 인기 소스 TOP 5</h3>
+                <div class="sauce-grid">
+                    <!-- 건희 소스 -->
+                    <article class="sauce-card">
+                        <h3>🥜 K-Idol Style (건희 소스)</h3>
+                        <p>고소함의 끝판왕. 달콤하고 매콤한 맛이 조화로운 한국인 최애 소스.</p>
+                        <ul class="ingredient-list">
+                            <li>땅콩 소스 (즈마장) 1스푼</li>
+                            <li>칠리 소스 2.5스푼</li>
+                            <li>설탕, 다진 마늘, 파</li>
+                            <li>땅콩 가루, 고추기름 (선택)</li>
+                        </ul>
+                    </article>
+
+                    <!-- 참기름 마늘 소스 -->
+                    <article class="sauce-card">
+                        <h3>🧄 클래식 오일 소스</h3>
+                        <p>홍탕의 매운맛을 잡아주는 고소하고 깔끔한 정석 소스.</p>
+                        <ul class="ingredient-list">
+                            <li>참기름 듬뿍</li>
+                            <li>다진 마늘 1스푼</li>
+                            <li>굴소스 1스푼</li>
+                            <li>설탕, 소금 약간</li>
+                        </ul>
+                    </article>
+
+                    <!-- 마장 소스 (Basic) -->
+                    <article class="sauce-card">
+                        <h3>🥣 오리지널 마장 소스</h3>
+                        <p>가장 기본이 되는 고소한 땅콩 베이스 소스. 호불호가 갈리지 않아요.</p>
+                        <ul class="ingredient-list">
+                            <li>즈마장(땅콩소스) 2스푼</li>
+                            <li>부추꽃 소스(선택)</li>
+                            <li>다진 마늘, 파</li>
+                            <li>참기름 약간</li>
+                        </ul>
+                    </article>
+
+                    <!-- 간장 식초 소스 -->
+                    <article class="sauce-card">
+                        <h3>🍋 깔끔한 간장 소스</h3>
+                        <p>해산물이나 완자와 잘 어울리는 상큼하고 깔끔한 맛.</p>
+                        <ul class="ingredient-list">
+                            <li>간장 1스푼, 식초 0.5스푼</li>
+                            <li>청양고추, 다진 마늘</li>
+                            <li>설탕 약간</li>
+                        </ul>
+                    </article>
+
+                    <!-- 마라 고수 소스 -->
+                    <article class="sauce-card">
+                        <h3>🌶️ 하드코어 마라 소스</h3>
+                        <p>자극적인 맛을 원한다면! 얼얼함이 폭발하는 매니아 추천 소스.</p>
+                        <ul class="ingredient-list">
+                            <li>고추기름 1스푼</li>
+                            <li>고춧가루, 산초유</li>
+                            <li>다진 마늘, 파</li>
+                            <li>고수 듬뿍</li>
+                        </ul>
+                    </article>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="sauces.html" class="btn"
+                        style="background: white; color: var(--color-primary); border: 1px solid var(--color-primary);">더
+                        많은 레시피 보기 →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; color: #999; margin-top: 4rem;">
+        <p>&copy; 2026 Sauce Lab - Hot Pot Project</p>
+    </footer>
+
+</body>
+
+</html>

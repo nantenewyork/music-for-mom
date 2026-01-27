@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sauce Lab | 너의 모든 소스</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="brand">Sauce Lab</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="hotpot/index.html">Hot Pot</a></li>
+                    <!-- Future: <li><a href="#">Tacos</a></li> -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>훠궈 소스 연구소</h1>
+                <p>완벽한 훠궈를 위한 최고의 소스 레시피와 꿀팁을 만나보세요.</p>
+                <a href="hotpot/index.html" class="btn">입장하기</a>
+            </div>
+        </section>
+
+        <section id="projects" class="container">
+            <h2>Our Projects</h2>
+            <div class="project-grid">
+
+                <!-- Hot Pot Project -->
+                <a href="hotpot/index.html" class="project-card">
+                    <div class="card-image" style="background: #FFF5F5; color: #D9381E;">
+                        <!-- SVG Icon for Hot Pot -->
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="9" r="4"></circle>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Hot & Spicy</span>
+                        <h3>훠궈 (Hot Pot)</h3>
+                        <p>하이디라오 스타일부터 집에서 즐기는 간편 소스까지, 훠궈의 모든 것.</p>
+                    </div>
+                </a>
+
+                <!-- Taco Project (Coming Soon) - Hidden
+                <div class="project-card" style="opacity: 0.7; pointer-events: none;">
+                    <div class="card-image" style="background: #FAFAFA;">
+                        <span style="font-size: 2rem;">🌮</span>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag" style="background: #eee; color: #666;">Coming Soon</span>
+                        <h3>Taco Lab</h3>
+                        <p>멕시칸 타코 소스와 살사의 다채로운 세계. (준비중)</p>
+                    </div>
+                </div>
+                -->
+
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; color: #999; margin-top: 4rem;">
+        <p>&copy; 2026 Sauce Lab. Taste the difference.</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

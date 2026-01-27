@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sauce Lab | 훠궈 소스 레시피</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <header class="hotpot-header">
+        <div class="container navbar">
+            <a href="../index.html" class="brand">Sauce Lab</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="index.html">Hot Pot Intro</a></li>
+                    <li><a href="sauces.html" class="active">Sauces</a></li>
+                    <li><a href="tips.html">Tips</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="container">
+            <h1 style="text-align: center; margin-bottom: 3rem;">전설의 소스 레시피</h1>
+
+            <!-- Search Bar -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <input type="text" id="recipeSearch" placeholder="🔍 소스 이름이나 재료를 검색하세요..."
+                    style="padding: 1rem 1.5rem; width: 100%; max-width: 400px; border: 2px solid #eee; border-radius: 50px; font-size: 1rem; outline: none; transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <style>
+                    #recipeSearch:focus {
+                        border-color: var(--color-primary);
+                        box-shadow: 0 4px 12px rgba(217, 56, 30, 0.2);
+                    }
+                </style>
+            </div>
+
+            <div class="sauce-grid" id="sauceGrid">
+
+                <!-- 건희 소스 -->
+                <article class="sauce-card" data-id="geonhee">
+                    <div class="card-header">
+                        <h3>🥜 K-Idol Style (건희 소스)</h3>
+                        <button class="like-btn" onclick="toggleLike(this)">
+                            <span class="heart">♡</span>
+                            <span class="count">0</span>
+                        </button>
+                    </div>
+                    <p>고소함의 끝판왕. 달콤하고 매콤한 맛이 조화로운 한국인 최애 소스.</p>
+                    <ul class="ingredient-list">
+                        <li>땅콩 소스 (즈마장) 1스푼</li>
+                        <li>칠리 소스 2.5스푼</li>
+                        <li>설탕, 다진 마늘 0.5스푼</li>
+                        <li>파 조금</li>
+                        <li>깨, 땅콩 가루 조금</li>
+                        <li>고추기름 0.5스푼 (취향껏)</li>
+                    </ul>
+                </article>
+
+                <!-- 이영지 소스 -->
+                <article class="sauce-card" data-id="youngji">
+                    <div class="card-header">
+                        <h3>🎤 High Tension (이영지 소스)</h3>
+                        <button class="like-btn" onclick="toggleLike(this)">
+                            <span class="heart">♡</span>
+                            <span class="count">0</span>
+                        </button>
+                    </div>
+                    <p>건희 소스보다 더 자극적이고 강렬한 맛! 빵에 발라 먹어도 맛있어요.</p>
+                    <ul class="ingredient-list">
+                        <li>땅콩 소스 2국자, 칠리 1.5국자</li>
+                        <li>태국 고추 2스푼, 고춧가루 1.5스푼</li>
+                        <li>다진 마늘 1, 파 1.5, 고기 1.5</li>
+                        <li>참기름 2바퀴, 간장 1바퀴</li>
+                        <li>설탕 한 꼬집</li>
+                    </ul>
+                </article>
+
+                <!-- 마크 정식 소스 -->
+                <article class="sauce-card" data-id="mark">
+                    <div class="card-header">
+                        <h3>🐯 NCT Mark Style (마크 소스)</h3>
+                        <button class="like-btn" onclick="toggleLike(this)">
+                            <span class="heart">♡</span>
+                            <span class="count">0</span>
+                        </button>
+                    </div>
+                    <p>고기와 완벽한 조화! 깔끔하면서도 풍미 가득한 아이돌 픽.</p>
+                    <ul class="ingredient-list">
+                        <li>땅콩 소스 2국자, 간장 2스푼</li>
+                        <li>다진 마늘 1.5, 양파 1.5</li>
+                        <li>굴소스 1, 태국 고추 1</li>
+                        <li>고기, 파, 땅콩 가루 적당히</li>
+                    </ul>
+                </article>
+
+                <!-- 참기름 마늘 소스 -->
+                <article class="sauce-card" data-id="sesame_oil">
+                    <div class="card-header">
+                        <h3>🧄 클래식 오일 소스</h3>
+                        <button class="like-btn" onclick="toggleLike(this)">
+                            <span class="heart">♡</span>
+                            <span class="count">0</span>
+                        </button>
+                    </div>
+                    <p>홍탕(매운 육수)과 찰떡궁합. 매운 맛을 중화시켜주고 고소함을 더해줍니다.</p>
+                    <ul class="ingredient-list">
+                        <li>참기름 듬뿍 (바닥이 잠길 정도)</li>
+                        <li>다진 마늘 1스푼</li>
+                        <li>굴소스 1스푼</li>
+                        <li>설탕, 소금 약간</li>
+                        <li>다진 파, 고수 (선택)</li>
+                    </ul>
+                </article>
+
+                <!-- 간장 식초 소스 -->
+                <article class="sauce-card" data-id="soy_sauce">
+                    <div class="card-header">
+                        <h3>🍋 깔끔한 간장 소스</h3>
+                        <button class="like-btn" onclick="toggleLike(this)">
+                            <span class="heart">♡</span>
+                            <span class="count">0</span>
+                        </button>
+                    </div>
+                    <p>해산물이나 완자를 찍어 먹을 때 추천. 느끼함을 잡아주는 상큼함.</p>
+                    <ul class="ingredient-list">
+                        <li>간장 1스푼</li>
+                        <li>식초 0.5스푼</li>
+                        <li>설탕 약간</li>
+                        <li>청양고추 1개 썰어서</li>
+                        <li>양파 다짐 조금</li>
+                    </ul>
+                </article>
+
+                <!-- 마라 고수 소스 -->
+                <article class="sauce-card" data-id="mala">
+                    <div class="card-header">
+                        <h3>🌶️ 하드코어 마라 소스</h3>
+                        <button class="like-btn" onclick="toggleLike(this)">
+                            <span class="heart">♡</span>
+                            <span class="count">0</span>
+                        </button>
+                    </div>
+                    <p>매운맛을 즐긴다면 도전. 얼얼함이 두 배가 되는 강렬한 맛.</p>
+                    <ul class="ingredient-list">
+                        <li>고추기름 1스푼</li>
+                        <li>고춧가루 0.5스푼</li>
+                        <li>다진 마늘, 파</li>
+                        <li>산초유 (마유) 약간</li>
+                        <li>고수 듬뿍</li>
+                        <li>땅콩 가루 (식감용)</li>
+                    </ul>
+                </article>
+
+            </div>
+
+            <!-- No Results Message (Hidden by default) -->
+            <div id="noResults" style="display: none; text-align: center; padding: 2rem; color: #999;">
+                <p>검색 결과가 없습니다. 다시 검색해보세요!</p>
+            </div>
+        </section>
+    </main>
+
+    <style>
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .sauce-card h3 {
+            margin-bottom: 0;
+            flex: 1;
+            padding-right: 10px;
+        }
+
+        .like-btn {
+            background: none;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 4px 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+            color: #666;
+        }
+
+        .like-btn:hover {
+            background-color: #FFF5F5;
+            border-color: #FFD1C1;
+        }
+
+        .like-btn.liked {
+            background-color: #FFF0F0;
+            border-color: #D9381E;
+            color: #D9381E;
+        }
+
+        .like-btn .heart {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .like-btn.liked .heart {
+            font-weight: bold;
+        }
+    </style>
+
+    <script>
+        // Initialize Likes
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.sauce-card');
+            cards.forEach(card => {
+                const id = card.dataset.id;
+                const btn = card.querySelector('.like-btn');
+                const countSpan = btn.querySelector('.count');
+
+                // Get stored data
+                let likes = localStorage.getItem('sauce_likes_' + id);
+                let isLiked = localStorage.getItem('sauce_is_liked_' + id) === 'true';
+
+                // Init random count if new (simulated popularity)
+                if (!likes) {
+                    likes = Math.floor(Math.random() * 500) + 50; // Random 50-550
+                    localStorage.setItem('sauce_likes_' + id, likes);
+                }
+
+                countSpan.textContent = likes;
+                if (isLiked) {
+                    btn.classList.add('liked');
+                    btn.querySelector('.heart').textContent = '♥';
+                }
+            });
+        });
+
+        function toggleLike(btn) {
+            const card = btn.closest('.sauce-card');
+            const id = card.dataset.id;
+            const countSpan = btn.querySelector('.count');
+            let count = parseInt(countSpan.textContent);
+            let isLiked = btn.classList.contains('liked');
+
+            if (isLiked) {
+                // Unlike
+                count--;
+                btn.classList.remove('liked');
+                btn.querySelector('.heart').textContent = '♡';
+                localStorage.setItem('sauce_is_liked_' + id, 'false');
+            } else {
+                // Like
+                count++;
+                btn.classList.add('liked');
+                btn.querySelector('.heart').textContent = '♥';
+                localStorage.setItem('sauce_is_liked_' + id, 'true');
+            }
+
+            countSpan.textContent = count;
+            localStorage.setItem('sauce_likes_' + id, count);
+        }
+
+        document.getElementById('recipeSearch').addEventListener('input', function (e) {
+            // 1. Remove all whitespace from search term and convert to lowercase
+            const term = e.target.value.replace(/\s+/g, '').toLowerCase();
+            const cards = document.querySelectorAll('.sauce-card');
+            let hasResults = false;
+
+            cards.forEach(card => {
+                // 2. Remove all whitespace from card text and convert to lowercase
+                // This ensures "건희 소스" matches "건희소스" and vice-versa
+                const text = card.textContent.replace(/\s+/g, '').toLowerCase();
+
+                // Toggle visibility based on match
+                if (text.includes(term)) {
+                    card.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/Hide no results message
+            const noResultsMsg = document.getElementById('noResults');
+            if (hasResults) {
+                noResultsMsg.style.display = 'none';
+            } else {
+                noResultsMsg.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

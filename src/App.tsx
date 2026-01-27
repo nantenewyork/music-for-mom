@@ -47,7 +47,7 @@ function App() {
   const navigate = useNavigate()
   const [recommendation, setRecommendation] = useState<MusicRecommendation | null>(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [, setError] = useState<string | null>(null)
   const [currentMood, setCurrentMood] = useState<string>('')
   const [currentPage, setCurrentPage] = useState<Page>('home')
   const [savedMusic, setSavedMusic] = useState<SavedMusic[]>([])
@@ -228,10 +228,10 @@ function App() {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-6 lg:gap-10">
-              <button onClick={() => navigate('/')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>Home</button>
-              <button onClick={() => navigate('/blog')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>Blog</button>
-              <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>{t('header.library')}</button>
-              <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>About</button>
+              <button onClick={() => navigate('/')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold} cc` }}>Home</button>
+              <button onClick={() => navigate('/blog')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold} cc` }}>Blog</button>
+              <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold} cc` }}>{t('header.library')}</button>
+              <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold} cc` }}>About</button>
             </nav>
 
             {/* Right Side Icons & Mobile Menu Items */}
@@ -244,7 +244,7 @@ function App() {
               <button
                 onClick={handleGoToLibrary}
                 className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/40 hover:bg-white/60 transition-colors"
-                style={{ border: `1px solid ${colors.deepGold}33` }}
+                style={{ border: `1px solid ${colors.deepGold} 33` }}
               >
                 <span className="material-symbols-outlined text-lg sm:text-xl" style={{ color: colors.deepGold }}>library_music</span>
               </button>
@@ -287,7 +287,7 @@ function App() {
                   {loading ? (
                     <div className="text-center fade-in py-12 sm:py-20">
                       <div className="spinner mx-auto mb-4 sm:mb-6"></div>
-                      <p className="premium-serif text-base sm:text-xl italic px-4" style={{ color: `${colors.warmSlate}b3` }}>
+                      <p className="premium-serif text-base sm:text-xl italic px-4" style={{ color: `${colors.warmSlate} b3` }}>
                         {t('home.findingMusic')}
                       </p>
                     </div>
@@ -306,7 +306,7 @@ function App() {
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/library" element={<LibraryPage savedMusic={savedMusic} onRemove={handleRemoveFromLibrary} onBack={() => navigate('/')} />} />
-          <Route path="/paywall" element={<PaywallPage onPurchaseSuccess={handlePurchaseSuccess} onNavigate={(p) => navigate(`/${p}`)} />} />
+          <Route path="/paywall" element={<PaywallPage onPurchaseSuccess={handlePurchaseSuccess} onNavigate={(p) => navigate(`/ ${p} `)} />} />
           <Route path="/terms" element={<TermsPage onBack={() => navigate('/')} />} />
           <Route path="/refund" element={<RefundPage onBack={() => navigate('/')} />} />
           <Route path="/privacy" element={<PrivacyPage onBack={() => navigate('/')} />} />
