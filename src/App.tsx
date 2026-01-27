@@ -16,6 +16,7 @@ import Footer from './components/Footer'
 import CookieConsent from './components/CookieConsent'
 import BlogList from './pages/blog/BlogList'
 import BlogPost from './pages/blog/BlogPost'
+import HomeSections from './components/HomeSections'
 
 interface MusicRecommendation {
   composer: string
@@ -173,6 +174,7 @@ function App() {
       setRecommendation(data)
       setCurrentPage('result')
     } catch (err) {
+      if (err) setError(t('common.error'))
       const randomIndex = Math.floor(Math.random() * fallbackRecommendations.length)
       setRecommendation(fallbackRecommendations[randomIndex])
       setCurrentPage('result')
@@ -209,7 +211,7 @@ function App() {
 
   return (
     <div className="impressionist-bg body-sans min-h-screen flex flex-col overflow-x-hidden">
-      <header className="sticky top-0 z-50 w-full glass-panel-warm">
+      <header className="sticky top-0 z-50 w-full glass-panel-warm border-b border-white/20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
           <div className="flex h-16 sm:h-20 items-center justify-between">
             <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" onClick={() => navigate('/')}>
@@ -226,10 +228,10 @@ function App() {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-6 lg:gap-10">
-              <button onClick={() => navigate('/')} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>Home</button>
-              <button onClick={() => navigate('/blog')} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>Blog</button>
-              <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>{t('header.library')}</button>
-              <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>About</button>
+              <button onClick={() => navigate('/')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>Home</button>
+              <button onClick={() => navigate('/blog')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>Blog</button>
+              <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>{t('header.library')}</button>
+              <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>About</button>
             </nav>
 
             {/* Right Side Icons & Mobile Menu Items */}
@@ -264,32 +266,40 @@ function App() {
                 onGoToLibrary={handleGoToLibrary}
               />
             ) : (
-              <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-12 lg:py-20">
-                <div className="mb-8 sm:mb-12 text-center fade-in">
-                  <div
-                    className="inline-flex items-center gap-2 rounded-full px-3 sm:px-4 py-1.5 mb-4 sm:mb-6 shadow-sm"
-                    style={{ backgroundColor: 'rgba(254, 243, 199, 0.5)', border: '1px solid rgba(217, 119, 6, 0.2)' }}
-                  >
-                    <span className="material-symbols-outlined text-xs sm:text-sm" style={{ color: colors.deepGold }}>auto_awesome</span>
-                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest" style={{ color: colors.deepGold }}>{t('home.badge')}</span>
-                  </div>
-                  <h1 className="premium-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight px-2" style={{ color: colors.warmSlate }}>
-                    {t('home.title')} <br className="sm:hidden" /><span className="italic" style={{ color: colors.deepGold }}>{t('home.titleHighlight')}</span>{t('home.titleEnd')}
-                  </h1>
-                </div>
-
-                {loading ? (
-                  <div className="text-center fade-in py-12 sm:py-20">
-                    <div className="spinner mx-auto mb-4 sm:mb-6"></div>
-                    <p className="premium-serif text-base sm:text-xl italic px-4" style={{ color: `${colors.warmSlate}b3` }}>
-                      {t('home.findingMusic')}
+              <div className="w-full">
+                <div className="flex flex-col items-center justify-center px-4 sm:px-6 py-12 sm:py-20 lg:py-32">
+                  <div className="mb-8 sm:mb-12 text-center fade-in max-w-4xl mx-auto">
+                    <div
+                      className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6 sm:mb-8 shadow-sm"
+                      style={{ backgroundColor: 'rgba(254, 243, 199, 0.6)', border: '1px solid rgba(217, 119, 6, 0.3)' }}
+                    >
+                      <span className="material-symbols-outlined text-xs sm:text-sm" style={{ color: colors.deepGold }}>auto_awesome</span>
+                      <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest" style={{ color: colors.deepGold }}>{t('home.badge')}</span>
+                    </div>
+                    <h1 className="premium-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-8" style={{ color: colors.warmSlate }}>
+                      {t('home.title')} <br className="hidden sm:block" /><span className="italic" style={{ color: colors.deepGold }}>{t('home.titleHighlight')}</span>{t('home.titleEnd')}
+                    </h1>
+                    <p className="max-w-2xl mx-auto text-lg sm:text-xl italic font-serif opacity-70 mb-12" style={{ color: colors.warmSlate }}>
+                      태아와 산모의 정서를 이어주는 클래식 음악, AI가 당신의 기분에 맞춰 큐레이션해드립니다.
                     </p>
                   </div>
-                ) : (
-                  <div className="w-full max-w-2xl fade-in px-2">
-                    <MoodInput onSubmit={handleMoodSubmit} loading={loading} />
-                  </div>
-                )}
+
+                  {loading ? (
+                    <div className="text-center fade-in py-12 sm:py-20">
+                      <div className="spinner mx-auto mb-4 sm:mb-6"></div>
+                      <p className="premium-serif text-base sm:text-xl italic px-4" style={{ color: `${colors.warmSlate}b3` }}>
+                        {t('home.findingMusic')}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="w-full max-w-2xl fade-in px-4">
+                      <MoodInput onSubmit={handleMoodSubmit} loading={loading} />
+                    </div>
+                  )}
+                </div>
+
+                {/* Rich Homepage Sections */}
+                {!loading && currentPage !== 'result' && <HomeSections />}
               </div>
             )
           } />
