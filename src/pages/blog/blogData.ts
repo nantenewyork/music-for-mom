@@ -114,7 +114,7 @@ export const blogPosts: BlogPost[] = [
         title: '집에서 실천하는 효과적인 태교 음악 감상법 3원칙',
         date: '2026-01-27',
         category: '태교 가이드',
-        excerpt: '단순히 듣는 것보다 100배 효과적인 '공감형 감상법'을 소개합니다.',
+        excerpt: '단순히 듣는 것보다 100배 효과적인 "공감형 감상법"을 소개합니다.',
         content: `
       <section>
         <h2>1. 복식 호흡과 병행하라</h2>
