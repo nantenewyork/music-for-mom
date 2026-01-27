@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 import PaymentButton from './PaymentButton'
-import LanguageSwitch from './LanguageSwitch'
 
 interface PaywallPageProps {
     onPurchaseSuccess: () => void
@@ -37,7 +36,7 @@ const styles = {
 
 function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
     const { t } = useTranslation()
-    
+
     const features = [
         {
             icon: 'auto_awesome',
@@ -60,59 +59,28 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
             descKey: 'paywall.feature4Desc'
         },
     ]
-    
+
     return (
-        <div 
-            style={{ 
+        <div
+            style={{
                 ...styles.impressionistBg,
                 color: colors.warmSlate,
                 fontFamily: 'Manrope, sans-serif',
-                minHeight: '100vh',
-                overflowX: 'hidden',
+                width: '100%',
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                padding: '2rem 1rem',
             }}
         >
-            {/* Header */}
-            <header 
-                style={{
-                    ...styles.glassPanelWarm,
-                    position: 'sticky',
-                    top: 0,
-                    zIndex: 50,
-                    width: '100%',
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
-                }}
-            >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                    <div className="flex h-16 sm:h-20 items-center justify-between">
-                        <div className="flex items-center gap-2 sm:gap-3">
-                            <div 
-                                className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full text-white shadow-lg"
-                                style={{ backgroundColor: colors.deepGold }}
-                            >
-                                <span className="material-symbols-outlined text-lg sm:text-2xl">auto_awesome</span>
-                            </div>
-                            <h2 
-                                className="text-xl sm:text-2xl font-semibold tracking-tight"
-                                style={{ 
-                                    fontFamily: 'Playfair Display, serif',
-                                    color: colors.deepGold,
-                                }}
-                            >
-                                {t('common.appName')}
-                            </h2>
-                        </div>
-                        <LanguageSwitch />
-                    </div>
-                </div>
-            </header>
-
             {/* Main Content */}
-            <main className="flex-1 flex flex-col items-center px-4 sm:px-6 py-8 sm:py-12">
+            <main className="flex-1 flex flex-col items-center w-full max-w-4xl">
                 {/* Hero */}
                 <div className="text-center mb-6 sm:mb-10 max-w-3xl px-2">
-                    <div 
+                    <div
                         className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 mb-4 sm:mb-6"
-                        style={{ 
+                        style={{
                             backgroundColor: 'rgba(254, 243, 199, 0.5)',
                             border: '1px solid rgba(217, 119, 6, 0.2)',
                             boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
@@ -123,10 +91,10 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                             {t('paywall.badge')}
                         </span>
                     </div>
-                    
-                    <h1 
+
+                    <h1
                         className="text-2xl sm:text-4xl md:text-5xl font-light leading-tight mb-4 sm:mb-6"
-                        style={{ 
+                        style={{
                             fontFamily: 'Playfair Display, serif',
                             color: colors.warmSlate,
                         }}
@@ -134,7 +102,7 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                         {t('paywall.title')}<br />
                         <span style={{ fontStyle: 'italic', color: colors.deepGold }}>{t('paywall.titleHighlight')}</span> {t('paywall.titleEnd')}
                     </h1>
-                    
+
                     <p className="text-sm sm:text-lg max-w-lg mx-auto" style={{ color: `${colors.warmSlate}99` }}>
                         {t('paywall.subtitle')}
                     </p>
@@ -142,7 +110,7 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
 
                 {/* Pricing Card */}
                 <div className="w-full max-w-md px-2">
-                    <div 
+                    <div
                         className="rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-8"
                         style={{
                             ...styles.glassPanelWarm,
@@ -153,7 +121,7 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                         <div className="text-center mb-6 sm:mb-8">
                             <div className="flex items-center justify-center gap-2 mb-1">
                                 <span className="text-lg sm:text-xl line-through" style={{ color: `${colors.warmSlate}66` }}>{t('paywall.originalPrice')}</span>
-                                <span 
+                                <span
                                     className="px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold text-white"
                                     style={{ backgroundColor: '#ef4444' }}
                                 >
@@ -173,7 +141,7 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                         <div className="flex flex-col gap-3 sm:gap-4 mb-6 sm:mb-8">
                             {features.map((feature, index) => (
                                 <div key={index} className="flex items-start gap-3">
-                                    <div 
+                                    <div
                                         className="flex h-9 w-9 sm:h-10 sm:w-10 flex-shrink-0 items-center justify-center rounded-full"
                                         style={{ backgroundColor: `${colors.deepGold}1a` }}
                                     >
@@ -191,8 +159,8 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
 
                         {/* CTA Button */}
                         <div>
-                            <PaymentButton 
-                                onSuccess={onPurchaseSuccess} 
+                            <PaymentButton
+                                onSuccess={onPurchaseSuccess}
                                 onNavigateToTerms={() => onNavigate?.('terms')}
                                 onNavigateToRefund={() => onNavigate?.('refund')}
                                 onNavigateToPrivacy={() => onNavigate?.('privacy')}
@@ -211,31 +179,6 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                     </p>
                 </div>
             </main>
-
-            {/* Footer */}
-            <footer 
-                className="py-6 sm:py-10 mt-auto"
-                style={{
-                    ...styles.glassPanelWarm,
-                    borderTop: '1px solid rgba(255, 255, 255, 0.3)',
-                }}
-            >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                    <div className="flex flex-col items-center gap-4 sm:gap-6">
-                        <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-xs sm:text-sm" style={{ color: colors.deepGold }}>auto_awesome</span>
-                            <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider" style={{ color: `${colors.deepGold}80` }}>
-                                {t('footer.copyright')}
-                            </p>
-                        </div>
-                        <div className="flex gap-4 sm:gap-8">
-                            <button onClick={() => onNavigate?.('terms')} className="text-[10px] sm:text-xs font-bold uppercase tracking-wider" style={{ color: `${colors.deepGold}80`, background: 'none', border: 'none', cursor: 'pointer' }}>{t('footer.terms')}</button>
-                            <button onClick={() => onNavigate?.('refund')} className="text-[10px] sm:text-xs font-bold uppercase tracking-wider" style={{ color: `${colors.deepGold}80`, background: 'none', border: 'none', cursor: 'pointer' }}>{t('footer.refund')}</button>
-                            <button onClick={() => onNavigate?.('privacy')} className="text-[10px] sm:text-xs font-bold uppercase tracking-wider" style={{ color: `${colors.deepGold}80`, background: 'none', border: 'none', cursor: 'pointer' }}>{t('footer.privacy')}</button>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     )
 }

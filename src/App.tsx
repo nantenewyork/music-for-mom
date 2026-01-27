@@ -228,7 +228,7 @@ function App() {
       <header className="sticky top-0 z-50 w-full glass-panel-warm border-b border-white/20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
           <div className="flex h-16 sm:h-20 items-center justify-between">
-            <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" onClick={() => navigate('/')}>
+            <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" onClick={handleReset}>
               <div
                 className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full text-white shadow-lg"
                 style={{ backgroundColor: colors.deepGold }}
@@ -274,10 +274,8 @@ function App() {
               <ResultPage
                 recommendation={recommendation}
                 mood={currentMood}
-                onReset={handleReset}
                 onGenerateAnother={handleGenerateAnother}
                 onSaveToLibrary={() => handleSaveToLibrary(recommendation, currentMood)}
-                onGoToLibrary={handleGoToLibrary}
               />
             ) : (
               <div className="w-full">
@@ -324,7 +322,7 @@ function App() {
           <Route path="/terms" element={<TermsPage onBack={() => navigate('/')} />} />
           <Route path="/refund" element={<RefundPage onBack={() => navigate('/')} />} />
           <Route path="/privacy" element={<PrivacyPage onBack={() => navigate('/')} />} />
-          <Route path="/about" element={<AboutPage onBack={() => navigate('/')} />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage onBack={() => navigate('/')} />} />
         </Routes>
       </main>
