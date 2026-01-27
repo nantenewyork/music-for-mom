@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 interface MoodInputProps {
     onSubmit: (mood: string) => void
     loading: boolean
+    freeTrialUsed: boolean
+    isPurchased: boolean
 }
 
 const colors = {
@@ -12,7 +14,7 @@ const colors = {
     warmSlate: '#475569',
 }
 
-function MoodInput({ onSubmit, loading }: MoodInputProps) {
+function MoodInput({ onSubmit, loading, freeTrialUsed, isPurchased }: MoodInputProps) {
     const { t } = useTranslation()
     const [mood, setMood] = useState('')
 
@@ -40,15 +42,31 @@ function MoodInput({ onSubmit, loading }: MoodInputProps) {
 
     return (
         <div className="flex flex-col gap-6 sm:gap-8">
+            {/* Free Trial Badge */}
+            {!isPurchased && !freeTrialUsed && (
+                <div className="flex justify-center -mb-2 scale-in">
+                    <div
+                        className="px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest shadow-sm border"
+                        style={{
+                            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                            borderColor: `${colors.deepGold}66`,
+                            color: colors.deepGold
+                        }}
+                    >
+                        ✨ 1회 무료 체험 가능
+                    </div>
+                </div>
+            )}
+
             {/* Input Form */}
             <form onSubmit={handleSubmit}>
                 {/* Desktop: 가로 배치, Mobile: 세로 배치 */}
-                <div 
+                <div
                     className="input-glow group relative flex w-full flex-col sm:flex-row items-stretch sm:items-center rounded-3xl sm:rounded-full bg-white/70 p-3 sm:p-2 soft-shadow transition-all gap-3 sm:gap-0"
                     style={{ border: `1px solid ${colors.deepGold}20` }}
                 >
                     <div className="flex flex-1 items-center px-3 sm:px-4">
-                        <span 
+                        <span
                             className="material-symbols-outlined mr-2 sm:mr-3 text-xl sm:text-2xl"
                             style={{ color: `${colors.deepGold}99` }}
                         >
@@ -77,7 +95,7 @@ function MoodInput({ onSubmit, loading }: MoodInputProps) {
 
             {/* Mood Suggestions */}
             <div className="flex flex-col gap-3 sm:gap-4">
-                <p 
+                <p
                     className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] px-2 text-center"
                     style={{ color: `${colors.warmSlate}99` }}
                 >
@@ -91,7 +109,7 @@ function MoodInput({ onSubmit, loading }: MoodInputProps) {
                             onClick={() => handleSuggestionClick(suggestion.moodKey)}
                             disabled={loading}
                             className="flex h-11 sm:h-12 items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-white/60 px-3 sm:px-6 text-xs sm:text-sm font-semibold transition-all disabled:opacity-50 hover:bg-white/90 hover:shadow-md"
-                            style={{ 
+                            style={{
                                 color: colors.deepGold,
                                 border: `1px solid ${colors.deepGold}20`
                             }}

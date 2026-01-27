@@ -10,6 +10,7 @@ import TermsPage from './components/TermsPage'
 import RefundPage from './components/RefundPage'
 import PrivacyPage from './components/PrivacyPage'
 import AboutPage from './components/AboutPage'
+import GuidePage from './components/GuidePage'
 import ContactPage from './components/ContactPage'
 import LanguageSwitch from './components/LanguageSwitch'
 import Footer from './components/Footer'
@@ -38,7 +39,7 @@ interface SavedMusic {
   mood: string
 }
 
-type Page = 'home' | 'result' | 'library' | 'paywall' | 'terms' | 'refund' | 'privacy' | 'about' | 'contact' | 'blog'
+type Page = 'home' | 'result' | 'library' | 'paywall' | 'terms' | 'refund' | 'privacy' | 'about' | 'contact' | 'blog' | 'guide'
 
 const colors = {
   deepGold: '#b45309',
@@ -56,12 +57,16 @@ function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
   const [savedMusic, setSavedMusic] = useState<SavedMusic[]>([])
   const [isPurchased, setIsPurchased] = useState<boolean>(false)
+  const [freeTrialUsed, setFreeTrialUsed] = useState<boolean>(false)
   const [showPaymentSuccess, setShowPaymentSuccess] = useState<boolean>(false)
   const [pendingMood, setPendingMood] = useState<string | null>(null)
 
   useEffect(() => {
     const purchased = localStorage.getItem('aura-classical-purchased') === 'true'
     setIsPurchased(purchased)
+
+    const trialUsed = localStorage.getItem('aura-classical-trial-used') === 'true'
+    setFreeTrialUsed(trialUsed)
 
     const urlParams = new URLSearchParams(window.location.search)
     if (urlParams.get('checkout') === 'success') {
@@ -136,7 +141,7 @@ function App() {
       composer: 'Claude Debussy',
       title: 'Clair de Lune',
       youtubeId: 'WNJSajXidS8',
-      description: '이 인상주의 걸작은 잔잔한 호흡처럼 부드러운 리듬의 물결을 사용합니다. 드뷔시의 몽환적인 질감은 당신과 아기 모두에게 고요한 환경을 조성하는 완벽한 음향 동반자입니다.',
+      description: '이 인상주의 걸작은 잔잔한 호흡처럼 부드러운 리듬의 물결을 사용합니다. 드뷔시의 몽환적인 질감은 당신과 아기 모두에게 고요한 환경을 조성하는 완벽한 음항 동반자입니다.',
       composerInfo: '클로드 드뷔시는 19세기 말과 20세기 초 프랑스의 가장 영향력 있는 작곡가 중 한 명으로, 인상주의 음악의 선구자로 불립니다.',
       musicInfo: '베르가마스크 모음곡 중 세 번째 곡인 달빛은 Paul Verlaine의 시에서 영감을 얻어 작곡된 피아노 명곡입니다.'
     },
@@ -187,18 +192,29 @@ function App() {
       const data = await response.json()
       setRecommendation(data)
       setCurrentPage('result')
+
+      // Mark trial as used if it was a trial
+      if (!isPurchased) {
+        setFreeTrialUsed(true)
+        localStorage.setItem('aura-classical-trial-used', 'true')
+      }
     } catch (err) {
       if (err) setError(t('common.error'))
       const randomIndex = Math.floor(Math.random() * fallbackRecommendations.length)
       setRecommendation(fallbackRecommendations[randomIndex])
       setCurrentPage('result')
+
+      if (!isPurchased) {
+        setFreeTrialUsed(true)
+        localStorage.setItem('aura-classical-trial-used', 'true')
+      }
     } finally {
       setLoading(false)
     }
   }
 
   const handleMoodSubmit = async (mood: string) => {
-    if (!isPurchased) {
+    if (!isPurchased && freeTrialUsed) {
       setPendingMood(mood)
       navigate('/paywall')
       return
@@ -242,23 +258,24 @@ function App() {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-6 lg:gap-10">
-              <button onClick={() => navigate('/')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold} cc` }}>Home</button>
-              <button onClick={() => navigate('/blog')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold} cc` }}>Blog</button>
-              <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold} cc` }}>{t('header.library')}</button>
-              <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold} cc` }}>About</button>
+              <button onClick={() => navigate('/')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>Home</button>
+              <button onClick={() => navigate('/guide')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>Guide</button>
+              <button onClick={() => navigate('/blog')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>Blog</button>
+              <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>{t('header.library')}</button>
+              <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>About</button>
             </nav>
 
             {/* Right Side Icons & Mobile Menu Items */}
             <div className="flex items-center gap-2 sm:gap-4">
               <nav className="flex md:hidden items-center gap-3 mr-2">
+                <button onClick={() => navigate('/guide')} className="text-xs font-bold uppercase tracking-tight" style={{ color: colors.deepGold }}>Guide</button>
                 <button onClick={() => navigate('/blog')} className="text-xs font-bold uppercase tracking-tight" style={{ color: colors.deepGold }}>Blog</button>
-                <button onClick={() => navigate('/about')} className="text-xs font-bold uppercase tracking-tight" style={{ color: colors.deepGold }}>About</button>
               </nav>
               <LanguageSwitch />
               <button
                 onClick={handleGoToLibrary}
                 className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/40 hover:bg-white/60 transition-colors"
-                style={{ border: `1px solid ${colors.deepGold} 33` }}
+                style={{ border: `1px solid ${colors.deepGold}33` }}
               >
                 <span className="material-symbols-outlined text-lg sm:text-xl" style={{ color: colors.deepGold }}>library_music</span>
               </button>
@@ -289,7 +306,7 @@ function App() {
                       <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest" style={{ color: colors.deepGold }}>{t('home.badge')}</span>
                     </div>
                     <h1 className="premium-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-8" style={{ color: colors.warmSlate }}>
-                      {t('home.title')} <br className="hidden sm:block" /><span className="italic" style={{ color: colors.deepGold }}>{t('home.titleHighlight')}</span>{t('home.titleEnd')}
+                      {t('home.title')} <br className="hidden sm:block" /><span className="italic" style={{ color: colors.deepGold }}>{t('home.titleHighlight')}</span> {t('home.titleEnd')}
                     </h1>
                     <p className="max-w-2xl mx-auto text-lg sm:text-xl italic font-serif opacity-70 mb-12" style={{ color: colors.warmSlate }}>
                       태아와 산모의 정서를 이어주는 클래식 음악, AI가 당신의 기분에 맞춰 큐레이션해드립니다.
@@ -299,13 +316,13 @@ function App() {
                   {loading ? (
                     <div className="text-center fade-in py-12 sm:py-20">
                       <div className="spinner mx-auto mb-4 sm:mb-6"></div>
-                      <p className="premium-serif text-base sm:text-xl italic px-4" style={{ color: `${colors.warmSlate} b3` }}>
+                      <p className="premium-serif text-base sm:text-xl italic px-4" style={{ color: `${colors.warmSlate}b3` }}>
                         {t('home.findingMusic')}
                       </p>
                     </div>
                   ) : (
                     <div className="w-full max-w-2xl fade-in px-4">
-                      <MoodInput onSubmit={handleMoodSubmit} loading={loading} />
+                      <MoodInput onSubmit={handleMoodSubmit} loading={loading} freeTrialUsed={freeTrialUsed} isPurchased={isPurchased} />
                     </div>
                   )}
                 </div>
@@ -315,10 +332,11 @@ function App() {
               </div>
             )
           } />
+          <Route path="/guide" element={<GuidePage />} />
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/library" element={<LibraryPage savedMusic={savedMusic} onRemove={handleRemoveFromLibrary} onBack={() => navigate('/')} />} />
-          <Route path="/paywall" element={<PaywallPage onPurchaseSuccess={handlePurchaseSuccess} onNavigate={(p) => navigate(`/ ${p} `)} />} />
+          <Route path="/paywall" element={<PaywallPage onPurchaseSuccess={handlePurchaseSuccess} onNavigate={(p) => navigate(`/${p}`)} />} />
           <Route path="/terms" element={<TermsPage onBack={() => navigate('/')} />} />
           <Route path="/refund" element={<RefundPage onBack={() => navigate('/')} />} />
           <Route path="/privacy" element={<PrivacyPage onBack={() => navigate('/')} />} />
