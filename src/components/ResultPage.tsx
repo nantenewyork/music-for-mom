@@ -6,6 +6,8 @@ interface MusicRecommendation {
     title: string
     youtubeId: string
     description: string
+    composerInfo: string
+    musicInfo: string
 }
 
 interface ResultPageProps {
@@ -56,7 +58,7 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
     // 이미지로 저장
     const handleSaveAsImage = async () => {
         const today = formatDate()
-        
+
         // 공유용 카드 동적 생성
         const shareCard = document.createElement('div')
         shareCard.style.cssText = `
@@ -85,8 +87,18 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                 <p style="color: #b45309; font-size: 12px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 8px; opacity: 0.7;">Now Curated for You</p>
                 <h2 style="color: #475569; font-size: 32px; font-weight: 500; margin-bottom: 8px; font-family: 'Playfair Display', serif; line-height: 1.2;">${recommendation.title}</h2>
                 <p style="color: #b45309; font-size: 20px; font-style: italic; margin-bottom: 24px; font-family: 'Playfair Display', serif;">${recommendation.composer}</p>
-                <div style="background: rgba(180,83,9,0.05); border-radius: 16px; padding: 20px; border-left: 4px solid #b45309;">
+                <div style="background: rgba(180,83,9,0.05); border-radius: 16px; padding: 20px; border-left: 4px solid #b45309; margin-bottom: 20px;">
                     <p style="color: #475569; font-size: 14px; line-height: 1.7; font-style: italic; opacity: 0.9;">"${recommendation.description}"</p>
+                </div>
+                <div style="display: grid; grid-template-cols: 1fr; gap: 16px;">
+                    <div>
+                        <p style="color: #b45309; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; opacity: 0.7;">About Composer</p>
+                        <p style="color: #475569; font-size: 12px; line-height: 1.5; opacity: 0.8;">${recommendation.composerInfo}</p>
+                    </div>
+                    <div>
+                        <p style="color: #b45309; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; opacity: 0.7;">About Music</p>
+                        <p style="color: #475569; font-size: 12px; line-height: 1.5; opacity: 0.8;">${recommendation.musicInfo}</p>
+                    </div>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 24px;">
@@ -94,14 +106,14 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
             </div>
         `
         document.body.appendChild(shareCard)
-        
+
         setIsCapturing(true)
         try {
             const canvas = await html2canvas(shareCard, {
                 scale: 2,
                 backgroundColor: '#FFFBF2',
             })
-            
+
             const link = document.createElement('a')
             link.download = `aura-classical-${recommendation.title.replace(/\s+/g, '-')}.png`
             link.href = canvas.toDataURL('image/png')
@@ -145,8 +157,18 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                 <p style="color: #b45309; font-size: 12px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 8px; opacity: 0.7;">Now Curated for You</p>
                 <h2 style="color: #475569; font-size: 32px; font-weight: 500; margin-bottom: 8px; font-family: 'Playfair Display', serif; line-height: 1.2;">${recommendation.title}</h2>
                 <p style="color: #b45309; font-size: 20px; font-style: italic; margin-bottom: 24px; font-family: 'Playfair Display', serif;">${recommendation.composer}</p>
-                <div style="background: rgba(180,83,9,0.05); border-radius: 16px; padding: 20px; border-left: 4px solid #b45309;">
+                <div style="background: rgba(180,83,9,0.05); border-radius: 16px; padding: 20px; border-left: 4px solid #b45309; margin-bottom: 20px;">
                     <p style="color: #475569; font-size: 14px; line-height: 1.7; font-style: italic; opacity: 0.9;">"${recommendation.description}"</p>
+                </div>
+                <div style="display: grid; grid-template-cols: 1fr; gap: 16px;">
+                    <div>
+                        <p style="color: #b45309; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; opacity: 0.7;">About Composer</p>
+                        <p style="color: #475569; font-size: 12px; line-height: 1.5; opacity: 0.8;">${recommendation.composerInfo}</p>
+                    </div>
+                    <div>
+                        <p style="color: #b45309; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; opacity: 0.7;">About Music</p>
+                        <p style="color: #475569; font-size: 12px; line-height: 1.5; opacity: 0.8;">${recommendation.musicInfo}</p>
+                    </div>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 24px;">
@@ -159,23 +181,23 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
     // 공유하기
     const handleShare = async () => {
         const shareText = `🎵 Aura Classical 추천 음악\n\n🎼 ${recommendation.title}\n🎹 ${recommendation.composer}\n\n"${recommendation.description}"\n\n✨ 나도 추천받기: ${window.location.origin}`
-        
+
         // Web Share API 지원 확인
         if (navigator.share) {
             try {
                 setIsCapturing(true)
-                
+
                 // 공유 카드 생성 및 캡처
                 const shareCard = createShareCard()
                 document.body.appendChild(shareCard)
-                
+
                 const canvas = await html2canvas(shareCard, {
                     scale: 2,
                     backgroundColor: '#FFFBF2',
                 })
-                
+
                 document.body.removeChild(shareCard)
-                
+
                 canvas.toBlob(async (blob) => {
                     if (blob) {
                         const file = new File([blob], 'aura-classical.png', { type: 'image/png' })
@@ -224,7 +246,7 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
                     <div className="flex h-16 sm:h-20 items-center justify-between">
                         <button onClick={onReset} className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity">
-                            <div 
+                            <div
                                 className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full text-white shadow-lg"
                                 style={{ backgroundColor: colors.deepGold }}
                             >
@@ -241,14 +263,14 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                         </nav>
                         <div className="flex items-center gap-2 sm:gap-4">
                             {/* Mobile Library Button */}
-                            <button 
+                            <button
                                 onClick={onGoToLibrary}
                                 className="md:hidden flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/40 hover:bg-white/60 transition-colors"
                                 style={{ border: `1px solid ${colors.deepGold}33` }}
                             >
                                 <span className="material-symbols-outlined text-lg sm:text-xl" style={{ color: colors.deepGold }}>library_music</span>
                             </button>
-                            <button 
+                            <button
                                 className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/40 hover:bg-white/60 transition-colors"
                                 style={{ border: `1px solid ${colors.deepGold}33` }}
                             >
@@ -263,7 +285,7 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
             <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-12 lg:py-20">
                 {/* Title Section */}
                 <div className="mb-8 sm:mb-12 text-center fade-in">
-                    <div 
+                    <div
                         className="inline-flex items-center gap-2 rounded-full px-3 sm:px-4 py-1.5 mb-4 sm:mb-6 shadow-sm"
                         style={{ backgroundColor: 'rgba(254, 243, 199, 0.5)', border: '1px solid rgba(217, 119, 6, 0.2)' }}
                     >
@@ -276,10 +298,10 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                 </div>
 
                 {/* Main Card */}
-                <div 
+                <div
                     className="w-full max-w-5xl fade-in px-2"
                 >
-                    <div 
+                    <div
                         className="glass-panel-warm painterly-shadow rounded-3xl sm:rounded-[3rem] p-5 sm:p-8 md:p-12 flex flex-col lg:flex-row gap-6 sm:gap-12 lg:gap-16 items-center"
                         style={{
                             background: 'linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(254,243,199,0.3) 100%)',
@@ -289,7 +311,7 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                         {/* Image */}
                         <div className="relative w-full lg:w-1/2 flex justify-center items-center">
                             <div className="organic-frame w-full max-w-xs sm:max-w-md aspect-square relative group">
-                                <div 
+                                <div
                                     className="h-full w-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 impressionist-image-filter rounded-xl sm:rounded-2xl"
                                     style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAx3KTb0WdXFsKKL4mNBiXTYlr9whWo-hdSc4WlXMfD2ljyzKHaVNULu4L_oRI2tlcFOK15YPuYyxH2XasnYq54lobFyDox6DlKAH3acNi-pbrOdasMhsDDxwk5Vi87fdnjtApcRHltSlmeFd2aajRxH82IuAyknWyqpu9sRYyrhPD_rvAG2v1_6rqtBru-WMgI_2eakavyVO8babfyqu45XnLSSFD2f7-wL9RpkL9YFXp54yITBvl12edYf9Jqebm6QyU_VXPSdwM')" }}
                                 />
@@ -308,19 +330,19 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                         {/* Info */}
                         <div className="w-full lg:w-1/2 flex flex-col justify-center gap-4 sm:gap-8">
                             <div className="flex flex-col gap-1 sm:gap-2 text-center lg:text-left">
-                                <p 
+                                <p
                                     className="text-[10px] sm:text-xs font-bold tracking-widest uppercase"
                                     style={{ color: `${colors.deepGold}99` }}
                                 >
                                     Now Curated for You
                                 </p>
-                                <h2 
+                                <h2
                                     className="premium-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight"
                                     style={{ color: colors.warmSlate }}
                                 >
                                     {recommendation.title}
                                 </h2>
-                                <p 
+                                <p
                                     className="text-base sm:text-xl md:text-2xl italic premium-serif"
                                     style={{ color: `${colors.deepGold}cc` }}
                                 >
@@ -329,25 +351,58 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                             </div>
 
                             {/* Why this harmony */}
-                            <div 
+                            <div
                                 className="space-y-3 sm:space-y-4 p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl border shadow-sm"
                                 style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)', borderColor: 'rgba(255, 255, 255, 0.4)' }}
                             >
                                 <div className="flex items-center gap-2 sm:gap-3">
                                     <span className="material-symbols-outlined text-lg sm:text-xl" style={{ color: colors.deepGold }}>flare</span>
-                                    <p 
+                                    <p
                                         className="text-xs sm:text-sm font-bold uppercase tracking-widest"
                                         style={{ color: `${colors.deepGold}b3` }}
                                     >
                                         Why this harmony?
                                     </p>
                                 </div>
-                                <p 
+                                <p
                                     className="text-sm sm:text-base md:text-lg leading-relaxed italic font-light"
                                     style={{ color: `${colors.warmSlate}e6` }}
                                 >
                                     "{recommendation.description}"
                                 </p>
+
+                                <div className="mt-6 space-y-4 border-t border-white/20 pt-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <p
+                                                className="text-[10px] sm:text-xs font-bold uppercase tracking-widest"
+                                                style={{ color: `${colors.deepGold}b3` }}
+                                            >
+                                                작곡가 이야기
+                                            </p>
+                                            <p
+                                                className="text-xs sm:text-sm leading-relaxed font-light opacity-80"
+                                                style={{ color: colors.warmSlate }}
+                                            >
+                                                {recommendation.composerInfo}
+                                            </p>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <p
+                                                className="text-[10px] sm:text-xs font-bold uppercase tracking-widest"
+                                                style={{ color: `${colors.deepGold}b3` }}
+                                            >
+                                                곡의 배경
+                                            </p>
+                                            <p
+                                                className="text-xs sm:text-sm leading-relaxed font-light opacity-80"
+                                                style={{ color: colors.warmSlate }}
+                                            >
+                                                {recommendation.musicInfo}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             {/* Branding for share card */}
@@ -375,7 +430,7 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
 
                         {/* Secondary Buttons */}
                         <div className="grid grid-cols-4 gap-2 sm:gap-3">
-                            <button 
+                            <button
                                 onClick={onGenerateAnother}
                                 className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-2xl sm:rounded-full bg-white/40 px-2 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm font-bold hover:bg-white/60 transition-all shadow-sm"
                                 style={{ color: colors.deepGold, border: `1px solid ${colors.deepGold}33` }}
@@ -383,7 +438,7 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                                 <span className="material-symbols-outlined text-lg sm:text-xl">refresh</span>
                                 <span className="text-[10px] sm:text-sm">다시 추천</span>
                             </button>
-                            <button 
+                            <button
                                 onClick={onSaveToLibrary}
                                 className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-2xl sm:rounded-full bg-white/40 px-2 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm font-bold hover:bg-white/60 transition-all shadow-sm"
                                 style={{ color: colors.deepGold, border: `1px solid ${colors.deepGold}33` }}
@@ -391,7 +446,7 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                                 <span className="material-symbols-outlined text-lg sm:text-xl">favorite</span>
                                 <span className="text-[10px] sm:text-sm">저장</span>
                             </button>
-                            <button 
+                            <button
                                 onClick={handleSaveAsImage}
                                 disabled={isCapturing}
                                 className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-2xl sm:rounded-full bg-white/40 px-2 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm font-bold hover:bg-white/60 transition-all shadow-sm disabled:opacity-50"
@@ -402,11 +457,11 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                                 </span>
                                 <span className="text-[10px] sm:text-sm">{isCapturing ? '저장중' : '이미지'}</span>
                             </button>
-                            <button 
+                            <button
                                 onClick={handleShare}
                                 disabled={isCapturing}
                                 className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-2xl sm:rounded-full px-2 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm font-bold text-white transition-all shadow-sm disabled:opacity-50"
-                                style={{ 
+                                style={{
                                     background: `linear-gradient(135deg, ${colors.deepGold} 0%, ${colors.primaryWarm} 100%)`,
                                 }}
                             >
@@ -421,8 +476,8 @@ function ResultPage({ recommendation, mood, onReset, onGenerateAnother, onSaveTo
                 <div className="mt-10 sm:mt-16 max-w-2xl text-center px-4">
                     <p className="text-xs sm:text-sm font-medium leading-relaxed" style={{ color: `${colors.deepGold}b3` }}>
                         Classical music during pregnancy can reduce cortisol and enhance prenatal bonding.
-                        <br/>
-                        <a 
+                        <br />
+                        <a
                             className="font-bold transition-all"
                             style={{ color: colors.deepGold, borderBottom: `1px solid ${colors.deepGold}4d` }}
                             href="#"

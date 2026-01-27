@@ -23,6 +23,8 @@ interface MusicRecommendation {
   title: string
   youtubeId: string
   description: string
+  composerInfo: string
+  musicInfo: string
 }
 
 interface SavedMusic {
@@ -30,6 +32,8 @@ interface SavedMusic {
   composer: string
   title: string
   description: string
+  composerInfo: string
+  musicInfo: string
   savedAt: string
   mood: string
 }
@@ -96,6 +100,8 @@ function App() {
       composer: music.composer,
       title: music.title,
       description: music.description,
+      composerInfo: music.composerInfo,
+      musicInfo: music.musicInfo,
       savedAt: new Date().toISOString(),
       mood: mood
     }
@@ -130,25 +136,33 @@ function App() {
       composer: 'Claude Debussy',
       title: 'Clair de Lune',
       youtubeId: 'WNJSajXidS8',
-      description: '이 인상주의 걸작은 잔잔한 호흡처럼 부드러운 리듬의 물결을 사용합니다. 드뷔시의 몽환적인 질감은 당신과 아기 모두에게 고요한 환경을 조성하는 완벽한 음향 동반자입니다.'
+      description: '이 인상주의 걸작은 잔잔한 호흡처럼 부드러운 리듬의 물결을 사용합니다. 드뷔시의 몽환적인 질감은 당신과 아기 모두에게 고요한 환경을 조성하는 완벽한 음향 동반자입니다.',
+      composerInfo: '클로드 드뷔시는 19세기 말과 20세기 초 프랑스의 가장 영향력 있는 작곡가 중 한 명으로, 인상주의 음악의 선구자로 불립니다.',
+      musicInfo: '베르가마스크 모음곡 중 세 번째 곡인 달빛은 Paul Verlaine의 시에서 영감을 얻어 작곡된 피아노 명곡입니다.'
     },
     {
       composer: 'Johann Pachelbel',
       title: 'Canon in D Major',
       youtubeId: 'Ptk_1Dc2iPY',
-      description: '이 곡은 부드럽고 평화로운 선율로 임산부에게 안정감과 행복감을 선사합니다. 반복되는 아름다운 화음은 마음을 편안하게 하고, 아기와 함께하는 순간의 기쁨을 더욱 깊게 느낄 수 있도록 도와줍니다.'
+      description: '이 곡은 부드럽고 평화로운 선율로 임산부에게 안정감과 행복감을 선사합니다. 반복되는 아름다운 화음은 마음을 편안하게 하고, 아기와 함께하는 순간의 기쁨을 더욱 깊게 느낄 수 있도록 도와줍니다.',
+      composerInfo: '요한 파헬벨은 독일 바로크 시대의 작곡가이자 오르간 연주자로, 대위법 발전에 기여한 중요한 인물입니다.',
+      musicInfo: '카논과 지그 D장조는 파헬벨의 가장 유명한 작품으로, 오늘날 세 가닥의 바이올린과 저음 악기를 위해 편곡되어 즐겨 연주됩니다.'
     },
     {
       composer: 'Ludwig van Beethoven',
       title: 'Moonlight Sonata',
       youtubeId: '4Tr0otuiQuU',
-      description: '달빛 소나타의 첫 악장은 깊은 평온함과 명상적인 분위기를 자아냅니다. 고요하고 서정적인 멜로디가 마음의 안정을 가져다주어 임산부의 휴식에 이상적입니다.'
+      description: '달빛 소나타의 첫 악장은 깊은 평온함과 명상적인 분위기를 자아냅니다. 고요하고 서정적인 멜로디가 마음의 안정을 가져다주어 임산부의 휴식에 이상적입니다.',
+      composerInfo: '루트비히 판 베토벤은 고전주의와 낭만주의 전환기에 활동한 독일의 위대한 작곡가이자 피아니스트입니다.',
+      musicInfo: '피아노 소나타 14번 "월광"은 베토벤이 제자 줄리에타 귀차르디에게 헌정한 곡으로, 몽환적인 1악장이 특히 유명합니다.'
     },
     {
       composer: 'Antonio Vivaldi',
       title: 'The Four Seasons - Spring',
       youtubeId: 'mFWQgxTM_Ak',
-      description: '봄의 생동감과 기쁨을 표현하며, 따뜻하고 활기찬 멜로디가 듣는 이에게 행복감을 선사합니다. 임산부가 느끼는 행복한 감정을 더욱 풍요롭게 해줍니다.'
+      description: '봄의 생동감과 기쁨을 표현하며, 따뜻하고 활기찬 멜로디가 듣는 이에게 행복감을 선사합니다. 임산부가 느끼는 행복한 감정을 더욱 풍요롭게 해줍니다.',
+      composerInfo: '안토니오 비발디는 이탈리아의 바로크 작곡가이자 바이올린 연주자로, "빨간 머리의 신부"라는 별명으로 잘 알려져 있습니다.',
+      musicInfo: '바이올린 협주곡 "사계" 중 "봄"은 새들의 노래와 시냇물 소리 등을 음악으로 묘사한 표제 음악의 걸작입니다.'
     },
   ]
 

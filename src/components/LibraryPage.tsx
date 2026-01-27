@@ -3,6 +3,8 @@ interface SavedMusic {
     composer: string
     title: string
     description: string
+    composerInfo: string
+    musicInfo: string
     savedAt: string
     mood: string
 }
@@ -54,7 +56,7 @@ function LibraryPage({ savedMusic, onRemove, onBack }: LibraryPageProps) {
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
                     <div className="flex h-16 sm:h-20 items-center justify-between">
                         <button onClick={onBack} className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity">
-                            <div 
+                            <div
                                 className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full text-white shadow-lg"
                                 style={{ backgroundColor: colors.deepGold }}
                             >
@@ -70,14 +72,14 @@ function LibraryPage({ savedMusic, onRemove, onBack }: LibraryPageProps) {
                             <a className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }} href="#">Profile</a>
                         </nav>
                         <div className="flex items-center gap-2 sm:gap-4">
-                            <button 
+                            <button
                                 onClick={onBack}
                                 className="md:hidden flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/40 hover:bg-white/60 transition-colors"
                                 style={{ border: `1px solid ${colors.deepGold}33` }}
                             >
                                 <span className="material-symbols-outlined text-lg sm:text-xl" style={{ color: colors.deepGold }}>arrow_back</span>
                             </button>
-                            <button 
+                            <button
                                 className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/40 hover:bg-white/60 transition-colors"
                                 style={{ border: `1px solid ${colors.deepGold}33` }}
                             >
@@ -92,7 +94,7 @@ function LibraryPage({ savedMusic, onRemove, onBack }: LibraryPageProps) {
             <main className="flex-1 flex flex-col items-center px-4 sm:px-6 py-8 sm:py-12 lg:py-20">
                 {/* Title Section */}
                 <div className="mb-8 sm:mb-12 text-center fade-in">
-                    <div 
+                    <div
                         className="inline-flex items-center gap-2 rounded-full px-3 sm:px-4 py-1.5 mb-4 sm:mb-6 shadow-sm"
                         style={{ backgroundColor: 'rgba(254, 243, 199, 0.5)', border: '1px solid rgba(217, 119, 6, 0.2)' }}
                     >
@@ -103,7 +105,7 @@ function LibraryPage({ savedMusic, onRemove, onBack }: LibraryPageProps) {
                         Your <span className="italic" style={{ color: colors.deepGold }}>Music Library</span>
                     </h1>
                     <p className="mt-3 sm:mt-4 text-sm sm:text-lg" style={{ color: `${colors.warmSlate}99` }}>
-                        {savedMusic.length > 0 
+                        {savedMusic.length > 0
                             ? `${savedMusic.length}곡의 클래식 음악이 저장되어 있어요`
                             : '아직 저장된 음악이 없어요'}
                     </p>
@@ -112,10 +114,10 @@ function LibraryPage({ savedMusic, onRemove, onBack }: LibraryPageProps) {
                 {/* Empty State */}
                 {savedMusic.length === 0 && (
                     <div className="w-full max-w-2xl fade-in px-2">
-                        <div 
+                        <div
                             className="glass-panel-warm painterly-shadow rounded-2xl sm:rounded-[2rem] p-8 sm:p-12 text-center"
                         >
-                            <div 
+                            <div
                                 className="mx-auto mb-4 sm:mb-6 flex h-16 w-16 sm:h-24 sm:w-24 items-center justify-center rounded-full"
                                 style={{ backgroundColor: `${colors.deepGold}1a` }}
                             >
@@ -144,12 +146,12 @@ function LibraryPage({ savedMusic, onRemove, onBack }: LibraryPageProps) {
                     <div className="w-full max-w-6xl fade-in px-2">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                             {savedMusic.map((music, index) => (
-                                <div 
+                                <div
                                     key={music.id}
                                     className="glass-panel-warm painterly-shadow rounded-2xl sm:rounded-[1.5rem] overflow-hidden group hover:scale-[1.02] transition-all duration-300"
                                 >
                                     {/* Thumbnail */}
-                                    <div 
+                                    <div
                                         className="relative h-36 sm:h-48 bg-cover bg-center"
                                         style={{ backgroundImage: `url('${getThumbnail(index)}')` }}
                                     >
@@ -164,7 +166,7 @@ function LibraryPage({ savedMusic, onRemove, onBack }: LibraryPageProps) {
                                         </div>
                                         {/* Mood Badge */}
                                         <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
-                                            <span 
+                                            <span
                                                 className="inline-flex items-center gap-1 rounded-full px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-bold backdrop-blur-md"
                                                 style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', color: colors.deepGold }}
                                             >
@@ -183,26 +185,32 @@ function LibraryPage({ savedMusic, onRemove, onBack }: LibraryPageProps) {
 
                                     {/* Content */}
                                     <div className="p-4 sm:p-6">
-                                        <h3 
+                                        <h3
                                             className="premium-serif text-base sm:text-xl font-medium leading-tight mb-1 line-clamp-2"
                                             style={{ color: colors.warmSlate }}
                                         >
                                             {music.title}
                                         </h3>
-                                        <p 
+                                        <p
                                             className="text-sm sm:text-base italic premium-serif mb-2 sm:mb-3"
                                             style={{ color: `${colors.deepGold}cc` }}
                                         >
                                             {music.composer}
                                         </p>
-                                        <p 
+                                        <p
                                             className="text-xs sm:text-sm line-clamp-2 mb-3 sm:mb-4"
                                             style={{ color: `${colors.warmSlate}99` }}
                                         >
                                             {music.description}
                                         </p>
+                                        {/* Additional Info in Library */}
+                                        <div className="mb-4 space-y-2 border-t border-white/20 pt-3">
+                                            <p className="text-[10px] leading-relaxed line-clamp-2 italic" style={{ color: `${colors.warmSlate}80` }}>
+                                                {music.composerInfo}
+                                            </p>
+                                        </div>
                                         <div className="flex items-center justify-between">
-                                            <span 
+                                            <span
                                                 className="text-[10px] sm:text-xs"
                                                 style={{ color: `${colors.warmSlate}66` }}
                                             >

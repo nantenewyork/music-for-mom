@@ -11,6 +11,8 @@ interface MusicRecommendation {
     title: string
     youtubeId: string
     description: string
+    composerInfo: string
+    musicInfo: string
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
@@ -40,7 +42,9 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no code
   "composer": "Composer Name",
   "title": "Music Title",
   "youtubeId": "YouTube video ID (11 characters)",
-  "description": "A brief Korean description (2-3 sentences) of why this music is good for this mood"
+  "description": "A brief Korean description (2-3 sentences) of why this music is good for this mood",
+  "composerInfo": "A brief Korean description (2-3 sentences) about the composer's life or style",
+  "musicInfo": "A brief Korean description (2-3 sentences) about this specific music piece, its history, or its characteristics"
 }
 
 Make sure the YouTube ID is valid and the video exists. Choose well-known, high-quality recordings.`
@@ -107,7 +111,7 @@ Make sure the YouTube ID is valid and the video exists. Choose well-known, high-
         }
 
         // Validate the response
-        if (!recommendation.composer || !recommendation.title || !recommendation.youtubeId || !recommendation.description) {
+        if (!recommendation.composer || !recommendation.title || !recommendation.youtubeId || !recommendation.description || !recommendation.composerInfo || !recommendation.musicInfo) {
             return new Response(
                 JSON.stringify({ error: 'Incomplete recommendation data' }),
                 { status: 500, headers: { 'Content-Type': 'application/json' } }
