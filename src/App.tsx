@@ -14,6 +14,8 @@ import ContactPage from './components/ContactPage'
 import LanguageSwitch from './components/LanguageSwitch'
 import Footer from './components/Footer'
 import CookieConsent from './components/CookieConsent'
+import BlogList from './pages/blog/BlogList'
+import BlogPost from './pages/blog/BlogPost'
 
 interface MusicRecommendation {
   composer: string
@@ -31,7 +33,7 @@ interface SavedMusic {
   mood: string
 }
 
-type Page = 'home' | 'result' | 'library' | 'paywall' | 'terms' | 'refund' | 'privacy' | 'about' | 'contact'
+type Page = 'home' | 'result' | 'library' | 'paywall' | 'terms' | 'refund' | 'privacy' | 'about' | 'contact' | 'blog'
 
 const colors = {
   deepGold: '#b45309',
@@ -221,10 +223,11 @@ function App() {
                 {t('common.appName')}
               </h2>
             </div>
-            <nav className="hidden md:flex items-center gap-10">
+            <nav className="hidden md:flex items-center gap-6 lg:gap-10">
+              <button onClick={() => navigate('/')} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>Home</button>
+              <button onClick={() => navigate('/blog')} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>Blog</button>
               <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>{t('header.library')}</button>
               <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>About</button>
-              <button onClick={() => navigate('/contact')} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>Contact</button>
             </nav>
             <div className="flex items-center gap-2 sm:gap-4">
               <LanguageSwitch />
@@ -282,6 +285,8 @@ function App() {
               </div>
             )
           } />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/library" element={<LibraryPage savedMusic={savedMusic} onRemove={handleRemoveFromLibrary} onBack={() => navigate('/')} />} />
           <Route path="/paywall" element={<PaywallPage onPurchaseSuccess={handlePurchaseSuccess} onNavigate={(p) => navigate(`/${p}`)} />} />
           <Route path="/terms" element={<TermsPage onBack={() => navigate('/')} />} />
