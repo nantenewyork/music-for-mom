@@ -18,6 +18,8 @@ const Footer = () => {
                         </p>
                     </div>
                     <div className="flex gap-4 sm:gap-8 flex-wrap justify-center">
+                        <Link to="/" className="text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>Home</Link>
+                        <Link to="/blog" className="text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>Blog</Link>
                         <Link to="/about" className="text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>About Us</Link>
                         <Link to="/contact" className="text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>Contact Us</Link>
                         <Link to="/terms" className="text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}80` }}>{t('footer.terms')}</Link>

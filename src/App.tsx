@@ -223,17 +223,25 @@ function App() {
                 {t('common.appName')}
               </h2>
             </div>
+
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-6 lg:gap-10">
               <button onClick={() => navigate('/')} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>Home</button>
               <button onClick={() => navigate('/blog')} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>Blog</button>
               <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>{t('header.library')}</button>
               <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors" style={{ color: `${colors.deepGold}cc` }}>About</button>
             </nav>
+
+            {/* Right Side Icons & Mobile Menu Items */}
             <div className="flex items-center gap-2 sm:gap-4">
+              <nav className="flex md:hidden items-center gap-3 mr-2">
+                <button onClick={() => navigate('/blog')} className="text-xs font-bold uppercase tracking-tight" style={{ color: colors.deepGold }}>Blog</button>
+                <button onClick={() => navigate('/about')} className="text-xs font-bold uppercase tracking-tight" style={{ color: colors.deepGold }}>About</button>
+              </nav>
               <LanguageSwitch />
               <button
                 onClick={handleGoToLibrary}
-                className="md:hidden flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/40 hover:bg-white/60 transition-colors"
+                className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/40 hover:bg-white/60 transition-colors"
                 style={{ border: `1px solid ${colors.deepGold}33` }}
               >
                 <span className="material-symbols-outlined text-lg sm:text-xl" style={{ color: colors.deepGold }}>library_music</span>
