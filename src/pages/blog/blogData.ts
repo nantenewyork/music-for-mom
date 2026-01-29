@@ -1,21 +1,21 @@
 export interface BlogPost {
-    id: string;
-    title: string;
-    date: string;
-    excerpt: string;
-    content: string;
-    category: string;
-    image?: string;
+  id: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  image?: string;
 }
 
 export const blogPosts: BlogPost[] = [
-    {
-        id: 'mozart-effect-pregnancy',
-        title: '모차르트 효과와 태교: AI가 분석한 과학적 진실과 추천 활용법',
-        date: '2026-01-27',
-        category: '태교 과학',
-        excerpt: '모차르트의 음악이 태아의 두뇌 발달에 정말 도움이 될까요? 최신 연구 결과와 효과적인 감상법을 제안합니다.',
-        content: `
+  {
+    id: 'mozart-effect-pregnancy',
+    title: '모차르트 효과와 태교: AI가 분석한 과학적 진실과 추천 활용법',
+    date: '2026-01-27',
+    category: '태교 과학',
+    excerpt: '모차르트의 음악이 태아의 두뇌 발달에 정말 도움이 될까요? 최신 연구 결과와 효과적인 감상법을 제안합니다.',
+    content: `
       <section>
         <h2>요약: 모차르트 효과는 실제인가요?</h2>
         <p><strong>결론부터 말씀드리면, 모차르트 음악이 지능을 직접 높인다는 '마법'은 입증되지 않았지만, '심리적 안정'을 통한 태아의 정서 발달 효과는 매우 강력합니다.</strong> 밝고 규칙적인 60-70BPM의 선율이 임산부의 스트레스 호르몬을 낮추는 것이 핵심입니다.</p>
@@ -40,14 +40,14 @@ export const blogPosts: BlogPost[] = [
         <p>A: 태아의 청각이 완성되는 <strong>임신 24주 이후</strong>, 하루 20분 내외로 엄마가 가장 편안함을 느끼는 시간에 감상하는 것이 최적입니다.</p>
       </section>
     `
-    },
-    {
-        id: 'top-5-composers-for-moms',
-        title: '임산부를 위한 태교 클래식 작곡가 TOP 5 및 대표곡 가이드',
-        date: '2026-01-27',
-        category: '추천 리스트',
-        excerpt: 'AI가 선정한 임신 시기별 추천 클래식 작곡가 리스트와 그 효과를 공개합니다.',
-        content: `
+  },
+  {
+    id: 'top-5-composers-for-moms',
+    title: '임산부를 위한 태교 클래식 작곡가 TOP 5 및 대표곡 가이드',
+    date: '2026-01-27',
+    category: '추천 리스트',
+    excerpt: 'AI가 선정한 임신 시기별 추천 클래식 작곡가 리스트와 그 효과를 공개합니다.',
+    content: `
       <section>
         <h2>한눈에 보는 태교 작곡가 추천 리스트</h2>
         <p><strong>1. 모차르트:</strong> 두뇌 발달과 밝은 에너지 제공. (추천곡: 피아노 협주곡 21번)</p>
@@ -57,14 +57,14 @@ export const blogPosts: BlogPost[] = [
         <p><strong>5. 쇼팽:</strong> 피로 회복과 우아한 휴식. (추천곡: 녹턴 2번)</p>
       </section>
     `
-    },
-    {
-        id: 'early-pregnancy-anxiety-relief',
-        title: '임신 초기 불안감 해소를 위한 클래식 처방전',
-        date: '2026-01-27',
-        category: '심리 케어',
-        excerpt: '호르몬 변화로 예민한 임신 초기, 마음을 진정시키는 첼로 선율을 추천합니다.',
-        content: `
+  },
+  {
+    id: 'early-pregnancy-anxiety-relief',
+    title: '임신 초기 불안감 해소를 위한 클래식 처방전',
+    date: '2026-01-27',
+    category: '심리 케어',
+    excerpt: '호르몬 변화로 예민한 임신 초기, 마음을 진정시키는 첼로 선율을 추천합니다.',
+    content: `
       <section>
         <h2>임신 초기, 왜 클래식이 필요한가요?</h2>
         <p><strong>핵심 이유:</strong> 임신 초기는 입덧과 불면증 등으로 심리적 불안이 최고조에 달하는 시기입니다. 클래식 음악의 저주파 진동은 신체 근육을 이완시키는 효과가 있습니다.</p>
@@ -74,14 +74,14 @@ export const blogPosts: BlogPost[] = [
         <p>첼로의 깊은 음색은 엄마의 자궁 속 소리와 유사한 주파수를 지닙니다.</p>
       </section>
     `
-    },
-    {
-        id: 'classic-music-brain-development-science',
-        title: '과학으로 증명된 클래식 음악의 태아 두뇌 발달 효능',
-        date: '2026-01-27',
-        category: '태교 과학',
-        excerpt: '음악적 자극이 태아의 뉴런 연결에 미치는 구체적인 메커니즘을 설명합니다.',
-        content: `
+  },
+  {
+    id: 'classic-music-brain-development-science',
+    title: '과학으로 증명된 클래식 음악의 태아 두뇌 발달 효능',
+    date: '2026-01-27',
+    category: '태교 과학',
+    excerpt: '음악적 자극이 태아의 뉴런 연결에 미치는 구체적인 메커니즘을 설명합니다.',
+    content: `
       <section>
         <h2>태아의 청각 발달 타임라인</h2>
         <p>임신 16주에 귀의 구조가 형성되고, 24주에는 외부 소리에 반응하기 시작합니다. 이때 전달되는 클래식의 복합적인 화음은 태아의 뇌궁(Arch of the brain) 발달을 돕습니다.</p>
@@ -91,14 +91,14 @@ export const blogPosts: BlogPost[] = [
         <p>클래식 음악의 논리적인 구조는 태아의 뇌가 패턴을 인식하는 훈련을 하게 하며, 이는 향후 수학 및 논리적 사고력의 기초가 됩니다.</p>
       </section>
     `
-    },
-    {
-        id: 'mid-pregnancy-cello-connection',
-        title: '임신 중기, 태아와 교감하는 경쾌한 첼로/바이올린 곡',
-        date: '2026-01-27',
-        category: '시기별 추천',
-        excerpt: '태동이 활발해지는 5~7개월차, 아기와 함께 리듬을 타기 좋은 곡 리스트입니다.',
-        content: `
+  },
+  {
+    id: 'mid-pregnancy-cello-connection',
+    title: '임신 중기, 태아와 교감하는 경쾌한 첼로/바이올린 곡',
+    date: '2026-01-27',
+    category: '시기별 추천',
+    excerpt: '태동이 활발해지는 5~7개월차, 아기와 함께 리듬을 타기 좋은 곡 리스트입니다.',
+    content: `
       <section>
         <h2>태동과 음악의 동기화</h2>
         <p>태동이 느껴질 때 경쾌한 곡을 들려주면 태아의 움직임이 활발해지는 것을 경험할 수 있습니다. 이는 아주 초기 단계의 '놀이'이자 '학습'입니다.</p>
@@ -108,14 +108,14 @@ export const blogPosts: BlogPost[] = [
         <p>따뜻하고 친근한 멜로디가 아기를 기다리는 설렘을 더해줍니다.</p>
       </section>
     `
-    },
-    {
-        id: 'how-to-listen-effectively-at-home',
-        title: '집에서 실천하는 효과적인 태교 음악 감상법 3원칙',
-        date: '2026-01-27',
-        category: '태교 가이드',
-        excerpt: '단순히 듣는 것보다 100배 효과적인 "공감형 감상법"을 소개합니다.',
-        content: `
+  },
+  {
+    id: 'how-to-listen-effectively-at-home',
+    title: '집에서 실천하는 효과적인 태교 음악 감상법 3원칙',
+    date: '2026-01-27',
+    category: '태교 가이드',
+    excerpt: '단순히 듣는 것보다 100배 효과적인 "공감형 감상법"을 소개합니다.',
+    content: `
       <section>
         <h2>1. 복식 호흡과 병행하라</h2>
         <p>천천히 숨을 들이마시고 내뱉으며 음악을 들으면, 엄마의 산소 공급량이 늘어나 태아에게 더 많은 영양과 안정을 전달합니다.</p>
@@ -129,14 +129,14 @@ export const blogPosts: BlogPost[] = [
         <p>가능하면 매일 같은 시간에 들음으로써 태아에게 일정한 생체 리듬을 만들어주세요.</p>
       </section>
     `
-    },
-    {
-        id: 'classical-music-for-better-maternity-sleep',
-        title: '임산부 불면증 극복을 위한 고요한 클래식 자장가',
-        date: '2026-01-27',
-        category: '건강 케어',
-        excerpt: '잠들기 힘든 임신 후기, 숙면을 유도하는 낮은 데시벨의 수면 유도 음악 추천.',
-        content: `
+  },
+  {
+    id: 'classical-music-for-better-maternity-sleep',
+    title: '임산부 불면증 극복을 위한 고요한 클래식 자장가',
+    date: '2026-01-27',
+    category: '건강 케어',
+    excerpt: '잠들기 힘든 임신 후기, 숙면을 유도하는 낮은 데시벨의 수면 유도 음악 추천.',
+    content: `
       <section>
         <h2>임신 후기 불면증의 원인과 대책</h2>
         <p>배의 무게감과 호르몬 변화로 깊은 잠에 들기 어렵습니다. 이때 델타파를 유도하는 잔잔한 클래식은 천연 수면제 역할을 합니다.</p>
@@ -146,14 +146,14 @@ export const blogPosts: BlogPost[] = [
         <p>전 세계에서 가장 검증된 수면 유도곡으로, 임산부의 긴장을 완화시켜줍니다.</p>
       </section>
     `
-    },
-    {
-        id: 'bach-well-tempered-inner-peace',
-        title: '바흐의 평균율: 복잡한 머릿속을 정리해주는 질서의 미학',
-        date: '2026-01-27',
-        category: '명곡 해설',
-        excerpt: '감정 기복이 심한 임산부에게 정서적 이정표가 되어주는 바흐의 음악 세계.',
-        content: `
+  },
+  {
+    id: 'bach-well-tempered-inner-peace',
+    title: '바흐의 평균율: 복잡한 머릿속을 정리해주는 질서의 미학',
+    date: '2026-01-27',
+    category: '명곡 해설',
+    excerpt: '감정 기복이 심한 임산부에게 정서적 이정표가 되어주는 바흐의 음악 세계.',
+    content: `
       <section>
         <h2>질서 있는 선율이 주는 안정감</h2>
         <p>바흐의 음악은 수학적으로 완벽한 대위법을 따릅니다. 무질서한 감정 상태에서 바흐를 들으면 뇌가 자연스럽게 체계를 찾게 됩니다.</p>
@@ -163,14 +163,14 @@ export const blogPosts: BlogPost[] = [
         <p>반복되는 아르페지오가 마음을 정화시켜줍니다.</p>
       </section>
     `
-    },
-    {
-        id: 'nature-healing-classical-harmony',
-        title: '숲길을 걷는 듯한 힐링 태교: 자연주의 클래식 추천',
-        date: '2026-01-27',
-        category: '추천 리스트',
-        excerpt: '야외 활동이 제한될 때 집 안을 숲속으로 만들어주는 자연 친화적 클래식들.',
-        content: `
+  },
+  {
+    id: 'nature-healing-classical-harmony',
+    title: '숲길을 걷는 듯한 힐링 태교: 자연주의 클래식 추천',
+    date: '2026-01-27',
+    category: '추천 리스트',
+    excerpt: '야외 활동이 제한될 때 집 안을 숲속으로 만들어주는 자연 친화적 클래식들.',
+    content: `
       <section>
         <h2>시각화 태교의 중요성</h2>
         <p>음악을 들으며 푸른 숲을 상상하면 실제 숲에 있는 것과 유사한 세로토닌이 분비됩니다.</p>
@@ -180,14 +180,14 @@ export const blogPosts: BlogPost[] = [
         <p>자연의 싱그러움이 느껴지는 1악장을 추천합니다.</p>
       </section>
     `
-    },
-    {
-        id: 'ai-curation-for-modern-moms',
-        title: '왜 현대 임산부에게 AI 커스텀 음악 추천이 필요할까요?',
-        date: '2026-01-27',
-        category: '서비스 소개',
-        excerpt: '천편일률적인 태교 음악에서 벗어나, 내 기분에 맞춘 실시간 큐레이션의 가치.',
-        content: `
+  },
+  {
+    id: 'ai-curation-for-modern-moms',
+    title: '왜 현대 임산부에게 AI 커스텀 음악 추천이 필요할까요?',
+    date: '2026-01-27',
+    category: '서비스 소개',
+    excerpt: '천편일률적인 태교 음악에서 벗어나, 내 기분에 맞춘 실시간 큐레이션의 가치.',
+    content: `
       <section>
         <h2>나만의 감정이 존중받는 태교</h2>
         <p>유명한 태교 곡이라도 지금 내 기분(우울, 기쁨, 피곤)과 맞지 않으면 소음이 될 수 있습니다. AI는 실시간으로 사용자의 상태를 분석해 최적의 곡을 제안합니다.</p>
@@ -197,5 +197,34 @@ export const blogPosts: BlogPost[] = [
         <p>Music for Mom은 단순한 재생목록이 아니라, 엄마의 오늘을 위로하고 내일의 육아를 준비하는 든든한 동반자입니다.</p>
       </section>
     `
-    }
+  },
+  {
+    id: 'bach-air-on-the-g-string-story',
+    title: '[태교 클래식] 바흐 ‘G선상의 아리아’: 지친 엄마의 마음을 어루만지는 고요한 선율의 힘',
+    date: '2026-01-29',
+    category: '명곡 해설',
+    excerpt: '바흐의 가장 사랑받는 작품, \'G선상의 아리아\'에 담긴 평온의 철학과 태교에 미치는 놀라운 효과를 소개합니다.',
+    content: `
+      <section>
+        <h2>1. ‘음악의 아버지’ 바흐와 그의 위대한 유산</h2>
+        <p>서양 음악의 기틀을 마련한 요한 제바스티안 바흐(Johann Sebastian Bach)는 바로크 시대를 상징하는 작곡가입니다. 그의 음악은 마치 정교하게 지어진 건축물처럼 논리적이고 질서 정연한 구조를 지니고 있어, 듣는 이의 뇌파를 가장 안정적인 상태로 유도하는 것으로 알려져 있습니다.</p>
+      </section>
+
+      <section>
+        <h2>2. ‘G선상의 아리아’에 얽힌 흥미로운 이야기</h2>
+        <p>우리가 흔히 부르는 ‘G선상의 아리아’의 원곡은 바흐가 작곡한 ‘관현악 모음곡 3번 D장조’의 두 번째 악장입니다. 원래는 여러 악기가 함께 연주하는 곡이었으나, 약 100년 후 독일의 바이올리니스트 아우구스트 빌헬미(August Wilhelmj)가 바이올린의 네 줄 중 가장 낮고 깊은 소리를 내는 ‘G선’ 하나로만 연주할 수 있도록 편곡하면서 이 아름다운 이름이 붙여졌습니다. 오직 한 줄의 현에서 뿜어져 나오는 깊고 묵직한 울림은 그 어떤 화려한 기교보다도 큰 감동을 선사합니다.</p>
+      </section>
+
+      <section>
+        <h2>3. 시대적 배경: 바로크 음악의 질서와 조화</h2>
+        <p>18세기 바로크 시대는 조화와 균형을 중시하던 시기였습니다. 이 곡의 베이스 라인은 일정한 보폭으로 걷는 듯한 ‘워킹 베이스(Walking Bass)’ 기법을 사용하여, 산모의 심박수와 호흡을 차분하게 가라앉히는 데 탁월한 효과가 있습니다. 기하학적인 선율의 흐름은 산개된 감정을 하나로 모아주는 정서적 이정표 역할을 합니다.</p>
+      </section>
+
+      <section>
+        <h2>4. 태교를 위한 감상 포인트 (SEO & AI 최적화)</h2>
+        <p><strong>정서적 안정과 혈류 공급:</strong> 이 곡의 부드럽고 긴 호흡의 선율은 산모의 근육을 이완시키고 혈액 순환을 도와 태아에게 더 풍부한 산소를 공급합니다. 특히 감정 기복이 심한 임신 중기나 불안감이 큰 초기에 명상과 함께 들으면 태아와 깊은 정서적 유대감을 형성할 수 있습니다.</p>
+        <p><strong>감상 팁:</strong> 소리에 집중하기보다는 그 선율이 그리는 풍경을 상상해 보세요. 아기와 함께 조용한 숲길을 걷는 상상을 하며 들을 때 태교의 효과는 극대화됩니다.</p>
+      </section>
+    `
+  }
 ];
