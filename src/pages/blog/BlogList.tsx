@@ -9,6 +9,11 @@ const colors = {
 const BlogList = () => {
     const navigate = useNavigate()
 
+    // Sort posts by date (newest first)
+    const sortedPosts = [...blogPosts].sort((a, b) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+    )
+
     return (
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12">
             <div className="mb-12 text-center fade-in">
@@ -21,7 +26,7 @@ const BlogList = () => {
             </div>
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {blogPosts.map((post) => (
+                {sortedPosts.map((post) => (
                     <article
                         key={post.id}
                         className="glass-panel-warm rounded-3xl overflow-hidden flex flex-col hover:translate-y-[-4px] transition-transform cursor-pointer shadow-lg"
