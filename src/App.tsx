@@ -16,6 +16,7 @@ import GuidePage from './components/GuidePage'
 import ContactPage from './components/ContactPage'
 import Login from './pages/auth/Login'
 import SignUp from './pages/auth/SignUp'
+import MyPage from './pages/auth/MyPage'
 import LanguageSwitch from './components/LanguageSwitch'
 import Footer from './components/Footer'
 import CookieConsent from './components/CookieConsent'
@@ -288,12 +289,15 @@ function App() {
               <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>{t('header.library')}</button>
               <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>About</button>
               {session ? (
-                <button
-                  onClick={handleSignOut}
-                  className="text-sm font-bold px-4 py-2 rounded-full border border-amber-600/30 text-amber-800 hover:bg-amber-600 hover:text-white transition-all"
-                >
-                  Sign Out
-                </button>
+                <>
+                  <button onClick={() => navigate('/mypage')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>My Page</button>
+                  <button
+                    onClick={handleSignOut}
+                    className="text-sm font-bold px-4 py-2 rounded-full border border-amber-600/30 text-amber-800 hover:bg-amber-600 hover:text-white transition-all"
+                  >
+                    Sign Out
+                  </button>
+                </>
               ) : (
                 <button
                   onClick={() => navigate('/login')}
@@ -320,7 +324,7 @@ function App() {
               </button>
               <div className="md:hidden">
                 {session ? (
-                  <button onClick={handleSignOut} className="ml-2 text-xs font-bold text-amber-800">Log Out</button>
+                  <button onClick={() => navigate('/mypage')} className="ml-2 text-xs font-bold text-amber-800">My Info</button>
                 ) : (
                   <button onClick={() => navigate('/login')} className="ml-2 text-xs font-bold text-amber-800">Log In</button>
                 )}
@@ -390,6 +394,7 @@ function App() {
           <Route path="/contact" element={<ContactPage onBack={() => navigate('/')} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </main>
 
