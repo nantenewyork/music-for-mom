@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Routes, Route, useNavigate } from 'react-router-dom'
+import { supabase } from './lib/supabaseClient'
+import type { Session } from '@supabase/supabase-js'
 import MoodInput from './components/MoodInput'
 import ResultPage from './components/ResultPage'
 import LibraryPage from './components/LibraryPage'
@@ -12,6 +14,8 @@ import PrivacyPage from './components/PrivacyPage'
 import AboutPage from './components/AboutPage'
 import GuidePage from './components/GuidePage'
 import ContactPage from './components/ContactPage'
+import Login from './pages/auth/Login'
+import SignUp from './pages/auth/SignUp'
 import LanguageSwitch from './components/LanguageSwitch'
 import Footer from './components/Footer'
 import CookieConsent from './components/CookieConsent'
@@ -60,8 +64,20 @@ function App() {
   const [freeTrialUsed, setFreeTrialUsed] = useState<boolean>(false)
   const [showPaymentSuccess, setShowPaymentSuccess] = useState<boolean>(false)
   const [pendingMood, setPendingMood] = useState<string | null>(null)
+  const [session, setSession] = useState<Session | null>(null)
 
   useEffect(() => {
+    // Supabase Auth Listener
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+
     const purchased = localStorage.getItem('aura-classical-purchased') === 'true'
     setIsPurchased(purchased)
 
@@ -80,6 +96,8 @@ function App() {
     if (saved) {
       setSavedMusic(JSON.parse(saved))
     }
+
+    return () => subscription.unsubscribe()
   }, [])
 
   const handlePurchaseSuccess = () => {
@@ -134,6 +152,11 @@ function App() {
 
   const handleGoToLibrary = () => {
     navigate('/library')
+  }
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    navigate('/')
   }
 
   const fallbackRecommendations = [
@@ -199,6 +222,7 @@ function App() {
         localStorage.setItem('aura-classical-trial-used', 'true')
       }
     } catch (err) {
+      console.error('Recommendation API Error:', err)
       if (err) setError(t('common.error'))
       const randomIndex = Math.floor(Math.random() * fallbackRecommendations.length)
       setRecommendation(fallbackRecommendations[randomIndex])
@@ -263,6 +287,21 @@ function App() {
               <button onClick={() => navigate('/blog')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>Blog</button>
               <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>{t('header.library')}</button>
               <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>About</button>
+              {session ? (
+                <button
+                  onClick={handleSignOut}
+                  className="text-sm font-bold px-4 py-2 rounded-full border border-amber-600/30 text-amber-800 hover:bg-amber-600 hover:text-white transition-all"
+                >
+                  Sign Out
+                </button>
+              ) : (
+                <button
+                  onClick={() => navigate('/login')}
+                  className="text-sm font-bold px-4 py-2 rounded-full bg-amber-600 text-white hover:bg-amber-700 transition-all shadow-md"
+                >
+                  Login
+                </button>
+              )}
             </nav>
 
             {/* Right Side Icons & Mobile Menu Items */}
@@ -279,6 +318,13 @@ function App() {
               >
                 <span className="material-symbols-outlined text-lg sm:text-xl" style={{ color: colors.deepGold }}>library_music</span>
               </button>
+              <div className="md:hidden">
+                {session ? (
+                  <button onClick={handleSignOut} className="ml-2 text-xs font-bold text-amber-800">Log Out</button>
+                ) : (
+                  <button onClick={() => navigate('/login')} className="ml-2 text-xs font-bold text-amber-800">Log In</button>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -342,6 +388,8 @@ function App() {
           <Route path="/privacy" element={<PrivacyPage onBack={() => navigate('/')} />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage onBack={() => navigate('/')} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </main>
 

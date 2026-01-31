@@ -29,3 +29,4 @@ dist-ssr
 # Cloudflare local env
 .dev.vars
 .wrangler/
+.env
