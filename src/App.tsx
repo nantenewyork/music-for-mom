@@ -17,6 +17,8 @@ import ContactPage from './components/ContactPage'
 import Login from './pages/auth/Login'
 import SignUp from './pages/auth/SignUp'
 import MyPage from './pages/auth/MyPage'
+import ForgotPassword from './pages/auth/ForgotPassword'
+import ResetPassword from './pages/auth/ResetPassword'
 import LanguageSwitch from './components/LanguageSwitch'
 import Footer from './components/Footer'
 import CookieConsent from './components/CookieConsent'
@@ -71,12 +73,27 @@ function App() {
     // Supabase Auth Listener
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
+      if (session) {
+        // Fetch saved music from DB
+        fetchSavedMusic(session.user.id)
+      } else {
+        // Load from local storage for guest
+        const saved = localStorage.getItem('aura-classical-library')
+        if (saved) {
+          setSavedMusic(JSON.parse(saved))
+        }
+      }
     })
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
+      if (session) {
+        fetchSavedMusic(session.user.id)
+      } else {
+        setSavedMusic([]) // Clear or load local? Let's clear for security/privacy when logging out
+      }
     })
 
     const purchased = localStorage.getItem('aura-classical-purchased') === 'true'
@@ -93,13 +110,31 @@ function App() {
       window.history.replaceState({}, '', window.location.pathname)
     }
 
-    const saved = localStorage.getItem('aura-classical-library')
-    if (saved) {
-      setSavedMusic(JSON.parse(saved))
-    }
-
     return () => subscription.unsubscribe()
   }, [])
+
+  const fetchSavedMusic = async (userId: string) => {
+    const { data, error } = await supabase
+      .from('saved_music')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Error fetching saved music:', error)
+    } else if (data) {
+      const mappedMusic: SavedMusic[] = data.map((item: any) => ({
+        id: item.id,
+        composer: item.composer,
+        title: item.title,
+        description: item.description,
+        composerInfo: item.composer_info,
+        musicInfo: item.music_info,
+        savedAt: item.created_at,
+        mood: item.mood
+      }))
+      setSavedMusic(mappedMusic)
+    }
+  }
 
   const handlePurchaseSuccess = () => {
     localStorage.setItem('aura-classical-purchased', 'true')
@@ -118,18 +153,8 @@ function App() {
     }
   }
 
-  const handleSaveToLibrary = (music: MusicRecommendation, mood: string) => {
-    const newSavedMusic: SavedMusic = {
-      id: Date.now().toString(),
-      composer: music.composer,
-      title: music.title,
-      description: music.description,
-      composerInfo: music.composerInfo,
-      musicInfo: music.musicInfo,
-      savedAt: new Date().toISOString(),
-      mood: mood
-    }
-
+  const handleSaveToLibrary = async (music: MusicRecommendation, mood: string) => {
+    // Check for duplicates
     const isDuplicate = savedMusic.some(
       m => m.composer === music.composer && m.title === music.title
     )
@@ -139,16 +164,78 @@ function App() {
       return
     }
 
-    const updated = [...savedMusic, newSavedMusic]
-    setSavedMusic(updated)
-    localStorage.setItem('aura-classical-library', JSON.stringify(updated))
-    alert(t('share.savedToLibrary'))
+    if (session) {
+      // Save to DB
+      const { data, error } = await supabase.from('saved_music').insert({
+        user_id: session.user.id,
+        composer: music.composer,
+        title: music.title,
+        youtube_id: music.youtubeId,
+        description: music.description,
+        composer_info: music.composerInfo,
+        music_info: music.musicInfo,
+        mood: mood
+      }).select()
+
+      if (error) {
+        console.error('Error saving to DB:', error)
+        alert('저장에 실패했습니다.')
+        return
+      }
+
+      if (data) {
+        const newSavedMusic: SavedMusic = {
+          id: data[0].id,
+          composer: data[0].composer,
+          title: data[0].title,
+          description: data[0].description,
+          composerInfo: data[0].composer_info,
+          musicInfo: data[0].music_info,
+          savedAt: data[0].created_at,
+          mood: data[0].mood
+        }
+        setSavedMusic([newSavedMusic, ...savedMusic])
+        alert(t('share.savedToLibrary'))
+      }
+
+    } else {
+      // Guest: Save to LocalStorage
+      const newSavedMusic: SavedMusic = {
+        id: Date.now().toString(),
+        composer: music.composer,
+        title: music.title,
+        description: music.description,
+        composerInfo: music.composerInfo,
+        musicInfo: music.musicInfo,
+        savedAt: new Date().toISOString(),
+        mood: mood
+      }
+
+      const updated = [...savedMusic, newSavedMusic]
+      setSavedMusic(updated)
+      localStorage.setItem('aura-classical-library', JSON.stringify(updated))
+      alert(t('share.savedToLibrary'))
+    }
   }
 
-  const handleRemoveFromLibrary = (id: string) => {
+  const handleRemoveFromLibrary = async (id: string) => {
+    if (session) {
+      // Remove from DB
+      const { error } = await supabase.from('saved_music').delete().eq('id', id)
+      if (error) {
+        console.error('Error removing from DB:', error)
+        alert('삭제에 실패했습니다.')
+        return
+      }
+    }
+
+    // Update State (Optimistic update for DB, direct for Local)
     const updated = savedMusic.filter(m => m.id !== id)
     setSavedMusic(updated)
-    localStorage.setItem('aura-classical-library', JSON.stringify(updated))
+
+    if (!session) {
+      localStorage.setItem('aura-classical-library', JSON.stringify(updated))
+    }
   }
 
   const handleGoToLibrary = () => {
@@ -157,6 +244,7 @@ function App() {
 
   const handleSignOut = async () => {
     await supabase.auth.signOut()
+    setSavedMusic([]) // Clear library on sign out
     navigate('/')
   }
 
@@ -395,6 +483,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </main>
 

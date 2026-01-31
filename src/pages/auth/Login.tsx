@@ -52,7 +52,12 @@ export default function Login() {
                         {loading ? 'Loading...' : 'Sign In'}
                     </button>
                 </form>
-                <div className="mt-4 text-center text-sm text-gray-600">
+                <div className="mt-4 text-center">
+                    <Link to="/forgot-password" className="text-sm text-amber-700 hover:underline">
+                        비밀번호를 잊으셨나요?
+                    </Link>
+                </div>
+                <div className="mt-2 text-center text-sm text-gray-600">
                     계정이 없으신가요? <Link to="/signup" className="text-amber-700 font-bold hover:underline">회원가입</Link>
                 </div>
             </div>

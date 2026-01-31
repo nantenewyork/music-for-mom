@@ -45,12 +45,12 @@ export default function SignUp() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        minLength={6}
-                        pattern="(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}"
-                        title="최소 6자 이상, 대문자 및 특수문자를 포함해야 합니다"
+                        minLength={8}
+                        pattern="(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+                        title="최소 8자 이상, 대문자 및 특수문자를 포함해야 합니다"
                     />
                     <p className="text-xs text-amber-800/60 ml-1 -mt-2 mb-2">
-                        * 최소 6자 이상, 대문자 및 특수문자(!@#$%^&*) 포함
+                        * 최소 8자 이상, 대문자 및 특수문자(!@#$%^&*) 포함
                     </p>
                     <button
                         className="bg-amber-600 text-white font-bold py-4 rounded-xl hover:bg-amber-700 transition-colors disabled:opacity-50"

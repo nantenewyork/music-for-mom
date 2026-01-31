@@ -87,16 +87,18 @@ export default function MyPage() {
                     <h2 className="text-xl font-bold text-amber-800 mb-4 border-b border-amber-200 pb-2">비밀번호 변경</h2>
                     <form onSubmit={handleUpdatePassword} className="flex flex-col gap-4">
                         <input
-                            className="p-4 rounded-xl border border-amber-200/50 bg-white/50 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                            className="p-4 rounded-xl border border-amber-200/50 bg-white/50 focus:outline-none focus:ring-2 focus:ring-amber-500 invalid:border-red-500 invalid:text-red-600"
                             type="password"
                             placeholder="새로운 비밀번호"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
                             required
-                            minLength={6}
+                            minLength={8}
+                            pattern="(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+                            title="최소 8자 이상, 대문자 및 특수문자를 포함해야 합니다"
                         />
                         <p className="text-xs text-amber-800/60 ml-1 -mt-2">
-                            * 최소 6자 이상 입력해주세요
+                            * 최소 8자 이상, 대문자 및 특수문자(!@#$%^&*) 포함
                         </p>
                         <button
                             className="bg-amber-600 text-white font-bold py-3 rounded-xl hover:bg-amber-700 transition-colors disabled:opacity-50"
