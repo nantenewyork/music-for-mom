@@ -42,6 +42,45 @@ function MoodInput({ onSubmit, loading, freeTrialUsed, isPurchased }: MoodInputP
 
     return (
         <div className="flex flex-col gap-6 sm:gap-8">
+            {/* Hero Banner - Free Trial Promotion */}
+            {!isPurchased && (
+                <div
+                    className="rounded-3xl p-6 sm:p-8 text-center border-2 animate-fade-in"
+                    style={{
+                        background: 'linear-gradient(135deg, rgba(254, 243, 199, 0.5) 0%, rgba(253, 230, 138, 0.3) 100%)',
+                        borderColor: colors.deepGold + '40',
+                        boxShadow: '0 8px 30px rgba(217, 119, 6, 0.15)'
+                    }}
+                >
+                    <div className="flex items-center justify-center gap-2 mb-3">
+                        <span className="material-symbols-outlined text-amber-700 text-2xl">eco</span>
+                        <span className="text-xs sm:text-sm font-bold uppercase tracking-wide text-amber-800">
+                            출시 기념 특별 혜택
+                        </span>
+                    </div>
+
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-amber-900" style={{ fontFamily: 'Playfair Display, serif' }}>
+                        3일 무료로 무제한 AI 추천 체험하기
+                    </h2>
+
+                    <p className="text-sm sm:text-base text-amber-800 mb-4 max-w-2xl mx-auto">
+                        첫 <strong>100명</strong>까지만 평생 ₩9,900 고정 가격 혜택 제공
+                    </p>
+
+                    <button
+                        onClick={() => window.location.href = '/paywall'}
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm sm:text-base font-bold text-white transition-all hover:scale-105 shadow-lg"
+                        style={{
+                            background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+                            boxShadow: '0 4px 20px rgba(5, 150, 105, 0.4)'
+                        }}
+                    >
+                        <span className="material-symbols-outlined">star</span>
+                        <span>지금 무료로 시작하기</span>
+                    </button>
+                </div>
+            )}
+
             {/* Free Trial Badge */}
             {!isPurchased && !freeTrialUsed && (
                 <div className="flex justify-center -mb-2 scale-in">

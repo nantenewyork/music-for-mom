@@ -370,10 +370,24 @@ function App() {
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-6 lg:gap-10">
+            <nav className="hidden md:flex items-center gap-4 sm:gap-6">
               <button onClick={() => navigate('/')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>Home</button>
-              <button onClick={() => navigate('/guide')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>Guide</button>
-              <button onClick={() => navigate('/blog')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>Blog</button>
+              <button onClick={() => navigate('/guide')} className="text-xs sm:text-sm font-bold uppercase tracking-tight transition-colors hover:opacity-70" style={{ color: colors.deepGold }}>Guide</button>
+              <button onClick={() => navigate('/blog')} className="text-xs sm:text-sm font-bold uppercase tracking-tight transition-colors hover:opacity-70" style={{ color: colors.deepGold }}>Blog</button>
+
+              {/* Free Trial CTA */}
+              <button
+                onClick={() => navigate('/paywall')}
+                className="flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold text-white transition-all hover:scale-105 shadow-md"
+                style={{
+                  background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+                  boxShadow: '0 4px 12px rgba(5, 150, 105, 0.3)'
+                }}
+              >
+                <span className="material-symbols-outlined text-sm">star</span>
+                <span>3일 무료 체험</span>
+              </button>
+
               <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>{t('header.library')}</button>
               <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>About</button>
               {session ? (
