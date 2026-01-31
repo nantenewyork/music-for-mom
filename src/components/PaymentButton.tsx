@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PolarEmbedCheckout } from '@polar-sh/checkout/embed'
 
 interface PaymentButtonProps {
     onSuccess?: () => void
@@ -24,38 +23,6 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
 
     const allAgreed = agreedTerms && agreedPrivacy && agreedThirdParty
 
-    useEffect(() => {
-        // Initialize Polar Embed Checkout
-        PolarEmbedCheckout.init()
-    }, [])
-
-    // 자동 환불 처리 함수
-    const handleAutoRefund = async (checkoutId: string, reason: string) => {
-        try {
-            console.log('Attempting auto refund for checkout:', checkoutId)
-            const refundResponse = await fetch('/api/refund', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    checkoutId, 
-                    reason 
-                }),
-            })
-            
-            const refundData = await refundResponse.json()
-            console.log('Refund response:', refundData)
-            
-            if (refundData.success) {
-                alert(t('alerts.autoRefundSuccess'))
-            } else {
-                alert(`${t('alerts.autoRefundFailed')}\n\n${t('alerts.checkoutId', { id: checkoutId })}`)
-            }
-        } catch (refundError) {
-            console.error('Auto refund error:', refundError)
-            alert(`${t('alerts.autoRefundFailed')}\n\n${t('alerts.checkoutId', { id: checkoutId })}`)
-        }
-    }
-
     const handleCheckout = async () => {
         if (!allAgreed) {
             alert(t('alerts.pleaseAgree'))
@@ -63,61 +30,25 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
         }
 
         setLoading(true)
-        let currentCheckoutId: string | null = null
-        
+
         try {
-            // Create checkout session
-            const response = await fetch('/api/checkout', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-            })
-            
-            const data = await response.json()
-            currentCheckoutId = data.id
-            
-            if (data.url) {
-                // Open embedded checkout
-                const checkout = await PolarEmbedCheckout.create(data.url, {
-                    theme: 'light',
-                    onLoaded: () => {
-                        setLoading(false)
-                    },
-                })
+            // Get Polar product ID from environment
+            const productId = import.meta.env.VITE_POLAR_PRODUCT_ID
 
-                // Listen for success
-                checkout.addEventListener('success', () => {
-                    try {
-                        // Save purchase status to localStorage
-                        localStorage.setItem('aura-classical-purchased', 'true')
-                        localStorage.setItem('aura-classical-purchase-date', new Date().toISOString())
-                        localStorage.setItem('aura-classical-checkout-id', currentCheckoutId || '')
-                        
-                        if (onSuccess) {
-                            onSuccess()
-                        }
-                    } catch (successError) {
-                        // 결제는 성공했지만 후처리 실패 시 자동 환불
-                        console.error('Post-payment error:', successError)
-                        if (currentCheckoutId) {
-                            handleAutoRefund(currentCheckoutId, 'post_payment_error')
-                        }
-                    }
-                })
-
-                checkout.addEventListener('close', () => {
-                    setLoading(false)
-                })
+            if (!productId) {
+                throw new Error('Polar product ID not configured')
             }
+
+            // Construct Polar checkout URL
+            const checkoutUrl = `https://polar.sh/checkout/${productId}`
+
+            // Redirect to Polar hosted checkout
+            window.location.href = checkoutUrl
+
         } catch (error) {
             console.error('Checkout error:', error)
             setLoading(false)
-            
-            // 결제 생성 중 에러 발생 시 환불 시도
-            if (currentCheckoutId) {
-                handleAutoRefund(currentCheckoutId, 'checkout_creation_error')
-            } else {
-                alert(t('alerts.paymentError'))
-            }
+            alert(t('alerts.paymentError'))
         }
     }
 
@@ -131,8 +62,8 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
     return (
         <div style={{ width: '100%' }}>
             {/* 약관 동의 섹션 */}
-            <div 
-                style={{ 
+            <div
+                style={{
                     marginBottom: '1.5rem',
                     padding: '1.25rem',
                     borderRadius: '1rem',
@@ -141,10 +72,10 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                 }}
             >
                 {/* 전체 동의 */}
-                <label 
-                    style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
+                <label
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
                         gap: '0.75rem',
                         cursor: 'pointer',
                         paddingBottom: '0.75rem',
@@ -156,8 +87,8 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                         type="checkbox"
                         checked={allAgreed}
                         onChange={handleAgreeAll}
-                        style={{ 
-                            width: '1.25rem', 
+                        style={{
+                            width: '1.25rem',
                             height: '1.25rem',
                             accentColor: colors.deepGold,
                         }}
@@ -170,10 +101,10 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                 {/* 개별 동의 항목들 */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     {/* 이용약관 동의 */}
-                    <label 
-                        style={{ 
-                            display: 'flex', 
-                            alignItems: 'center', 
+                    <label
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
                             gap: '0.75rem',
                             cursor: 'pointer',
                         }}
@@ -182,21 +113,21 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                             type="checkbox"
                             checked={agreedTerms}
                             onChange={(e) => setAgreedTerms(e.target.checked)}
-                            style={{ 
-                                width: '1rem', 
+                            style={{
+                                width: '1rem',
                                 height: '1rem',
                                 accentColor: colors.deepGold,
                             }}
                         />
                         <span style={{ fontSize: '0.875rem', color: `${colors.warmSlate}cc` }}>
                             <span style={{ color: '#ef4444' }}>{t('payment.required')}</span>{' '}
-                            <button 
+                            <button
                                 onClick={(e) => { e.preventDefault(); onNavigateToTerms?.() }}
-                                style={{ 
-                                    background: 'none', 
-                                    border: 'none', 
+                                style={{
+                                    background: 'none',
+                                    border: 'none',
                                     padding: 0,
-                                    color: colors.deepGold, 
+                                    color: colors.deepGold,
                                     textDecoration: 'underline',
                                     cursor: 'pointer',
                                     fontSize: '0.875rem',
@@ -209,10 +140,10 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                     </label>
 
                     {/* 개인정보처리방침 동의 */}
-                    <label 
-                        style={{ 
-                            display: 'flex', 
-                            alignItems: 'center', 
+                    <label
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
                             gap: '0.75rem',
                             cursor: 'pointer',
                         }}
@@ -221,21 +152,21 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                             type="checkbox"
                             checked={agreedPrivacy}
                             onChange={(e) => setAgreedPrivacy(e.target.checked)}
-                            style={{ 
-                                width: '1rem', 
+                            style={{
+                                width: '1rem',
                                 height: '1rem',
                                 accentColor: colors.deepGold,
                             }}
                         />
                         <span style={{ fontSize: '0.875rem', color: `${colors.warmSlate}cc` }}>
                             <span style={{ color: '#ef4444' }}>{t('payment.required')}</span>{' '}
-                            <button 
+                            <button
                                 onClick={(e) => { e.preventDefault(); onNavigateToPrivacy?.() }}
-                                style={{ 
-                                    background: 'none', 
-                                    border: 'none', 
+                                style={{
+                                    background: 'none',
+                                    border: 'none',
                                     padding: 0,
-                                    color: colors.deepGold, 
+                                    color: colors.deepGold,
                                     textDecoration: 'underline',
                                     cursor: 'pointer',
                                     fontSize: '0.875rem',
@@ -248,10 +179,10 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                     </label>
 
                     {/* 제3자 정보 제공 동의 */}
-                    <label 
-                        style={{ 
-                            display: 'flex', 
-                            alignItems: 'center', 
+                    <label
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
                             gap: '0.75rem',
                             cursor: 'pointer',
                         }}
@@ -260,8 +191,8 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                             type="checkbox"
                             checked={agreedThirdParty}
                             onChange={(e) => setAgreedThirdParty(e.target.checked)}
-                            style={{ 
-                                width: '1rem', 
+                            style={{
+                                width: '1rem',
                                 height: '1rem',
                                 accentColor: colors.deepGold,
                             }}
@@ -269,13 +200,13 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                         <span style={{ fontSize: '0.875rem', color: `${colors.warmSlate}cc` }}>
                             <span style={{ color: '#ef4444' }}>{t('payment.required')}</span>{' '}
                             {t('payment.agreeThirdParty')}{' '}
-                            <button 
+                            <button
                                 onClick={(e) => { e.preventDefault(); onNavigateToPrivacy?.() }}
-                                style={{ 
-                                    background: 'none', 
-                                    border: 'none', 
+                                style={{
+                                    background: 'none',
+                                    border: 'none',
                                     padding: 0,
-                                    color: colors.deepGold, 
+                                    color: colors.deepGold,
                                     textDecoration: 'underline',
                                     cursor: 'pointer',
                                     fontSize: '0.875rem',
@@ -288,8 +219,8 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                     </label>
 
                     {/* 환불 규정 확인 */}
-                    <div 
-                        style={{ 
+                    <div
+                        style={{
                             marginTop: '0.5rem',
                             padding: '0.75rem',
                             borderRadius: '0.5rem',
@@ -299,13 +230,13 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                         }}
                     >
                         {t('payment.refundNotice')}{' '}
-                        <button 
+                        <button
                             onClick={(e) => { e.preventDefault(); onNavigateToRefund?.() }}
-                            style={{ 
-                                background: 'none', 
-                                border: 'none', 
+                            style={{
+                                background: 'none',
+                                border: 'none',
                                 padding: 0,
-                                color: colors.deepGold, 
+                                color: colors.deepGold,
                                 textDecoration: 'underline',
                                 cursor: 'pointer',
                                 fontSize: '0.75rem',
@@ -325,7 +256,7 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                 className="inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 text-lg font-bold text-white shadow-xl transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
                     width: '100%',
-                    background: allAgreed 
+                    background: allAgreed
                         ? `linear-gradient(135deg, ${colors.deepGold} 0%, ${colors.primaryWarm} 100%)`
                         : '#9ca3af',
                     boxShadow: allAgreed ? `0 10px 25px -5px ${colors.deepGold}66` : 'none',
@@ -333,7 +264,7 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
             >
                 {loading ? (
                     <>
-                        <div 
+                        <div
                             className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"
                         />
                         {t('payment.processing')}
