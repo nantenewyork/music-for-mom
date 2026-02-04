@@ -340,6 +340,11 @@ function App() {
   }
 
   const handleGenerateAnother = () => {
+    if (!isPurchased && freeTrialUsed) {
+      setPendingMood(currentMood)
+      navigate('/paywall')
+      return
+    }
     if (currentMood) {
       fetchRecommendation(currentMood)
     }
@@ -452,6 +457,7 @@ function App() {
                 mood={currentMood}
                 onGenerateAnother={handleGenerateAnother}
                 onSaveToLibrary={() => handleSaveToLibrary(recommendation, currentMood)}
+                loading={loading}
               />
             ) : (
               <div className="w-full">

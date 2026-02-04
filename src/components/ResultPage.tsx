@@ -15,6 +15,7 @@ interface ResultPageProps {
     mood: string
     onGenerateAnother: () => void
     onSaveToLibrary: () => void
+    loading: boolean
 }
 
 const colors = {
@@ -23,7 +24,7 @@ const colors = {
     warmSlate: '#475569',
 }
 
-function ResultPage({ recommendation, mood, onGenerateAnother, onSaveToLibrary }: ResultPageProps) {
+function ResultPage({ recommendation, mood, onGenerateAnother, onSaveToLibrary, loading }: ResultPageProps) {
     const [isCapturing, setIsCapturing] = useState(false)
 
     // YouTube 검색 URL 생성 및 열기
@@ -388,11 +389,14 @@ function ResultPage({ recommendation, mood, onGenerateAnother, onSaveToLibrary }
                     <div className="grid grid-cols-4 sm:grid-cols-5 gap-2 sm:gap-3">
                         <button
                             onClick={onGenerateAnother}
-                            className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-2xl sm:rounded-full bg-white/40 px-2 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm font-bold hover:bg-white/60 transition-all shadow-sm"
+                            disabled={loading}
+                            className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-2xl sm:rounded-full bg-white/40 px-2 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm font-bold hover:bg-white/60 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                             style={{ color: colors.deepGold, border: `1px solid ${colors.deepGold}33` }}
                         >
-                            <span className="material-symbols-outlined text-lg sm:text-xl">refresh</span>
-                            <span className="text-[10px] sm:text-sm">다시 추천</span>
+                            <span className={`material-symbols-outlined text-lg sm:text-xl ${loading ? 'animate-spin' : ''}`}>
+                                {loading ? 'progress_activity' : 'refresh'}
+                            </span>
+                            <span className="text-[10px] sm:text-sm">{loading ? '생성중...' : '다시 추천'}</span>
                         </button>
                         <button
                             onClick={onSaveToLibrary}
