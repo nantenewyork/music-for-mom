@@ -3,6 +3,8 @@ import PaymentButton from './PaymentButton'
 interface PaywallPageProps {
     onPurchaseSuccess: () => void
     onNavigate?: (page: 'terms' | 'refund' | 'privacy') => void
+    userId?: string
+    userEmail?: string
 }
 
 const colors = {
@@ -33,7 +35,7 @@ const styles = {
     },
 }
 
-function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
+function PaywallPage({ onPurchaseSuccess, onNavigate, userId, userEmail }: PaywallPageProps) {
 
     const problems = [
         { icon: 'search', text: '태교 음악 찾는 데 매일 30분씩 소비' },
@@ -181,6 +183,8 @@ function PaywallPage({ onPurchaseSuccess, onNavigate }: PaywallPageProps) {
                                 onNavigateToTerms={() => onNavigate?.('terms')}
                                 onNavigateToRefund={() => onNavigate?.('refund')}
                                 onNavigateToPrivacy={() => onNavigate?.('privacy')}
+                                userId={userId}
+                                userEmail={userEmail}
                             />
                             <p className="mt-3 text-xs text-center" style={{ color: `${colors.warmSlate}66` }}>
                                 ✅ 3일 동안 완전 무료 · ⏰ 체험 종료 1일 전 알림 · 🔓 1클릭 해지

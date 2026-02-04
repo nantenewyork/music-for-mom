@@ -9,6 +9,9 @@ interface PolarWebhookEvent {
             user_id: string
             status: string
             current_period_end: string
+            metadata?: {
+                user_id?: string
+            }
         }
     }
 }
@@ -53,7 +56,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
                         'Prefer': 'resolution=merge-duplicates'
                     },
                     body: JSON.stringify({
-                        user_id: subscription.user_id,
+                        user_id: subscription.metadata?.user_id || subscription.user_id,
                         polar_subscription_id: subscription.id,
                         status: subscription.status,
                         current_period_end: subscription.current_period_end,

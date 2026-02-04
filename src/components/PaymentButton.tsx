@@ -6,6 +6,8 @@ interface PaymentButtonProps {
     onNavigateToTerms?: () => void
     onNavigateToRefund?: () => void
     onNavigateToPrivacy?: () => void
+    userId?: string
+    userEmail?: string
 }
 
 const colors = {
@@ -14,7 +16,7 @@ const colors = {
     warmSlate: '#475569',
 }
 
-function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNavigateToPrivacy }: PaymentButtonProps) {
+function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNavigateToPrivacy, userId, userEmail }: PaymentButtonProps) {
     const { t } = useTranslation()
     const [loading, setLoading] = useState(false)
     const [agreedTerms, setAgreedTerms] = useState(false)
@@ -39,8 +41,19 @@ function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNav
                 throw new Error('Polar product ID not configured')
             }
 
-            // Construct Polar checkout URL
-            const checkoutUrl = `https://polar.sh/checkout/${productId}`
+            // Construct Polar checkout URL with metadata
+            const baseUrl = `https://polar.sh/checkout/${productId}`
+            const params = new URLSearchParams()
+
+            if (userEmail) {
+                params.append('customer_email', userEmail)
+            }
+
+            if (userId) {
+                params.append('metadata[user_id]', userId)
+            }
+
+            const checkoutUrl = `${baseUrl}?${params.toString()}`
 
             // Redirect to Polar hosted checkout
             window.location.href = checkoutUrl

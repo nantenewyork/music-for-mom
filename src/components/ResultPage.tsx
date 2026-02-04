@@ -385,7 +385,7 @@ function ResultPage({ recommendation, mood, onGenerateAnother, onSaveToLibrary }
                     </button>
 
                     {/* Secondary Buttons */}
-                    <div className="grid grid-cols-4 gap-2 sm:gap-3">
+                    <div className="grid grid-cols-4 sm:grid-cols-5 gap-2 sm:gap-3">
                         <button
                             onClick={onGenerateAnother}
                             className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-2xl sm:rounded-full bg-white/40 px-2 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm font-bold hover:bg-white/60 transition-all shadow-sm"
@@ -416,13 +416,24 @@ function ResultPage({ recommendation, mood, onGenerateAnother, onSaveToLibrary }
                         <button
                             onClick={handleShare}
                             disabled={isCapturing}
-                            className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-2xl sm:rounded-full px-2 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm font-bold text-white transition-all shadow-sm disabled:opacity-50"
-                            style={{
-                                background: `linear-gradient(135deg, ${colors.deepGold} 0%, ${colors.primaryWarm} 100%)`,
-                            }}
+                            className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-2xl sm:rounded-full bg-white/40 px-2 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm font-bold hover:bg-white/60 transition-all shadow-sm disabled:opacity-50"
+                            style={{ color: colors.deepGold, border: `1px solid ${colors.deepGold}33` }}
                         >
                             <span className="material-symbols-outlined text-lg sm:text-xl">share</span>
                             <span className="text-[10px] sm:text-sm">공유</span>
+                        </button>
+
+                        {/* Free Trial Button for Result Page */}
+                        <button
+                            onClick={() => window.location.href = '/paywall'}
+                            className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-2xl sm:rounded-full px-2 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm font-bold text-white transition-all shadow-sm"
+                            style={{
+                                background: `linear-gradient(135deg, ${colors.deepGold} 0%, ${colors.primaryWarm} 100%)`,
+                                gridColumn: 'span 1' // Make sure it fits
+                            }}
+                        >
+                            <span className="material-symbols-outlined text-lg sm:text-xl">star</span>
+                            <span className="text-[10px] sm:text-sm">무료체험</span>
                         </button>
                     </div>
                 </div>

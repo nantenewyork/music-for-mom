@@ -117,6 +117,7 @@ function App() {
     const { data, error } = await supabase
       .from('saved_music')
       .select('*')
+      .eq('user_id', userId)
       .order('created_at', { ascending: false })
 
     if (error) {
@@ -415,6 +416,16 @@ function App() {
               <nav className="flex md:hidden items-center gap-3 mr-2">
                 <button onClick={() => navigate('/guide')} className="text-xs font-bold uppercase tracking-tight" style={{ color: colors.deepGold }}>Guide</button>
                 <button onClick={() => navigate('/blog')} className="text-xs font-bold uppercase tracking-tight" style={{ color: colors.deepGold }}>Blog</button>
+                <button
+                  onClick={() => navigate('/paywall')}
+                  className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold text-white shadow-sm"
+                  style={{
+                    background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+                  }}
+                >
+                  <span className="material-symbols-outlined text-[12px]">star</span>
+                  <span>3일 무료</span>
+                </button>
               </nav>
               <LanguageSwitch />
               <button
@@ -475,6 +486,20 @@ function App() {
                   ) : (
                     <div className="w-full max-w-2xl fade-in px-4">
                       <MoodInput onSubmit={handleMoodSubmit} loading={loading} freeTrialUsed={freeTrialUsed} isPurchased={isPurchased} />
+
+                      {/* Hero CTA */}
+                      <div className="mt-8 flex justify-center">
+                        <button
+                          onClick={() => navigate('/paywall')}
+                          className="group flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 hover:bg-white/60 border border-white/60 transition-all hover:scale-105 shadow-sm backdrop-blur-sm"
+                        >
+                          <span className="material-symbols-outlined text-green-600 group-hover:animate-bounce">star</span>
+                          <span className="text-sm font-bold text-slate-700">
+                            <span className="text-green-700">3일 무료 체험</span>으로 제한 없이 듣기
+                          </span>
+                          <span className="material-symbols-outlined text-slate-400 text-sm">arrow_forward</span>
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -488,7 +513,7 @@ function App() {
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/library" element={<LibraryPage savedMusic={savedMusic} onRemove={handleRemoveFromLibrary} onBack={() => navigate('/')} />} />
-          <Route path="/paywall" element={<PaywallPage onPurchaseSuccess={handlePurchaseSuccess} onNavigate={(p) => navigate(`/${p}`)} />} />
+          <Route path="/paywall" element={<PaywallPage onPurchaseSuccess={handlePurchaseSuccess} onNavigate={(p) => navigate(`/${p}`)} userId={session?.user.id} userEmail={session?.user.email} />} />
           <Route path="/terms" element={<TermsPage onBack={() => navigate('/')} />} />
           <Route path="/refund" element={<RefundPage onBack={() => navigate('/')} />} />
           <Route path="/privacy" element={<PrivacyPage onBack={() => navigate('/')} />} />
