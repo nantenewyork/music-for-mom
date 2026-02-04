@@ -10,7 +10,9 @@ const colors = {
 
 const HomeSections = () => {
     const navigate = useNavigate()
-    const latestPosts = blogPosts.slice(0, 3)
+    const latestPosts = [...blogPosts]
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 3)
 
     return (
         <div className="w-full">
