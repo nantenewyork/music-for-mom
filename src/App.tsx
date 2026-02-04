@@ -137,11 +137,7 @@ function App() {
     }
   }
 
-  const handlePurchaseSuccess = () => {
-    localStorage.setItem('aura-classical-purchased', 'true')
-    localStorage.setItem('aura-classical-purchase-date', new Date().toISOString())
-    setShowPaymentSuccess(true)
-  }
+
 
   const handleContinueAfterPurchase = () => {
     setShowPaymentSuccess(false)
