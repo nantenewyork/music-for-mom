@@ -1,10 +1,14 @@
 export interface BlogPost {
   id: string;
   title: string;
+  titleEn: string;
   date: string;
   excerpt: string;
+  excerptEn: string;
   content: string;
+  contentEn: string;
   category: string;
+  categoryEn: string;
   image?: string;
 }
 
@@ -12,9 +16,12 @@ export const blogPosts: BlogPost[] = [
   {
     id: 'mozart-effect-pregnancy',
     title: '모차르트 효과와 태교: AI가 분석한 과학적 진실과 추천 활용법',
+    titleEn: 'The Mozart Effect & Prenatal Care: Scientific Truths ai Analyzed',
     date: '2026-01-27',
     category: '태교 과학',
+    categoryEn: 'Prenatal Science',
     excerpt: '모차르트의 음악이 태아의 두뇌 발달에 정말 도움이 될까요? 최신 연구 결과와 효과적인 감상법을 제안합니다.',
+    excerptEn: 'Does Mozart’s music really help fetal brain development? We present effective listening methods based on the latest research.',
     content: `
       <section>
         <h2>요약: 모차르트 효과는 실제인가요?</h2>
@@ -39,14 +46,42 @@ export const blogPosts: BlogPost[] = [
         <h3>Q: 언제 듣는 것이 가장 좋은가요?</h3>
         <p>A: 태아의 청각이 완성되는 <strong>임신 24주 이후</strong>, 하루 20분 내외로 엄마가 가장 편안함을 느끼는 시간에 감상하는 것이 최적입니다.</p>
       </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>Summary: Is the Mozart Effect Real?</h2>
+        <p><strong>To begin with, while the idea that Mozart's music magically increases intelligence hasn't been proven, its effect on fetal emotional development through 'psychological stability' is powerful.</strong> The key is that the bright, regular 60-70 BPM melodies lower the mother's stress hormones.</p>
+      </section>
+
+      <section>
+        <h2>1. The Origin of the Mozart Effect</h2>
+        <p>Coined after Dr. Frances Rauscher's 1993 study, this term is based on findings that college students showed a temporary increase in spatial-temporal reasoning after listening to Mozart's 'Sonata for Two Pianos K.448'.</p>
+      </section>
+      
+      <section>
+        <h2>2. Why Mozart?</h2>
+        <ul>
+          <li><strong>Brainwave Stability:</strong> Mozart's pieces have a high degree of mathematical structure and repetition, making it easy to induce the brain into a stable 8-13Hz (Alpha wave) state.</li>
+          <li><strong>High-Frequency Stimulation:</strong> They are rich in high-frequency melodies suitable for fetal auditory development.</li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2>3. Recommended Usage Guide (FAQ)</h2>
+        <h3>Q: When is the best time to listen?</h3>
+        <p>A: It is optimal to listen for about 20 minutes a day <strong>after 24 weeks of pregnancy</strong>, when the fetus's hearing is fully developed, at a time when the mother feels most relaxed.</p>
+      </section>
     `
   },
   {
     id: 'top-5-composers-for-moms',
     title: '임산부를 위한 태교 클래식 작곡가 TOP 5 및 대표곡 가이드',
+    titleEn: 'Top 5 Classical Composers for Expecting Moms & Essential Tracks',
     date: '2026-01-27',
     category: '추천 리스트',
+    categoryEn: 'Curated List',
     excerpt: 'AI가 선정한 임신 시기별 추천 클래식 작곡가 리스트와 그 효과를 공개합니다.',
+    excerptEn: 'We reveal the list of recommended classical composers for each stage of pregnancy selected by AI and their effects.',
     content: `
       <section>
         <h2>한눈에 보는 태교 작곡가 추천 리스트</h2>
@@ -56,14 +91,27 @@ export const blogPosts: BlogPost[] = [
         <p><strong>4. 드뷔시:</strong> 상상력과 감성 풍부. (추천곡: 달빛)</p>
         <p><strong>5. 쇼팽:</strong> 피로 회복과 우아한 휴식. (추천곡: 녹턴 2번)</p>
       </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>Recommended Composers for Prenatal Care at a Glance</h2>
+        <p><strong>1. Mozart:</strong> Brain development and bright energy. (Recommended: Piano Concerto No. 21)</p>
+        <p><strong>2. Bach:</strong> Mind-body stability and heart rate regulation. (Recommended: Air on the G String)</p>
+        <p><strong>3. Pachelbel:</strong> Creating a peaceful environment. (Recommended: Canon in D)</p>
+        <p><strong>4. Debussy:</strong> Imagination and rich emotion. (Recommended: Clair de Lune)</p>
+        <p><strong>5. Chopin:</strong> Fatigue recovery and elegant rest. (Recommended: Nocturne No. 2)</p>
+      </section>
     `
   },
   {
     id: 'early-pregnancy-anxiety-relief',
     title: '임신 초기 불안감 해소를 위한 클래식 처방전',
+    titleEn: 'Classical Prescription for Early Pregnancy Anxiety Relief',
     date: '2026-01-27',
     category: '심리 케어',
+    categoryEn: 'Mental Care',
     excerpt: '호르몬 변화로 예민한 임신 초기, 마음을 진정시키는 첼로 선율을 추천합니다.',
+    excerptEn: 'We recommend cello melodies to soothe the mind during early pregnancy, when hormone changes can make you sensitive.',
     content: `
       <section>
         <h2>임신 초기, 왜 클래식이 필요한가요?</h2>
@@ -73,14 +121,27 @@ export const blogPosts: BlogPost[] = [
         <h2>전문가 추천: 생상스 '백조'</h2>
         <p>첼로의 깊은 음색은 엄마의 자궁 속 소리와 유사한 주파수를 지닙니다.</p>
       </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>Why Classical Music in Early Pregnancy?</h2>
+        <p><strong>Key Reason:</strong> Early pregnancy is a time when psychological anxiety peaks due to morning sickness and insomnia. The low-frequency vibrations of classical music have a muscle-relaxing effect.</p>
+      </section>
+      <section>
+        <h2>Expert Pick: Saint-Saëns 'The Swan'</h2>
+        <p>The deep tone of the cello has a frequency similar to the sounds inside the mother's womb.</p>
+      </section>
     `
   },
   {
     id: 'classic-music-brain-development-science',
     title: '과학으로 증명된 클래식 음악의 태아 두뇌 발달 효능',
+    titleEn: 'Scientifically Proven Benefits of Classical Music for Fetal Brain Development',
     date: '2026-01-27',
     category: '태교 과학',
+    categoryEn: 'Prenatal Science',
     excerpt: '음악적 자극이 태아의 뉴런 연결에 미치는 구체적인 메커니즘을 설명합니다.',
+    excerptEn: 'Explaining the specific mechanisms by which musical stimulation affects fetal neuronal connections.',
     content: `
       <section>
         <h2>태아의 청각 발달 타임라인</h2>
@@ -90,14 +151,27 @@ export const blogPosts: BlogPost[] = [
         <h2>공간-시간 추론 능력의 향상</h2>
         <p>클래식 음악의 논리적인 구조는 태아의 뇌가 패턴을 인식하는 훈련을 하게 하며, 이는 향후 수학 및 논리적 사고력의 기초가 됩니다.</p>
       </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>Fetal Auditory Development Timeline</h2>
+        <p>The ear structure forms at 16 weeks, and by 24 weeks, the fetus begins to react to external sounds. The complex harmonies of classical music transmitted at this time help develop the fetal brain arch.</p>
+      </section>
+      <section>
+        <h2>Improvement in Spatial-Temporal Reasoning</h2>
+        <p>The logical structure of classical music trains the fetal brain to recognize patterns, laying the foundation for future mathematical and logical thinking skills.</p>
+      </section>
     `
   },
   {
     id: 'mid-pregnancy-cello-connection',
     title: '임신 중기, 태아와 교감하는 경쾌한 첼로/바이올린 곡',
+    titleEn: 'Mid-Pregnancy: Cheerful Cello/Violin Pieces for Bonding',
     date: '2026-01-27',
     category: '시기별 추천',
+    categoryEn: 'Trimester Tips',
     excerpt: '태동이 활발해지는 5~7개월차, 아기와 함께 리듬을 타기 좋은 곡 리스트입니다.',
+    excerptEn: 'A list of songs good for riding the rhythm with your baby during months 5-7 when fetal movement becomes active.',
     content: `
       <section>
         <h2>태동과 음악의 동기화</h2>
@@ -107,14 +181,27 @@ export const blogPosts: BlogPost[] = [
         <h2>추천곡: 엘가 '사랑의 인사'</h2>
         <p>따뜻하고 친근한 멜로디가 아기를 기다리는 설렘을 더해줍니다.</p>
       </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>Synchronizing Movement and Music</h2>
+        <p>Playing cheerful music when you feel fetal movement can encourage the baby to move more actively. This is a very early stage of 'play' and 'learning'.</p>
+      </section>
+      <section>
+        <h2>Recommended: Elgar 'Salut d\\'Amour'</h2>
+        <p>The warm and friendly melody adds to the excitement of waiting for the baby.</p>
+      </section>
     `
   },
   {
     id: 'how-to-listen-effectively-at-home',
     title: '집에서 실천하는 효과적인 태교 음악 감상법 3원칙',
+    titleEn: '3 Principles of Effective Prenatal Music Listening at Home',
     date: '2026-01-27',
     category: '태교 가이드',
+    categoryEn: 'Prenatal Guide',
     excerpt: '단순히 듣는 것보다 100배 효과적인 "공감형 감상법"을 소개합니다.',
+    excerptEn: 'Introducing an "empathetic listening method" that is 100 times more effective than just passive listening.',
     content: `
       <section>
         <h2>1. 복식 호흡과 병행하라</h2>
@@ -128,14 +215,31 @@ export const blogPosts: BlogPost[] = [
         <h2>3. 일관성 있는 시간대</h2>
         <p>가능하면 매일 같은 시간에 들음으로써 태아에게 일정한 생체 리듬을 만들어주세요.</p>
       </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. Combine with Abdominal Breathing</h2>
+        <p>Breathing in and out slowly while listening increases the mother's oxygen supply, delivering more nutrition and stability to the fetus.</p>
+      </section>
+      <section>
+        <h2>2. Mix with Talk-to-Baby</h2>
+        <p>Saying "Baby, isn't this violin sound beautiful?" while listening is the best emotional education.</p>
+      </section>
+      <section>
+        <h2>3. Consistent Timing</h2>
+        <p>Create a consistent biorhythm for the fetus by listening at the same time every day if possible.</p>
+      </section>
     `
   },
   {
     id: 'classical-music-for-better-maternity-sleep',
     title: '임산부 불면증 극복을 위한 고요한 클래식 자장가',
+    titleEn: 'Serene Classical Lullabies to Overcome Maternity Insomnia',
     date: '2026-01-27',
     category: '건강 케어',
+    categoryEn: 'Health Care',
     excerpt: '잠들기 힘든 임신 후기, 숙면을 유도하는 낮은 데시벨의 수면 유도 음악 추천.',
+    excerptEn: 'Low-decibel sleep-inducing music recommendations for deep sleep during late pregnancy when it’s hard to fall asleep.',
     content: `
       <section>
         <h2>임신 후기 불면증의 원인과 대책</h2>
@@ -145,14 +249,27 @@ export const blogPosts: BlogPost[] = [
         <h2>추천곡: 브람스 '자장가'</h2>
         <p>전 세계에서 가장 검증된 수면 유도곡으로, 임산부의 긴장을 완화시켜줍니다.</p>
       </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>Causes and Remedies for Late Pregnancy Insomnia</h2>
+        <p>It is difficult to sleep deeply due to the weight of the belly and hormonal changes. At this time, calm classical music leading to delta waves acts as a natural sleeping pill.</p>
+      </section>
+      <section>
+        <h2>Recommended: Brahms 'Lullaby'</h2>
+        <p>The most proven sleep-inducing song in the world, relaxes the pregnant woman's tension.</p>
+      </section>
     `
   },
   {
     id: 'bach-well-tempered-inner-peace',
     title: '바흐의 평균율: 복잡한 머릿속을 정리해주는 질서의 미학',
+    titleEn: 'Bach\'s Well-Tempered Clavier: The Aesthetics of Order',
     date: '2026-01-27',
     category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
     excerpt: '감정 기복이 심한 임산부에게 정서적 이정표가 되어주는 바흐의 음악 세계.',
+    excerptEn: 'Bach\'s musical world becomes an emotional milestone for pregnant women with severe mood swings.',
     content: `
       <section>
         <h2>질서 있는 선율이 주는 안정감</h2>
@@ -162,14 +279,27 @@ export const blogPosts: BlogPost[] = [
         <h2>추천곡: 평균율 클라비어곡집 1권 1번 프렐류드</h2>
         <p>반복되는 아르페지오가 마음을 정화시켜줍니다.</p>
       </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>Stability from Ordered Melodies</h2>
+        <p>Bach's music follows mathematically perfect counterpoint. Listening to Bach in a chaotic emotional state helps the brain naturally find a system.</p>
+      </section>
+      <section>
+        <h2>Recommended: The Well-Tempered Clavier, Book 1, Prelude No. 1</h2>
+        <p>The repeating arpeggios purify the mind.</p>
+      </section>
     `
   },
   {
     id: 'nature-healing-classical-harmony',
     title: '숲길을 걷는 듯한 힐링 태교: 자연주의 클래식 추천',
+    titleEn: 'Healing Like Walking in a Forest: Nature-Inspired Classical',
     date: '2026-01-27',
     category: '추천 리스트',
+    categoryEn: 'Curated List',
     excerpt: '야외 활동이 제한될 때 집 안을 숲속으로 만들어주는 자연 친화적 클래식들.',
+    excerptEn: 'Nature-friendly classics that turn your home into a forest when outdoor activities are restricted.',
     content: `
       <section>
         <h2>시각화 태교의 중요성</h2>
@@ -179,14 +309,27 @@ export const blogPosts: BlogPost[] = [
         <h2>추천곡: 베토벤 교향곡 6번 '전원'</h2>
         <p>자연의 싱그러움이 느껴지는 1악장을 추천합니다.</p>
       </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>The Importance of Visualization</h2>
+        <p>Imagining a green forest while listening to music releases serotonin similar to actually being in a forest.</p>
+      </section>
+      <section>
+        <h2>Recommended: Beethoven Symphony No. 6 'Pastoral'</h2>
+        <p>We recommend the first movement, where you can feel the freshness of nature.</p>
+      </section>
     `
   },
   {
     id: 'ai-curation-for-modern-moms',
     title: '왜 현대 임산부에게 AI 커스텀 음악 추천이 필요할까요?',
+    titleEn: 'Why Modern Moms Need AI Custom Music Recommendations',
     date: '2026-01-27',
     category: '서비스 소개',
+    categoryEn: 'Service Intro',
     excerpt: '천편일률적인 태교 음악에서 벗어나, 내 기분에 맞춘 실시간 큐레이션의 가치.',
+    excerptEn: 'Breaking away from cookie-cutter prenatal music, the value of real-time curation tailored to your mood.',
     content: `
       <section>
         <h2>나만의 감정이 존중받는 태교</h2>
@@ -196,14 +339,27 @@ export const blogPosts: BlogPost[] = [
         <h2>정서적 공감을 통한 진정한 힐링</h2>
         <p>Music for Mom은 단순한 재생목록이 아니라, 엄마의 오늘을 위로하고 내일의 육아를 준비하는 든든한 동반자입니다.</p>
       </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>Prenatal Care that Respects Your Emotions</h2>
+        <p>Even famous prenatal songs can be noise if they don't match your current mood (depressed, happy, tired). AI suggests the optimal song by analyzing the user's state in real-time.</p>
+      </section>
+      <section>
+        <h2>True Healing Through Emotional Empathy</h2>
+        <p>Music for Mom is not just a playlist, but a reliable companion that comforts mom's today and prepares for tomorrow's parenting.</p>
+      </section>
     `
   },
   {
     id: 'bach-air-on-the-g-string-story',
     title: '[태교 클래식] 바흐 ‘G선상의 아리아’: 지친 엄마의 마음을 어루만지는 고요한 선율의 힘',
+    titleEn: '[Classical Focus] Bach \'Air on the G String\': The Power of Serene Melody',
     date: '2026-01-29',
     category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
     excerpt: '바흐의 가장 사랑받는 작품, \'G선상의 아리아\'에 담긴 평온의 철학과 태교에 미치는 놀라운 효과를 소개합니다.',
+    excerptEn: 'Introducing the philosophy of peace in Bach\'s most beloved work, \'Air on the G String\', and its amazing effects on prenatal care.',
     content: `
       <section>
         <h2>1. ‘음악의 아버지’ 바흐와 그의 위대한 유산</h2>
@@ -225,14 +381,39 @@ export const blogPosts: BlogPost[] = [
         <p><strong>정서적 안정과 혈류 공급:</strong> 이 곡의 부드럽고 긴 호흡의 선율은 산모의 근육을 이완시키고 혈액 순환을 도와 태아에게 더 풍부한 산소를 공급합니다. 특히 감정 기복이 심한 임신 중기나 불안감이 큰 초기에 명상과 함께 들으면 태아와 깊은 정서적 유대감을 형성할 수 있습니다.</p>
         <p><strong>감상 팁:</strong> 소리에 집중하기보다는 그 선율이 그리는 풍경을 상상해 보세요. 아기와 함께 조용한 숲길을 걷는 상상을 하며 들을 때 태교의 효과는 극대화됩니다.</p>
       </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. Bach, the 'Father of Music' and His Legacy</h2>
+        <p>Johann Sebastian Bach, who laid the foundation for Western music, is a composer symbolizing the Baroque era. His music has a logical and orderly structure like a finely built architecture, known to induce the listener's brainwaves into the most stable state.</p>
+      </section>
+
+      <section>
+        <h2>2. Interesting Story Behind 'Air on the G String'</h2>
+        <p>The original song we commonly call 'Air on the G String' is the second movement of Bach's 'Orchestral Suite No. 3 in D Major'. Originally played by multiple instruments, it was named this way after German violinist August Wilhelmj arranged it to be played only on the 'G string', the lowest and deepest sounding string of the four violin strings, about 100 years later. The deep, heavy resonance from a single string delivers a greater touch than any flashy technique.</p>
+      </section>
+
+      <section>
+        <h2>3. Context: Order and Harmony of Baroque Music</h2>
+        <p>The 18th-century Baroque era valued harmony and balance. The bass line of this song uses the 'Walking Bass' technique, which simulates walking at a steady pace, having an excellent effect on calming the mother's heart rate and breathing.</p>
+      </section>
+
+      <section>
+        <h2>4. Listening Points for Prenatal Care</h2>
+        <p><strong>Emotional Stability and Blood Flow:</strong> The soft, long-breathing melody relaxes maternal muscles and helps blood circulation, supplying richer oxygen to the fetus.</p>
+        <p><strong>Listening Tip:</strong> Instead of focusing on the sound, imagine the scenery the melody draws. The effect is maximized when you listen imagining walking on a quiet forest path with your baby.</p>
+      </section>
     `
   },
   {
     id: 'debussy-clair-de-lune-story',
     title: '[태교 클래식] 드뷔시 ‘달빛’: 엄마와 아기를 위한 몽환적인 꿈의 선율',
+    titleEn: '[Classical Focus] Debussy \'Clair de Lune\': Dreamy Melody for Mom & Baby',
     date: '2026-01-30',
     category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
     excerpt: '인상주의 음악의 걸작, 드뷔시의 \'달빛\'이 선사하는 평온한 휴식과 태교 효과에 대해 알아봅니다.',
+    excerptEn: 'We explore the peaceful rest and prenatal effects offered by Debussy\'s \'Clair de Lune\', a masterpiece of Impressionist music.',
     content: `
       <section>
         <h2>1. 인상주의 음악의 창시자, 클로드 드뷔시</h2>
@@ -254,14 +435,39 @@ export const blogPosts: BlogPost[] = [
         <h2>4. 언제 들으면 좋을까요?</h2>
         <p>하루를 마무리하는 저녁 시간, 조명을 낮추고 편안한 자세로 휴식을 취할 때 가장 추천합니다. 따뜻한 차 한 잔과 함께 이 곡을 들으며 아기에게 오늘 하루 있었던 즐거운 일들을 속삭여주세요.</p>
       </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. Claude Debussy, Founder of Impressionist Music</h2>
+        <p>French composer Claude Debussy is like an Impressionist painter in the music world. He focused on expressing instantaneous impressions and atmospheres created by light and shadow through sound rather than clearly depicting objects.</p>
+      </section>
+
+      <section>
+        <h2>2. Background of 'Clair de Lune'</h2>
+        <p>One of Debussy's most famous piano pieces, 'Clair de Lune', is the third piece of his early masterpiece 'Suite bergamasque'. It was inspired by the poem of the same name by French poet Paul Verlaine.</p>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Sleep Induction and Stability:</strong> 'Clair de Lune' has a gently swaying 9/8 rhythm, giving comfort like a lullaby.</p>
+        <p><strong>Stimulating Imagination:</strong> Close your eyes and imagine a quiet lake lit by soft moonlight. Imagining the sparkling light fragments on the waves as messages of blessing to your baby promotes positive hormone secretion.</p>
+      </section>
+
+      <section>
+        <h2>4. When is the Best Time to Listen?</h2>
+        <p>We highly recommend it in the evening when finishing the day, dimming the lights and relaxing in a comfortable position.</p>
+      </section>
     `
   },
   {
     id: 'brahms-intermezzo-op118-no2-story',
     title: "[태교 클래식] 브람스 '인터메조 A장조, Op. 118 No. 2': 깊은 사랑과 위로의 선율",
+    titleEn: "[Classical Focus] Brahms 'Intermezzo in A Major, Op. 118 No. 2': Melody of Love and Comfort",
     date: '2026-02-05',
     category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
     excerpt: "브람스가 평생을 간직한 사랑, 클라라 슈만에게 바친 마지막 피아노 소품집. 가슴 시리도록 아름다운 선율이 전하는 따뜻한 위로.",
+    excerptEn: "Brahms' last piano pieces dedicated to his lifelong love, Clara Schumann. Warm comfort conveyed by heartbreakingly beautiful melodies.",
     content: `
       <section>
         <h2>1. 고독한 낭만주의자, 요하네스 브람스</h2>
@@ -282,6 +488,28 @@ export const blogPosts: BlogPost[] = [
       <section>
         <h2>4. 함께 들으면 좋은 시간</h2>
         <p>비가 오는 오후나 해 질 녘 창가에 앉아 차 한 잔과 함께 감상해 보세요. 눈을 감고 음악이 전하는 이야기에 귀 기울이다 보면, 어느새 마음속 깊은 곳까지 평온함이 차오르는 것을 느낄 수 있을 것입니다.</p>
+      </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. The Lonely Romantic, Johannes Brahms</h2>
+        <p>Johannes Brahms lived in the Romantic era but valued Classical forms. Unlike the flashy trends of the time, he sought to contain deep inner emotions within restrained forms. His music resembles the mood of autumn.</p>
+      </section>
+
+      <section>
+        <h2>2. Intermezzo Op. 118 No. 2: The Last Love Letter to Clara</h2>
+        <p>Composed in Brahms' later years (1893), this piece was dedicated to Clara Schumann, the wife of his mentor whom he loved all his life. It contains dedication, friendship, and the remorse of life kept for a long time.</p>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Comfort for Mom's Heart:</strong> During pregnancy, moms experience many emotional ups and downs. This song's warm A major melody gently wraps around the anxious and tired mom's heart.</p>
+        <p><strong>Deep Resonance for Baby:</strong> The singing melody flowing from the middle register of the piano gives stability to the fetus.</p>
+      </section>
+
+      <section>
+        <h2>4. Best Time to Listen</h2>
+        <p>Try listening with a cup of tea on a rainy afternoon or at sunset. You will feel peace filling up deep inside your heart.</p>
       </section>
     `
   }

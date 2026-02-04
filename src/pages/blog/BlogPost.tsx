@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { blogPosts } from './blogData'
 
 const colors = {
@@ -9,13 +10,15 @@ const colors = {
 const BlogPost = () => {
     const { id } = useParams()
     const navigate = useNavigate()
+    const { i18n, t } = useTranslation()
     const post = blogPosts.find(p => p.id === id)
+    const isEn = i18n.language === 'en'
 
     if (!post) {
         return (
             <div className="text-center py-20">
-                <p>포스팅을 찾을 수 없습니다.</p>
-                <button onClick={() => navigate('/blog')} className="mt-4 text-blue-500 underline">블로그 목록으로 돌아가기</button>
+                <p>{t('common.error')}</p>
+                <button onClick={() => navigate('/blog')} className="mt-4 text-blue-500 underline">{t('common.back')}</button>
             </div>
         )
     }
@@ -27,14 +30,14 @@ const BlogPost = () => {
                 {JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "BlogPosting",
-                    "headline": post.title,
-                    "description": post.excerpt,
+                    "headline": isEn ? post.titleEn : post.title,
+                    "description": isEn ? post.excerptEn : post.excerpt,
                     "datePublished": post.date,
                     "author": {
                         "@type": "Organization",
                         "name": "Aura Classical"
                     },
-                    "articleBody": post.content.replace(/<[^>]*>?/gm, '')
+                    "articleBody": (isEn ? post.contentEn : post.content).replace(/<[^>]*>?/gm, '')
                 })}
             </script>
 
@@ -44,7 +47,7 @@ const BlogPost = () => {
                 style={{ color: colors.deepGold }}
             >
                 <span className="material-symbols-outlined">arrow_back</span>
-                목록으로
+                {t('common.back')}
             </button>
 
             <article className="glass-panel-warm rounded-[2.5rem] p-8 md:p-16 shadow-2xl fade-in overflow-hidden relative">
@@ -54,28 +57,30 @@ const BlogPost = () => {
                 <header className="mb-12 relative z-10">
                     <div className="flex items-center gap-3 mb-6">
                         <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-white/50" style={{ color: colors.deepGold }}>
-                            {post.category}
+                            {isEn ? post.categoryEn : post.category}
                         </span>
                         <span className="text-sm opacity-50">{post.date}</span>
                     </div>
                     <h1 className="premium-serif text-3xl md:text-5xl font-bold leading-tight mb-4" style={{ color: colors.warmSlate }}>
-                        {post.title}
+                        {isEn ? post.titleEn : post.title}
                     </h1>
                 </header>
 
                 <div
                     className="blog-content prose prose-stone lg:prose-xl max-w-none relative z-10"
                     style={{ color: `${colors.warmSlate}e6` }}
-                    dangerouslySetInnerHTML={{ __html: post.content }}
+                    dangerouslySetInnerHTML={{ __html: isEn ? post.contentEn : post.content }}
                 />
 
                 <footer className="mt-16 pt-8 border-t border-white/20 text-center relative z-10">
-                    <p className="text-sm opacity-50 mb-6 font-medium">본 정보가 도움이 되셨나요? 음악 추천 기능을 통해 태교를 시작해보세요.</p>
+                    <p className="text-sm opacity-50 mb-6 font-medium">
+                        {isEn ? "Did you find this helpful? Start prenatal care with music recommendations." : "본 정보가 도움이 되셨나요? 음악 추천 기능을 통해 태교를 시작해보세요."}
+                    </p>
                     <button
                         onClick={() => navigate('/')}
                         className="yt-button inline-flex items-center gap-2 rounded-full px-8 py-3 font-bold text-white shadow-xl"
                     >
-                        기분별 음악 추천받기
+                        {t('library.goGetRecommendation')}
                         <span className="material-symbols-outlined">auto_awesome</span>
                     </button>
                 </footer>

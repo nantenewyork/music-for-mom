@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { blogPosts } from './blogData'
 
 const colors = {
@@ -9,6 +10,9 @@ const colors = {
 const BlogList = () => {
     const navigate = useNavigate()
 
+    const { i18n, t } = useTranslation()
+    const isEn = i18n.language === 'en'
+
     // Sort posts by date (newest first)
     const sortedPosts = [...blogPosts].sort((a, b) =>
         new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -18,10 +22,10 @@ const BlogList = () => {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12">
             <div className="mb-12 text-center fade-in">
                 <h1 className="premium-serif text-3xl md:text-5xl font-semibold mb-4" style={{ color: colors.deepGold }}>
-                    Music for Mom Blog
+                    {isEn ? "Stories & Guide" : "Music for Mom Blog"}
                 </h1>
                 <p className="text-lg opacity-70" style={{ color: colors.warmSlate }}>
-                    임산부를 위한 태교 음악과 클래식 이야기
+                    {isEn ? "Science and tips for prenatal classical music" : "임산부를 위한 태교 음악과 클래식 이야기"}
                 </p>
             </div>
 
@@ -35,21 +39,21 @@ const BlogList = () => {
                         <div className="p-6 flex flex-col flex-1">
                             <div className="flex items-center gap-2 mb-3">
                                 <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full bg-white/50" style={{ color: colors.deepGold }}>
-                                    {post.category}
+                                    {isEn ? post.categoryEn : post.category}
                                 </span>
                                 <span className="text-[10px] opacity-50">{post.date}</span>
                             </div>
                             <h2 className="premium-serif text-xl font-bold mb-3 leading-tight" style={{ color: colors.warmSlate }}>
-                                {post.title}
+                                {isEn ? post.titleEn : post.title}
                             </h2>
                             <p className="text-sm opacity-70 mb-6 flex-1 line-clamp-3">
-                                {post.excerpt}
+                                {isEn ? post.excerptEn : post.excerpt}
                             </p>
                             <button
                                 className="text-xs font-bold uppercase tracking-widest flex items-center gap-1 group"
                                 style={{ color: colors.deepGold }}
                             >
-                                더 읽어보기
+                                {t('homeSections.readMore')}
                                 <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
                             </button>
                         </div>
