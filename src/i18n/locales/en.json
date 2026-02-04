@@ -141,5 +141,31 @@
     "autoRefundSuccess": "⚠️ Payment processing error.\n\nAutomatically refunded.\nPlease try again.",
     "autoRefundFailed": "⚠️ Payment processing error.\n\nAutomatic refund failed.\nPlease contact us via email for a quick refund.\n\n📧 nantenewyork@gmail.com",
     "checkoutId": "[Checkout ID: {{id}}]"
+  },
+  "nav": {
+    "home": "Home",
+    "guide": "Guide",
+    "blog": "Blog",
+    "freeTrial": "3-Day Free Trial",
+    "library": "Library",
+    "about": "About",
+    "myPage": "My Page",
+    "signOut": "Sign Out",
+    "login": "Log In",
+    "myInfo": "My Info"
+  },
+  "homeSections": {
+    "wellbeingTitle": "The Art of Maternal Wellbeing",
+    "wellbeingDesc": "Like a master's delicate brushstroke, specific sound frequencies create a living masterpiece of calm for both mother and child.",
+    "goldenTitle": "Golden Serenity",
+    "goldenDesc": "Harmonic frequencies reduce maternal cortisol levels, inviting a state of pure, golden relaxation during pregnancy.",
+    "naturalTitle": "Natural Growth",
+    "naturalDesc": "Complex melodic patterns act as organic stimuli for early neural pathways in your baby's delicate development.",
+    "soulfulTitle": "Soulful Connection",
+    "soulfulDesc": "Shared auditory textures foster an emotional resonance that paints a unique, lifelong bond between you and your little one.",
+    "blogTitle": "Stories & Guide",
+    "blogSubtitle": "Science and tips for prenatal classical music from experts",
+    "viewAllBlog": "View All",
+    "readMore": "Read More"
   }
 }

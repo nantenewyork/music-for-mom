@@ -373,9 +373,9 @@ function App() {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-4 sm:gap-6">
-              <button onClick={() => navigate('/')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>Home</button>
-              <button onClick={() => navigate('/guide')} className="text-xs sm:text-sm font-bold uppercase tracking-tight transition-colors hover:opacity-70" style={{ color: colors.deepGold }}>Guide</button>
-              <button onClick={() => navigate('/blog')} className="text-xs sm:text-sm font-bold uppercase tracking-tight transition-colors hover:opacity-70" style={{ color: colors.deepGold }}>Blog</button>
+              <button onClick={() => navigate('/')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>{t('nav.home')}</button>
+              <button onClick={() => navigate('/guide')} className="text-xs sm:text-sm font-bold uppercase tracking-tight transition-colors hover:opacity-70" style={{ color: colors.deepGold }}>{t('nav.guide')}</button>
+              <button onClick={() => navigate('/blog')} className="text-xs sm:text-sm font-bold uppercase tracking-tight transition-colors hover:opacity-70" style={{ color: colors.deepGold }}>{t('nav.blog')}</button>
 
               {/* Free Trial CTA */}
               <button
@@ -387,19 +387,19 @@ function App() {
                 }}
               >
                 <span className="material-symbols-outlined text-sm">star</span>
-                <span>3일 무료 체험</span>
+                <span>{t('nav.freeTrial')}</span>
               </button>
 
               <button onClick={handleGoToLibrary} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>{t('header.library')}</button>
-              <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>About</button>
+              <button onClick={() => navigate('/about')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>{t('nav.about')}</button>
               {session ? (
                 <>
-                  <button onClick={() => navigate('/mypage')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>My Page</button>
+                  <button onClick={() => navigate('/mypage')} className="text-sm font-semibold transition-colors hover:opacity-70" style={{ color: `${colors.deepGold}cc` }}>{t('nav.myPage')}</button>
                   <button
                     onClick={handleSignOut}
                     className="text-sm font-bold px-4 py-2 rounded-full border border-amber-600/30 text-amber-800 hover:bg-amber-600 hover:text-white transition-all"
                   >
-                    Sign Out
+                    {t('nav.signOut')}
                   </button>
                 </>
               ) : (
@@ -407,7 +407,7 @@ function App() {
                   onClick={() => navigate('/login')}
                   className="text-sm font-bold px-4 py-2 rounded-full bg-amber-600 text-white hover:bg-amber-700 transition-all shadow-md"
                 >
-                  Login
+                  {t('nav.login')}
                 </button>
               )}
             </nav>
@@ -415,8 +415,8 @@ function App() {
             {/* Right Side Icons & Mobile Menu Items */}
             <div className="flex items-center gap-2 sm:gap-4">
               <nav className="flex md:hidden items-center gap-3 mr-2">
-                <button onClick={() => navigate('/guide')} className="text-xs font-bold uppercase tracking-tight" style={{ color: colors.deepGold }}>Guide</button>
-                <button onClick={() => navigate('/blog')} className="text-xs font-bold uppercase tracking-tight" style={{ color: colors.deepGold }}>Blog</button>
+                <button onClick={() => navigate('/guide')} className="text-xs font-bold uppercase tracking-tight" style={{ color: colors.deepGold }}>{t('nav.guide')}</button>
+                <button onClick={() => navigate('/blog')} className="text-xs font-bold uppercase tracking-tight" style={{ color: colors.deepGold }}>{t('nav.blog')}</button>
                 <button
                   onClick={() => navigate('/paywall')}
                   className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold text-white shadow-sm"
@@ -425,7 +425,7 @@ function App() {
                   }}
                 >
                   <span className="material-symbols-outlined text-[12px]">star</span>
-                  <span>3일 무료</span>
+                  <span>{t('nav.freeTrial')}</span>
                 </button>
               </nav>
               <LanguageSwitch />
@@ -438,9 +438,9 @@ function App() {
               </button>
               <div className="md:hidden">
                 {session ? (
-                  <button onClick={() => navigate('/mypage')} className="ml-2 text-xs font-bold text-amber-800">My Info</button>
+                  <button onClick={() => navigate('/mypage')} className="ml-2 text-xs font-bold text-amber-800">{t('nav.myInfo')}</button>
                 ) : (
-                  <button onClick={() => navigate('/login')} className="ml-2 text-xs font-bold text-amber-800">Log In</button>
+                  <button onClick={() => navigate('/login')} className="ml-2 text-xs font-bold text-amber-800">{t('nav.login')}</button>
                 )}
               </div>
             </div>
@@ -497,7 +497,7 @@ function App() {
                         >
                           <span className="material-symbols-outlined text-green-600 group-hover:animate-bounce">star</span>
                           <span className="text-sm font-bold text-slate-700">
-                            <span className="text-green-700">3일 무료 체험</span>으로 제한 없이 듣기
+                            <span className="text-green-700">{t('nav.freeTrial')}</span>으로 제한 없이 듣기
                           </span>
                           <span className="material-symbols-outlined text-slate-400 text-sm">arrow_forward</span>
                         </button>
