@@ -12,7 +12,7 @@ const BlogPost = () => {
     const navigate = useNavigate()
     const { i18n, t } = useTranslation()
     const post = blogPosts.find(p => p.id === id)
-    const isEn = i18n.language === 'en'
+    const isEn = i18n.language?.startsWith('en')
 
     if (!post) {
         return (

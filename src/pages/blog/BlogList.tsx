@@ -11,7 +11,7 @@ const BlogList = () => {
     const navigate = useNavigate()
 
     const { i18n, t } = useTranslation()
-    const isEn = i18n.language === 'en'
+    const isEn = i18n.language?.startsWith('en')
 
     // Sort posts by date (newest first)
     const sortedPosts = [...blogPosts].sort((a, b) =>
