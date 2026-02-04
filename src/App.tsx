@@ -513,7 +513,7 @@ function App() {
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/library" element={<LibraryPage savedMusic={savedMusic} onRemove={handleRemoveFromLibrary} onBack={() => navigate('/')} />} />
-          <Route path="/paywall" element={<PaywallPage onPurchaseSuccess={handlePurchaseSuccess} onNavigate={(p) => navigate(`/${p}`)} userId={session?.user.id} userEmail={session?.user.email} />} />
+          <Route path="/paywall" element={<PaywallPage onNavigate={(p) => navigate(`/${p}`)} userId={session?.user.id} userEmail={session?.user.email} />} />
           <Route path="/terms" element={<TermsPage onBack={() => navigate('/')} />} />
           <Route path="/refund" element={<RefundPage onBack={() => navigate('/')} />} />
           <Route path="/privacy" element={<PrivacyPage onBack={() => navigate('/')} />} />

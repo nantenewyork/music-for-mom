@@ -1,7 +1,6 @@
 import PaymentButton from './PaymentButton'
 
 interface PaywallPageProps {
-    onPurchaseSuccess: () => void
     onNavigate?: (page: 'terms' | 'refund' | 'privacy') => void
     userId?: string
     userEmail?: string
@@ -35,7 +34,7 @@ const styles = {
     },
 }
 
-function PaywallPage({ onPurchaseSuccess, onNavigate, userId, userEmail }: PaywallPageProps) {
+function PaywallPage({ onNavigate, userId, userEmail }: PaywallPageProps) {
 
     const problems = [
         { icon: 'search', text: '태교 음악 찾는 데 매일 30분씩 소비' },
@@ -179,7 +178,6 @@ function PaywallPage({ onPurchaseSuccess, onNavigate, userId, userEmail }: Paywa
                         {/* CTA */}
                         <div>
                             <PaymentButton
-                                onSuccess={onPurchaseSuccess}
                                 onNavigateToTerms={() => onNavigate?.('terms')}
                                 onNavigateToRefund={() => onNavigate?.('refund')}
                                 onNavigateToPrivacy={() => onNavigate?.('privacy')}

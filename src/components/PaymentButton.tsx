@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 interface PaymentButtonProps {
-    onSuccess?: () => void
     onNavigateToTerms?: () => void
     onNavigateToRefund?: () => void
     onNavigateToPrivacy?: () => void
@@ -16,7 +15,7 @@ const colors = {
     warmSlate: '#475569',
 }
 
-function PaymentButton({ onSuccess, onNavigateToTerms, onNavigateToRefund, onNavigateToPrivacy, userId, userEmail }: PaymentButtonProps) {
+function PaymentButton({ onNavigateToTerms, onNavigateToRefund, onNavigateToPrivacy, userId, userEmail }: PaymentButtonProps) {
     const { t } = useTranslation()
     const [loading, setLoading] = useState(false)
     const [agreedTerms, setAgreedTerms] = useState(false)
