@@ -512,5 +512,59 @@ export const blogPosts: BlogPost[] = [
         <p>Try listening with a cup of tea on a rainy afternoon or at sunset. You will feel peace filling up deep inside your heart.</p>
       </section>
     `
+  },
+  {
+    id: 'satie-gymnopedie-no1-story',
+    title: "[태교 클래식] 에릭 사티 '짐노페디 1번': 고요함 속에서 만나는 마음의 쉼표",
+    titleEn: "[Classical Focus] Erik Satie 'Gymnopédie No. 1': A Relief for the Heart in Silence",
+    date: '2026-02-06',
+    category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
+    excerpt: "\"가구 음악\"의 시초, 에릭 사티가 전하는 몽환적이고 신비로운 위로. 복잡한 마음을 비워내는 미니멀리즘의 미학.",
+    excerptEn: "The pioneer of \"Furniture Music,\" Erik Satie conveys dreamy and mysterious comfort. The aesthetics of minimalism to empty a complex mind.",
+    content: `
+      <section>
+        <h2>1. 괴짜와 혁명가 사이, 에릭 사티</h2>
+        <p>에릭 사티(Erik Satie)는 당대 주류였던 낭만주의 음악의 과도한 감정 표현과 웅장함을 거부했던 독창적인 작곡가입니다. 그는 음악이 감상자를 압도하거나 주의를 끌지 않고, 마치 가구처럼 그 공간에 자연스럽게 녹아들어야 한다고 생각했습니다. 이러한 그의 철학은 훗날 '미니멀리즘'과 '앰비언트 뮤직'의 탄생에 지대한 영향을 끼쳤습니다.</p>
+      </section>
+
+      <section>
+        <h2>2. 짐노페디(Gymnopédie): 고대 그리스의 춤</h2>
+        <p>1888년 작곡된 이 곡의 제목은 고대 그리스 축제에서 젊은이들이 추던 춤에서 유래했다고 알려져 있습니다. 3/4박자의 느린 왈츠 리듬을 타고 흐르는 절제된 선율은, 마치 시간이 멈춘 듯한 신비롭고 몽환적인 분위기를 자아냅니다. 기쁨과 슬픔, 그 어느 쪽에도 치우치지 않는 담담한 선율은 듣는 이로 하여금 묘한 해방감을 느끼게 합니다.</p>
+      </section>
+
+      <section>
+        <h2>3. 태교를 위한 감상 포인트</h2>
+        <p><strong>마음의 여백 만들기:</strong> 임신 중에는 호르몬 변화와 출산에 대한 두려움으로 머릿속이 복잡해지기 쉽습니다. 짐노페디의 단순하고 반복적인 음들은 복잡한 생각들을 지우고, 뇌가 쉴 수 있는 '여백'을 만들어줍니다.</p>
+        <p><strong>아기에게 전하는 차분한 호흡:</strong> 음과 음 사이의 충분한 침묵은 엄마와 아기 모두에게 깊은 호흡을 할 수 있는 여유를 선물합니다. 화려하지 않지만 투명한 피아노 소리는 태아의 청각을 자극하지 않으면서도 편안한 안도감을 줍니다.</p>
+      </section>
+
+      <section>
+        <h2>4. 함께 들으면 좋은 시간</h2>
+        <p>입덧으로 인해 예민해져 있거나, 불면증으로 잠 못 이루는 새벽에 듣기를 추천합니다. 눈을 감고 소리가 공기 중에 퍼졌다 사라지는 잔향을 느껴보세요. 무거운 몸과 마음이 깃털처럼 가벼워지는 것을 경험할 수 있습니다.</p>
+      </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. Between Eccentric and Revolutionary, Erik Satie</h2>
+        <p>Erik Satie was a unique composer who rejected the excessive emotional expression and grandeur of Romantic music, which was mainstream at the time. He believed that music should not overwhelm or demand the listener's attention but should blend naturally into the space like furniture. His philosophy greatly influenced the birth of 'Minimalism' and 'Ambient Music'.</p>
+      </section>
+
+      <section>
+        <h2>2. Gymnopédie: Dance of Ancient Greece</h2>
+        <p>Composed in 1888, the title is said to originate from dances performed by youths at ancient Greek festivals. The restrained melody flowing on a slow 3/4 waltz rhythm creates a mysterious and dreamy atmosphere as if time has stopped. The calm melody, neither joyful nor sad, gives the listener a strange sense of liberation.</p>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Creating Space in the Mind:</strong> During pregnancy, it is easy for the mind to become cluttered due to hormonal changes and fear of childbirth. The simple and repetitive notes of Gymnopédie erase complex thoughts and create 'space' for the brain to rest.</p>
+        <p><strong>Calm Breathing for Baby:</strong> The ample silence between notes gives both mom and baby room to breathe deeply. The transparent piano sound, while not flashy, gives comfortable relief without irritating the fetus's hearing.</p>
+      </section>
+
+      <section>
+        <h2>4. Best Time to Listen</h2>
+        <p>Recommended when sensitive due to morning sickness or during sleepless nights. Close your eyes and feel the reverberation of sound spreading and vanishing in the air. You can experience your heavy body and mind becoming as light as a feather.</p>
+      </section>
+    `
   }
 ];
