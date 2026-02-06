@@ -4,6 +4,7 @@ import { blogPosts } from '../pages/blog/blogData'
 
 const colors = {
     deepGold: '#b45309',
+    primaryWarm: '#d97706',
     warmSlate: '#475569',
     softBeige: '#fffbf0',
     ochreGlow: '#fef3c7',
