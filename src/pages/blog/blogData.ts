@@ -517,7 +517,7 @@ export const blogPosts: BlogPost[] = [
     id: 'satie-gymnopedie-no1-story',
     title: "[태교 클래식] 에릭 사티 '짐노페디 1번': 고요함 속에서 만나는 마음의 쉼표",
     titleEn: "[Classical Focus] Erik Satie 'Gymnopédie No. 1': A Relief for the Heart in Silence",
-    date: '2026-02-04',
+    date: '2026-02-07',
     category: '명곡 해설',
     categoryEn: 'Masterpiece Guide',
     excerpt: "\"가구 음악\"의 시초, 에릭 사티가 전하는 몽환적이고 신비로운 위로. 복잡한 마음을 비워내는 미니멀리즘의 미학.",
