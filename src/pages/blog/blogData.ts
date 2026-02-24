@@ -566,5 +566,555 @@ export const blogPosts: BlogPost[] = [
         <p>Recommended when sensitive due to morning sickness or during sleepless nights. Close your eyes and feel the reverberation of sound spreading and vanishing in the air. You can experience your heavy body and mind becoming as light as a feather.</p>
       </section>
     `
+  },
+  {
+    id: 'vivaldi-four-seasons-sensory',
+    title: '[태교 클래식] 비발디 ‘사계’: 뱃속에서 느끼는 사계절의 감각 자극',
+    titleEn: '[Classical Focus] Vivaldi \'The Four Seasons\': Seasonal Sensory Stimulation for the Womb',
+    date: '2026-02-10',
+    category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
+    excerpt: '봄의 생동감부터 겨울의 포근함까지. 비발디의 걸작이 태아의 오감을 깨우는 다채로운 소리의 풍경.',
+    excerptEn: 'From the vitality of spring to the coziness of winter. Vivaldi\'s masterpiece offers colorful soundscapes that awaken the fetus\'s five senses.',
+    content: `
+      <section>
+        <h2>1. 자연을 그린 소리의 화가, 안토니오 비발디</h2>
+        <p>이탈리아의 작곡가 안토니오 비발디(Antonio Vivaldi)는 ‘붉은 머리의 사제’라는 별명으로 불렸습니다. 그는 바이올린의 기교를 극한으로 끌어올리며, 음악으로 풍경을 그리는 데 탁월한 재능을 보였습니다. 그의 대표작 ‘사계(The Four Seasons)’는 계절의 변화를 생생한 소리로 표현한 표제 음악의 효시로 평가받습니다.</p>
+      </section>
+
+      <section>
+        <h2>2. 사계절이 주는 다양한 청각 자극</h2>
+        <p>비발디의 사계는 각 계절마다 뚜렷하게 다른 분위기와 리듬을 가지고 있어, 태아에게 다양한 청각적 자극을 줄 수 있는 최고의 교재입니다.</p>
+        <ul>
+          <li><strong>봄(Spring):</strong> 새들의 지저귐과 시냇물 소리를 묘사한 바이올린 선율은 태아의 뇌세포를 깨우는 맑고 경쾌한 자극을 줍니다.</li>
+          <li><strong>여름(Summer):</strong> 나른한 오후와 폭풍우의 역동성은 리듬감을 키워줍니다.</li>
+          <li><strong>가을(Autumn):</strong> 수확의 기쁨과 사냥의 흥겨움은 긍정적인 에너지를 전달합니다.</li>
+          <li><strong>겨울(Winter):</strong> 차가운 바람 뒤에 찾아오는 난로가의 따스함은 포근한 안정감을 줍니다.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. 태교를 위한 감상 포인트</h2>
+        <p><strong>오감 발달을 위한 상상 태교:</strong> 음악을 들으며 아기에게 계절의 이미지를 설명해 주세요. “우리 아기, 지금은 꽃이 활짝 핀 봄이야. 따뜻한 햇살이 느껴지니?”라고 말을 걸며 듣는 것이 중요합니다. 다양한 빠르기와 강약의 변화는 태아의 신경 회로를 다채롭게 자극하여 감성 지능(EQ) 발달에 도움을 줍니다.</p>
+      </section>
+
+      <section>
+        <h2>4. 추천 감상 시간</h2>
+        <p>계절의 변화가 느껴지는 아침이나, 산책을 다녀온 후 휴식 시간에 듣기를 추천합니다. 특히 ‘봄’ 1악장은 아침을 여는 기상 음악으로 아주 좋습니다.</p>
+      </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. Antonio Vivaldi, the Painter of Sound</h2>
+        <p>Italian composer Antonio Vivaldi was nicknamed the ‘Red Priest’. He pushed the limits of violin technique and showed exceptional talent in painting landscapes with music. His masterpiece, ‘The Four Seasons’, is considered the precursor to program music, vividly expressing the changing seasons through sound.</p>
+      </section>
+
+      <section>
+        <h2>2. Diverse Auditory Stimulation from Four Seasons</h2>
+        <p>Vivaldi's Four Seasons has a distinctly different atmosphere and rhythm for each season, making it the best textbook for providing diverse auditory stimulation to the fetus.</p>
+        <ul>
+          <li><strong>Spring:</strong> Violin melodies depicting birds chirping and streams flowing give clear and cheerful stimulation that awakens fetal brain cells.</li>
+          <li><strong>Summer:</strong> The languid afternoon and dynamics of a storm cultivate a sense of rhythm.</li>
+          <li><strong>Autumn:</strong> The joy of harvest and the excitement of the hunt convey positive energy.</li>
+          <li><strong>Winter:</strong> The warmth by the fireplace after the cold wind gives a cozy sense of security.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Imaginative Prenatal Care for Sensory Development:</strong> Describe the images of the seasons to your baby while listening. It creates a richer experience if you say, "Baby, it's spring with flowers in full bloom. Can you feel the warm sunshine?" The variations in tempo and dynamics stimulate the fetus's neural circuits in various ways, helping emotional intelligence (EQ) development.</p>
+      </section>
+
+      <section>
+        <h2>4. Recommended Listening Time</h2>
+        <p>Recommended for mornings when you feel the change of seasons or during rest after a walk. In particular, the first movement of ‘Spring’ is excellent as wake-up music.</p>
+      </section>
+    `
+  },
+  {
+    id: 'beethoven-emperor-confidence',
+    title: '[태교 클래식] 베토벤 피아노 협주곡 5번 ‘황제’: 우리 아이, 자신감 넘치는 리더로',
+    titleEn: '[Classical Focus] Beethoven Piano Concerto No. 5 \'Emperor\': Raising a Confident Leader',
+    date: '2026-02-12',
+    category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
+    excerpt: '웅장하고 당당한 기상이 느껴지는 베토벤의 역작. 태아에게 긍정적인 에너지와 자신감을 심어주는 음악.',
+    excerptEn: 'Beethoven\'s masterpiece felt with majestic and dignified spirit. Music that instills positive energy and confidence in the fetus.',
+    content: `
+      <section>
+        <h2>1. 고난을 넘어 환희로, 악성 베토벤</h2>
+        <p>루트비히 판 베토벤(Ludwig van Beethoven)은 청각 상실이라는 음악가로서 치명적인 시련을 이겨내고 불멸의 명곡들을 남겼습니다. 그의 음악에는 운명에 굴하지 않는 불굴의 의지와 인간 승리의 드라마가 담겨 있습니다. 이는 뱃속의 아기에게 강인한 생명력과 용기를 전달하는 훌륭한 매개체가 됩니다.</p>
+      </section>
+
+      <section>
+        <h2>2. 왜 ‘황제(Emperor)’인가?</h2>
+        <p>피아노 협주곡 5번은 그 규모와 내용 면에서 타의 추종을 불허할 만큼 웅장하고 당당하여 ‘황제’라는 별칭이 붙었습니다. 특히 1악장의 도입부는 오케스트라의 힘찬 화음과 화려한 피아노 카덴차가 어우러져 듣는 이에게 가슴 벅찬 감동과 호연지기를 느끼게 합니다.</p>
+      </section>
+
+      <section>
+        <h2>3. 태교를 위한 감상 포인트</h2>
+        <p><strong>자신감과 리더십 배양:</strong> 이 곡의 힘차고 긍정적인 에너지는 태아에게 "넌 할 수 있어", "넌 아주 소중한 존재야"라고 말해주는 듯한 자신감을 심어줍니다. 씩씩하고 활발한 아이로 자라기를 바라는 마음을 담아 감상해 보세요.</p>
+        <p><strong>엄마의 우울감 해소:</strong> 임신 중 찾아올 수 있는 무기력함이나 우울감을 날려버리는 데 탁월합니다. 웅장한 오케스트라 사운드가 가슴을 뻥 뚫어주는 시원한 카타르시스를 선사합니다.</p>
+      </section>
+
+      <section>
+        <h2>4. 함께 들으면 좋은 시간</h2>
+        <p>나른한 오후, 활력이 필요할 때나 태동이 활발할 때 들으면 좋습니다. 아기가 뱃속에서 힘차게 발길질을 할 때, "우리 아기 아주 튼튼하네!"라고 칭찬하며 함께 들어보세요.</p>
+      </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. Beyond Hardship to Joy, Beethoven</h2>
+        <p>Ludwig van Beethoven overcame the fatal trial of hearing loss and left immortal masterpieces. His music contains an indomitable will not to yield to fate and the drama of human victory. This serves as an excellent medium to convey strong vitality and courage to the baby in the womb.</p>
+      </section>
+
+      <section>
+        <h2>2. Why 'Emperor'?</h2>
+        <p>Piano Concerto No. 5 is nicknamed 'Emperor' because it is majestic and dignified enough to be unrivaled in scale and content. Specifically, the introduction of the first movement combines the powerful harmony of the orchestra and the flashy piano cadenza, giving the listener overwhelming emotion and adventurous spirit.</p>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Cultivating Confidence and Leadership:</strong> The powerful and positive energy of this song instills confidence in the fetus as if saying "You can do it," "You are a very precious being." Listen with the hope that your child grows up to be brave and active.</p>
+        <p><strong>Relieving Mom's Depression:</strong> It is excellent for blowing away lethargy or depression that may come during pregnancy. The majestic orchestra sound provides a refreshing catharsis.</p>
+      </section>
+
+      <section>
+        <h2>4. Best Time to Listen</h2>
+        <p>Good to listen to on a languid afternoon when you need vitality or when fetal movement is active. When the baby kicks vigorously in the belly, listen together praising, "Our baby is very strong!"</p>
+      </section>
+    `
+  },
+  {
+    id: 'schubert-serenade-romance',
+    title: '[태교 클래식] 슈베르트 ‘세레나데’: 사랑을 속삭이는 가장 로맨틱한 선율',
+    titleEn: '[Classical Focus] Schubert \'Serenade\': The Most Romantic Melody Whispering Love',
+    date: '2026-02-14',
+    category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
+    excerpt: '가곡의 왕 슈베르트가 남긴 애절하고 아름다운 사랑의 노래. 태아와 엄마의 정서적 유대감을 깊게 해주는 감성 태교.',
+    excerptEn: 'A sorrowful and beautiful love song left by the King of Lieder, Schubert. Emotional prenatal care that deepens the emotional bond between fetus and mother.',
+    content: `
+      <section>
+        <h2>1. 가곡의 왕, 프란츠 슈베르트</h2>
+        <p>슈베르트(Franz Schubert)는 짧은 생애 동안 600여 곡의 가곡을 작곡하며 ‘가곡의 왕’이라 불립니다. 그의 음악은 시적인 감수성과 아름다운 멜로디가 특징이며, 사람의 목소리와 가장 닮은 악기들의 선율을 통해 듣는 이의 마음을 파고듭니다.</p>
+      </section>
+
+      <section>
+        <h2>2. 연인을 향한 간절한 호소, 세레나데</h2>
+        <p>‘백조의 노래’ 중 4번째 곡인 ‘세레나데(Serenade)’는 밤에 연인의 창가에서 부르는 사랑 노래입니다. 단조와 장조를 오가며 흔들리는 연심을 표현한 이 곡은, 애절하면서도 감미로운 선율로 전 세계인의 사랑을 받고 있습니다.</p>
+      </section>
+
+      <section>
+        <h2>3. 태교를 위한 감상 포인트</h2>
+        <p><strong>사랑의 언어 전달:</strong> 이 곡은 멜로디 자체가 ‘사랑’이라는 감정을 담고 있습니다. 음악을 들으며 아기에게 “엄마 아빠가 너를 얼마나 기다리고 사랑하는지 아니?”라고 속삭여주세요. 엄마의 사랑이 담긴 호르몬이 탯줄을 통해 아기에게 그대로 전달됩니다.</p>
+        <p><strong>감수성 발달:</strong> 서정적이고 감상적인 멜로디는 태아의 우뇌를 자극하여 풍부한 감수성과 공감 능력을 키워주는 데 도움을 줍니다.</p>
+      </section>
+
+      <section>
+        <h2>4. 함께 들으면 좋은 시간</h2>
+        <p>잠들기 전 침대에 누워 편안하게 감상해 보세요. 부부가 함께 들으며 서로에 대한 애정과 아기에 대한 사랑을 확인하는 시간을 갖는다면 최고의 태교가 될 것입니다.</p>
+      </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. King of Lieder, Franz Schubert</h2>
+        <p>Schubert is called the 'King of Lieder', having composed over 600 songs during his short life. His music is characterized by poetic sensitivity and beautiful melodies, penetrating the listener's heart through melodies of instruments that most resemble the human voice.</p>
+      </section>
+
+      <section>
+        <h2>2. Earnest Appeal to a Lover, Serenade</h2>
+        <p>'Serenade', the 4th song in 'Schwanengesang', is a love song sung at a lover's window at night. Expressing wavering affection by switching between minor and major keys, this song is loved worldwide for its sorrowful yet sweet melody.</p>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Conveying the Language of Love:</strong> The melody itself contains the emotion of 'love'. While listening, whisper to your baby, "Do you know how much Mom and Dad are waiting for and love you?" Hormones filled with mom's love are transmitted directly to the baby through the umbilical cord.</p>
+        <p><strong>Developing Sensitivity:</strong> The lyrical and sentimental melody stimulates the fetus's right brain, helping to cultivate rich sensitivity and empathy.</p>
+      </section>
+
+      <section>
+        <h2>4. Best Time to Listen</h2>
+        <p>Try listening comfortably lying in bed before going to sleep. It would be the best prenatal care if the couple listens together, confirming their affection for each other and love for the baby.</p>
+      </section>
+    `
+  },
+  {
+    id: 'tchaikovsky-waltz-of-flowers-rhythm',
+    title: '[태교 클래식] 차이콥스키 ‘꽃의 왈츠’: 아기와 함께 추는 행복한 춤',
+    titleEn: '[Classical Focus] Tchaikovsky \'Waltz of the Flowers\': Happy Dance with Baby',
+    date: '2026-02-16',
+    category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
+    excerpt: '호두까기 인형 중 가장 화려하고 아름다운 왈츠. 태아의 리듬감을 깨우고 엔돌핀을 돌게 하는 즐거운 음악.',
+    excerptEn: 'The most splendid and beautiful waltz from The Nutcracker. Joyful music that awakens the fetus\'s sense of rhythm and circulates endorphins.',
+    content: `
+      <section>
+        <h2>1. 멜로디의 마술사, 차이콥스키</h2>
+        <p>러시아의 작곡가 표트르 일리치 차이콥스키(Pyotr Ilyich Tchaikovsky)는 발레 음악의 거장입니다. 그의 음악은 동화적인 상상력과 화려한 오케스트레이션이 특징이며, 누구나 한번 들으면 잊을 수 없는 매혹적인 선율을 자랑합니다.</p>
+      </section>
+
+      <section>
+        <h2>2. 환상의 나라로 초대, 꽃의 왈츠</h2>
+        <p>발레 ‘호두까기 인형’ 2막에 등장하는 ‘꽃의 왈츠(Waltz of the Flowers)’는 크리스마스 시즌에 가장 많이 울려 퍼지는 곡 중 하나입니다. 하프의 영롱한 도입부와 이어지는 호른, 현악기의 우아한 왈츠 리듬은 마치 꽃들이 춤을 추는 듯한 환상적인 분위기를 자아냅니다.</p>
+      </section>
+
+      <section>
+        <h2>3. 태교를 위한 감상 포인트</h2>
+        <p><strong>리듬감 형성과 신체 발달:</strong> 3/4박자의 쿵-짝-짝 왈츠 리듬은 태아에게 규칙적인 리듬감을 익히게 해줍니다. 엄마가 리듬에 맞춰 가볍게 몸을 흔들거나 배를 토닥여주면, 태아의 평형 감각과 신체 발달에도 긍정적인 영향을 미칩니다.</p>
+        <p><strong>행복 호르몬 분비:</strong> 밝고 화사한 선율은 듣는 즉시 기분을 좋게 만들어, 엄마 몸속에 엔돌핀이 돌게 합니다. 이는 태아에게도 고스란히 전달되어 ‘행복한 아기’로 자라게 합니다.</p>
+      </section>
+
+      <section>
+        <h2>4. 함께 들으면 좋은 시간</h2>
+        <p>집안일을 할 때나 가벼운 스트레칭을 할 때 배경음악으로 활용해 보세요. 우울하거나 짜증이 날 때 기분 전환용으로도 강력 추천합니다.</p>
+      </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. Magician of Melody, Tchaikovsky</h2>
+        <p>Russian composer Pyotr Ilyich Tchaikovsky is a master of ballet music. His music is characterized by fairy-tale imagination and magnificent orchestration, boasting captivating melodies that no one can forget once heard.</p>
+      </section>
+
+      <section>
+        <h2>2. Invitation to a Fantasy Land, Waltz of the Flowers</h2>
+        <p>'Waltz of the Flowers', appearing in Act 2 of the ballet 'The Nutcracker', is one of the most played songs during the Christmas season. The lucid harp introduction followed by the elegant waltz rhythm of horns and strings create a fantastic atmosphere as if flowers are dancing.</p>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Rhythm Formation and Physical Development:</strong> The 3/4 waltz rhythm helps the fetus learn a regular sense of rhythm. If mom sways her body lightly or pats her belly to the rhythm, it positively affects the fetus's sense of balance and physical development.</p>
+        <p><strong>Secretion of Happy Hormones:</strong> The bright and radiant melody improves the mood immediately upon listening, circulating endorphins in mom's body. This is transmitted to the fetus, helping it grow into a 'happy baby'.</p>
+      </section>
+
+      <section>
+        <h2>4. Best Time to Listen</h2>
+        <p>Use it as background music when doing house chores or light stretching. Strongly recommended for mood enhancement when feeling depressed or irritable.</p>
+      </section>
+    `
+  },
+  {
+    id: 'haydn-serenade-bright-mind',
+    title: '[태교 클래식] 하이든 현악 4중주 ‘세레나데’: 똑똑한 아기를 위한 명랑한 울림',
+    titleEn: '[Classical Focus] Haydn String Quartet \'Serenade\': Cheerful Resonance for a Smart Baby',
+    date: '2026-02-18',
+    category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
+    excerpt: '교향곡의 아버지 하이든의 밝고 순수한 선율. 태아의 두뇌를 맑게 하고 긍정적인 성격을 만들어주는 명랑한 곡.',
+    excerptEn: 'Bright and pure melody of Haydn, the Father of the Symphony. Cheerful song that clears the fetus\'s brain and builds a positive personality.',
+    content: `
+      <section>
+        <h2>1. 유머와 위트의 음악가, 요제프 하이든</h2>
+        <p>하이든(Joseph Haydn)은 소나타 형식을 완성한 고전파의 거장으로, 모차르트와 베토벤에게도 큰 영향을 주었습니다. 그의 음악은 언제나 밝고 건전하며, 유머러스한 재치로 가득 차 있어 ‘파파 하이든’이라는 친근한 애칭으로 불리기도 합니다.</p>
+      </section>
+
+      <section>
+        <h2>2. 단순함 속에 깃든 순수함, 세레나데</h2>
+        <p>현악 4중주 F장조의 2악장은 우리에게 ‘하이든의 세레나데’로 널리 알려져 있습니다(실제로는 호프슈테터의 곡이라는 설도 있습니다). 바이올린이 주도하는 사랑스럽고 소박한 멜로디는 마치 어린아이의 웃음소리처럼 순수하고 꾸밈이 없습니다.</p>
+      </section>
+
+      <section>
+        <h2>3. 태교를 위한 감상 포인트</h2>
+        <p><strong>두뇌 명석함과 논리력:</strong> 하이든 음악의 간결하고 명확한 형식미는 태아의 뇌가 복잡하지 않게 받아들일 수 있는 최적의 자극입니다. 군더더기 없는 깔끔한 선율은 사고를 명료하게 하고 집중력을 높여줍니다.</p>
+        <p><strong>긍정적인 성격 형성:</strong> 맑고 경쾌한 현악기의 피치카토(현을 뜯는 연주법)는 태아에게 즐거운 자극을 줍니다. 걱정 근심 없는 밝은 에너지는 아이가 긍정적이고 낙천적인 성격을 형성하는 데 도움을 줍니다.</p>
+      </section>
+
+      <section>
+        <h2>4. 함께 들으면 좋은 시간</h2>
+        <p>아침 식사 시간이나 태교 동화를 읽어줄 때 배경음악으로 틀어놓기 좋습니다. 밝은 햇살이 들어오는 거실에서 이 곡을 들으며 태담을 나누어 보세요.</p>
+      </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. Musician of Humor and Wit, Joseph Haydn</h2>
+        <p>Haydn was a master of the Classical era who completed the sonata form, greatly influencing Mozart and Beethoven. His music is always bright, wholesome, and full of humorous wit, earning him the affectionate nickname 'Papa Haydn'.</p>
+      </section>
+
+      <section>
+        <h2>2. Purity within Simplicity, Serenade</h2>
+        <p>The second movement of the String Quartet in F Major is widely known to us as 'Haydn's Serenade' (though some say it is actually by Hoffstetter). The lovely and simple melody led by the violin is pure and unadorned like a child's laughter.</p>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Brain Clarity and Logic:</strong> The concise and clear formal beauty of Haydn's music is the optimal stimulation that the fetal brain can accept without complexity. The clean melody without superfluity clarifies thinking and improves concentration.</p>
+        <p><strong>Forming a Positive Personality:</strong> The clear and cheerful pizzicato (plucking strings) of string instruments gives joyful stimulation to the fetus. The bright energy without worries helps the child form a positive and optimistic personality.</p>
+      </section>
+
+      <section>
+        <h2>4. Best Time to Listen</h2>
+        <p>Good to play as background music during breakfast or when reading prenatal fairy tales. Chat with your baby while listening to this song in the living room with bright sunshine.</p>
+      </section>
+    `
+  },
+  {
+    id: 'mendelssohn-wings-of-song-imagination',
+    title: '[태교 클래식] 멘델스존 ‘노래의 날개 위에’: 엄마와 아기가 떠나는 상상 여행',
+    titleEn: '[Classical Focus] Mendelssohn \'On Wings of Song\': Imaginative Journey for Mom & Baby',
+    date: '2026-02-20',
+    category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
+    excerpt: '낭만적인 시와 아름다운 선율의 만남. 풍부한 상상력을 자극하고 정서적 안정을 주는 멘델스존의 명곡.',
+    excerptEn: 'Meeting of romantic poetry and beautiful melody. Mendelssohn\'s masterpiece that stimulates rich imagination and gives emotional stability.',
+    content: `
+      <section>
+        <h2>1. 행복한 천재, 펠릭스 멘델스존</h2>
+        <p>멘델스존(Felix Mendelssohn)은 부유하고 화목한 가정에서 자라 구김살 없는 밝고 우아한 음악을 많이 남겼습니다. 그의 작품은 회화적이고 묘사적이어서, 음악을 듣는 것만으로도 한 폭의 그림을 보는 듯한 느낌을 줍니다.</p>
+      </section>
+
+      <section>
+        <h2>2. 하이네의 시에 붙인 노래</h2>
+        <p>‘노래의 날개 위에(On Wings of Song)’는 독일의 시인 하이네의 시에 곡을 붙인 가곡입니다. 사랑하는 사람과 함께 노래의 날개를 타고 갠지스 강변의 아름다운 화원으로 날아가고 싶다는 낭만적인 내용을 담고 있습니다. 유려하게 흐르는 피아노 반주와 감미로운 선율은 마치 꿈속을 비행하는 듯한 느낌을 줍니다.</p>
+      </section>
+
+      <section>
+        <h2>3. 태교를 위한 감상 포인트</h2>
+        <p><strong>이미지 트레이닝 태교:</strong> 가사의 내용처럼 아기와 함께 아름다운 곳으로 여행을 떠나는 상상을 해보세요. “우리 아가, 엄마랑 시원한 바람을 타고 꽃밭으로 가볼까?”라고 생각하며 구체적인 이미지를 떠올리면, 엄마의 행복한 뇌파가 태아에게 전달되어 뇌 발달을 촉진합니다.</p>
+        <p><strong>우아한 감성 함양:</strong> 멘델스존 특유의 세련되고 기품 있는 선율은 태아에게 예술적인 감각을 심어줍니다.</p>
+      </section>
+
+      <section>
+        <h2>4. 함께 들으면 좋은 시간</h2>
+        <p>나른한 오후의 낮잠 시간이나, 태교 여행을 떠날 때 차 안에서 듣기 좋습니다. 현실의 스트레스를 잊고 환상적인 휴식을 취하고 싶을 때 추천합니다.</p>
+      </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. The Happy Genius, Felix Mendelssohn</h2>
+        <p>Mendelssohn grew up in a wealthy and harmonious family, leaving behind much bright and elegant music without wrinkles. His works are pictorial and descriptive, giving the feeling of looking at a painting just by listening.</p>
+      </section>
+
+      <section>
+        <h2>2. Song Set to Heine's Poem</h2>
+        <p>'On Wings of Song' is a Lied set to a poem by German poet Heine. It contains romantic content about wanting to fly to a beautiful garden by the Ganges River on the wings of song with a loved one. The flowing piano accompaniment and sweet melody feel like flying in a dream.</p>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Image Training Prenatal Care:</strong> Imagine traveling to a beautiful place with your baby like the lyrics. Thinking of specific images like "Baby, shall we go to a flower garden riding a cool breeze?" transmits mom's happy brainwaves to the fetus, promoting brain development.</p>
+        <p><strong>Cultivating Elegant Sensitivity:</strong> Mendelssohn's unique sophisticated and graceful melody instills an artistic sense in the fetus.</p>
+      </section>
+
+      <section>
+        <h2>4. Best Time to Listen</h2>
+        <p>Good to listen to during a nap on a lazy afternoon or in the car when going on a babymoon. Recommended when you want to forget reality's stress and take a fantastic rest.</p>
+      </section>
+    `
+  },
+  {
+    id: 'schumann-traumerei-dreams',
+    title: '[태교 클래식] 슈만 ‘트로이메라이’: 아기의 예쁜 꿈을 위한 자장가',
+    titleEn: '[Classical Focus] Schumann \'Träumerei\': A Lullaby for Baby\'s Sweet Dreams',
+    date: '2026-02-22',
+    category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
+    excerpt: '어른들을 위한 동화, 어린이 정경 중 가장 유명한 곡. 꿈꾸는 듯한 몽환적인 선율이 선사하는 깊은 휴식.',
+    excerptEn: 'Fairy tale for adults, the most famous piece from Scenes from Childhood. Deep relaxation presented by dreamy melodies.',
+    content: `
+      <section>
+        <h2>1. 동심을 노래한 시인, 로베르트 슈만</h2>
+        <p>슈만(Robert Schumann)은 음악을 통해 시적인 감정을 표현하는 데 탁월했습니다. ‘어린이 정경(Kinderszenen)’은 그가 어린 시절의 추억과 동심을 회상하며 쓴 피아노 모음곡으로, 아이들의 순수한 세계를 어른의 시선으로 아름답게 그려냈습니다.</p>
+      </section>
+
+      <section>
+        <h2>2. 꿈(Traumerei)을 꾸는 듯한 선율</h2>
+        <p>모음곡 중 7번째 곡인 ‘트로이메라이(Träumerei)’는 ‘꿈’이라는 뜻을 가지고 있습니다. 단순해 보이지만 신비로운 화성 진행과 부드러운 멜로디 라인은 듣는 이를 순식간에 꿈의 세계로 인도합니다. 전 세계적으로 가장 사랑받는 앙코르 곡이자 자장가 중 하나입니다.</p>
+      </section>
+
+      <section>
+        <h2>3. 태교를 위한 감상 포인트</h2>
+        <p><strong>깊은 이완과 숙면 유도:</strong> 느리고 서정적인 템포는 심박수를 낮추고 부교감 신경을 활성화하여 엄마와 태아 모두를 깊은 이완 상태로 이끕니다. 잠투정이 심한 신생아에게 들려주어도 효과가 좋습니다.</p>
+        <p><strong>상상력과 창의력 발달:</strong> 몽환적인 분위기는 뇌의 알파파를 유도하여 창의적인 사고를 돕습니다. 아기가 뱃속에서 예쁜 꿈을 꿀 수 있도록 잠들기 전에 들려주세요.</p>
+      </section>
+
+      <section>
+        <h2>4. 함께 들으면 좋은 시간</h2>
+        <p>잠자리에 들기 전, 조명을 어둡게 하고 하루를 마무리하는 시간에 가장 적합합니다. 엄마가 먼저 편안한 마음으로 이 곡을 들으며 잠을 청하면 아기도 따라 편안해집니다.</p>
+      </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. Poet Who Sang Childhood, Robert Schumann</h2>
+        <p>Schumann excelled at expressing poetic emotions through music. 'Scenes from Childhood (Kinderszenen)' is a piano suite written recalling childhood memories, beautifully depicting the pure world of children from an adult's perspective.</p>
+      </section>
+
+      <section>
+        <h2>2. Melody like Dreaming (Träumerei)</h2>
+        <p>The 7th piece of the suite, 'Träumerei', means 'Dream'. The simple yet mysterious harmonic progression and soft melody line instantly lead the listener to a world of dreams. It is one of the most loved encores and lullabies globally.</p>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Deep Relaxation and Sleep Induction:</strong> The slow and lyrical tempo lowers the heart rate and activates the parasympathetic nervous system, leading both mom and fetus to a deep state of relaxation. It is also effective for fussy newborns.</p>
+        <p><strong>Development of Imagination and Creativity:</strong> The dreamy atmosphere induces alpha waves in the brain, aiding creative thinking. Play it before sleep so the baby can have sweet dreams in the womb.</p>
+      </section>
+
+      <section>
+        <h2>4. Best Time to Listen</h2>
+        <p>Most suitable for winding down the day with dim lights before bed. If mom listens to this song with a comfortable mind and tries to sleep, the baby will also become comfortable.</p>
+      </section>
+    `
+  },
+  {
+    id: 'handel-water-music-refresh',
+    title: '[태교 클래식] 헨델 ‘수상 음악’: 템즈강 위에서 펼쳐지는 상쾌한 축제',
+    titleEn: '[Classical Focus] Handel \'Water Music\': Refreshing Festival on the Thames',
+    date: '2026-02-24',
+    category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
+    excerpt: '탁 트인 야외에서 듣는 듯한 시원함과 활기. 스트레스를 날려버리고 태아에게 신선한 산소를 공급하는 음악.',
+    excerptEn: 'Coolness and vitality like listening outdoors. Music that blows away stress and supplies fresh oxygen to the fetus.',
+    content: `
+      <section>
+        <h2>1. 음악의 어머니, 게오르크 프리드리히 헨델</h2>
+        <p>독일에서 태어나 영국에서 활동한 헨델(George Frideric Handel)은 대중적이고 웅장한 음악으로 큰 사랑을 받았습니다. 바흐가 내면적인 깊이를 추구했다면, 헨델은 외향적이고 화려한 아름다움을 추구했습니다.</p>
+      </section>
+
+      <section>
+        <h2>2. 왕을 위한 뱃놀이 음악</h2>
+        <p>‘수상 음악(Water Music)’은 영국 왕 조지 1세가 템즈강에서 뱃놀이를 할 때 연주하기 위해 작곡되었습니다. 야외에서 연주되었기 때문에 호른, 트럼펫 같은 금관악기와 오보에, 바순 같은 목관악기가 많이 사용되어 소리가 시원시원하고 경쾌합니다.</p>
+      </section>
+
+      <section>
+        <h2>3. 태교를 위한 감상 포인트</h2>
+        <p><strong>스트레스 해소와 기분 전환:</strong> 꽉 막힌 실내에 있어도 마치 강가에 나와 있는 듯한 착각을 불러일으키는 곡입니다. 임신 중 답답함이 느껴질 때 이 곡을 들으면 가슴이 뻥 뚫리는 듯한 상쾌함을 느낄 수 있습니다. 엄마의 스트레스가 해소되면 혈관이 이완되어 태아에게 신선한 산소와 영양분이 원활하게 공급됩니다.</p>
+        <p><strong>청각적 다양성:</strong> 다양한 관악기의 음색은 태아에게 다채로운 소리 자극을 주어 청각 발달에 도움을 줍니다.</p>
+      </section>
+
+      <section>
+        <h2>4. 함께 들으면 좋은 시간</h2>
+        <p>화창한 날 창문을 열고 환기할 때, 혹은 목욕을 하거나 샤워를 할 때 들으면 상쾌함이 배가됩니다.</p>
+      </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. Mother of Music, George Frideric Handel</h2>
+        <p>Born in Germany and active in England, Handel was loved for his popular and majestic music. While Bach sought inner depth, Handel pursued extroverted and magnificent beauty.</p>
+      </section>
+
+      <section>
+        <h2>2. Boating Music for the King</h2>
+        <p>'Water Music' was composed for King George I of England to play while boating on the River Thames. Since it was played outdoors, brass instruments like horns and trumpets and woodwinds like oboes and bassoons were used heavily, making the sound refreshing and cheerful.</p>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Stress Relief and Mood Change:</strong> It makes you feel like you are out by the river even if you are indoors. Listening to this song when feeling stuffy during pregnancy gives a refreshing feeling. When mom's stress is relieved, blood vessels relax, supplying fresh oxygen and nutrients smoothly to the fetus.</p>
+        <p><strong>Auditory Diversity:</strong> The timbres of various wind instruments provide colorful sound stimulation to the fetus, helping auditory development.</p>
+      </section>
+
+      <section>
+        <h2>4. Best Time to Listen</h2>
+        <p>Refreshing feeling doubles when listening while opening windows on a sunny day, or when taking a bath or shower.</p>
+      </section>
+    `
+  },
+  {
+    id: 'liszt-liebestraum-passion',
+    title: '[태교 클래식] 리스트 ‘사랑의 꿈’: 태아를 향한 엄마의 뜨거운 고백',
+    titleEn: '[Classical Focus] Liszt \'Liebestraum\': Mom\'s Passionate Confession to Baby',
+    date: '2026-02-26',
+    category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
+    excerpt: '피아노의 거장 리스트가 들려주는 낭만적인 사랑 이야기. 열정적이고 풍부한 감성을 아기에게 전해주는 곡.',
+    excerptEn: 'Romantic love story told by piano master Liszt. Song conveying passionate and rich emotions to the baby.',
+    content: `
+      <section>
+        <h2>1. 피아노의 비르투오소, 프란츠 리스트</h2>
+        <p>리스트(Franz Liszt)는 19세기 최고의 피아니스트이자 작곡가였습니다. ‘피아노의 신’이라 불릴 만큼 뛰어난 기교를 가졌던 그는, 동시에 문학과 예술에 깊은 조예를 가진 낭만주의자였습니다.</p>
+      </section>
+
+      <section>
+        <h2>2. 영원한 사랑을 노래하다</h2>
+        <p>‘사랑의 꿈(Liebestraum)’ 제3번은 원래 가곡으로 작곡되었다가 피아노곡으로 편곡된 작품입니다. “사랑할 수 있는 한 사랑하라”라는 시 구절을 바탕으로 하고 있으며, 감미로운 선율이 격정적인 클라이맥스로 치달았다가 다시 고요하게 마무리되는 드라마틱한 구성을 가지고 있습니다.</p>
+      </section>
+
+      <section>
+        <h2>3. 태교를 위한 감상 포인트</h2>
+        <p><strong>풍부한 감정 표출:</strong> 임신 중에는 감정이 예민해지기 쉽습니다. 이 곡의 드라마틱한 전개에 몸을 맡기며 엄마의 감정을 솔직하게 느껴보세요. 억눌러왔던 감정을 음악으로 표출하는 것은 정신 건강에 매우 좋습니다.</p>
+        <p><strong>태아와의 정서적 교감:</strong> 클라이맥스 부분에서 벅차오르는 사랑의 감정을 아기에게 전해보세요. “엄마는 너를 사랑해, 빨리 만나고 싶어”라는 마음을 담아 들으면, 태아도 그 뜨거운 사랑을 느낄 것입니다.</p>
+      </section>
+
+      <section>
+        <h2>4. 함께 들으면 좋은 시간</h2>
+        <p>감정이 충만한 저녁 시간이나, 남편과 함께 오붓한 시간을 보낼 때 추천합니다. 태교 일기를 쓰면서 배경음악으로 들어도 좋습니다.</p>
+      </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. Piano Virtuoso, Franz Liszt</h2>
+        <p>Liszt was the greatest pianist and composer of the 19th century. Possessing technique superb enough to be called the 'God of Piano', he was also a romanticist with deep knowledge of literature and art.</p>
+      </section>
+
+      <section>
+        <h2>2. Singing Eternal Love</h2>
+        <p>'Liebestraum (Love Dream) No. 3' was originally composed as a song and arranged for piano. Based on the line "Love as long as you can love", it has a dramatic structure where a sweet melody rises to a passionate climax and finishes quietly.</p>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Rich Emotional Expression:</strong> Emotions can easily become sensitive during pregnancy. Surrender to the dramatic development of this song and feel your emotions honestly. Expressing suppressed emotions through music is very good for mental health.</p>
+        <p><strong>Emotional Bonding with Fetus:</strong> Convey the overwhelming emotion of love to the baby at the climax. If you listen with the heart saying "Mom loves you, I want to see you soon," the fetus will also feel that hot love.</p>
+      </section>
+
+      <section>
+        <h2>4. Best Time to Listen</h2>
+        <p>Recommended for emotional evenings or when spending intimate time with your husband. Also good as background music when writing a prenatal diary.</p>
+      </section>
+    `
+  },
+  {
+    id: 'dvorak-humoresque-joy',
+    title: '[태교 클래식] 드보르자크 ‘유모레스크’: 기분 좋은 산책을 위한 경쾌한 리듬',
+    titleEn: '[Classical Focus] Dvořák \'Humoresque\': Cheerful Rhythm for a Pleasant Walk',
+    date: '2026-02-28',
+    category: '명곡 해설',
+    categoryEn: 'Masterpiece Guide',
+    excerpt: '체코의 민족성을 담은 소박하고 유쾌한 멜로디. 깡충거리는 듯한 리듬이 태아에게 즐거운 자극을 주는 곡.',
+    excerptEn: 'Simple and pleasant melody containing Czech nationality. Skipping rhythm gives joyful stimulation to the fetus.',
+    content: `
+      <section>
+        <h2>1. 향수의 작곡가, 안토닌 드보르자크</h2>
+        <p>체코가 낳은 위대한 작곡가 드보르자크(Antonín Dvořák)는 고향 보헤미아의 민속적인 선율을 클래식에 접목시켰습니다. 그의 음악은 흙냄새가 나는 듯 소박하고 정겨우며, 누구에게나 친근하게 다가옵니다.</p>
+      </section>
+
+      <section>
+        <h2>2. 기차 소리에서 영감을 얻은 유모레스크</h2>
+        <p>‘유모레스크(Humoresque)’는 ‘유머러스한 곡’이라는 뜻입니다. 제7번은 드보르자크가 기차를 타고 가다가 덜컹거리는 리듬에서 영감을 받아 작곡했다고 합니다. 우아하면서도 어딘가 익살스러운 독특한 리듬이 특징으로, 한번 들으면 콧노래가 나올 만큼 중독성이 강합니다.</p>
+      </section>
+
+      <section>
+        <h2>3. 태교를 위한 감상 포인트</h2>
+        <p><strong>기분 전환과 활력 충전:</strong> 깡충깡충 뛰는 듯한 붓점 리듬은 가라앉은 기분을 업(Up)시켜주는 효과가 있습니다. "우리 아기도 뱃속에서 춤추고 있니?"라고 물으며 가볍게 박자를 맞춰보세요.</p>
+        <p><strong>소뇌 발달 자극:</strong> 독특하고 변칙적인 리듬은 태아의 운동 신경을 담당하는 소뇌 발달에 긍정적인 영향을 줍니다.</p>
+      </section>
+
+      <section>
+        <h2>4. 함께 들으면 좋은 시간</h2>
+        <p>가벼운 산책을 할 때나 집안을 정리할 때 듣기를 추천합니다. 아기가 뱃속에서 놀고 있을 때 들려주면 더욱 활발한 태동을 느낄 수 있습니다.</p>
+      </section>
+    `,
+    contentEn: `
+      <section>
+        <h2>1. Composer of Nostalgia, Antonín Dvořák</h2>
+        <p>Czech's great composer Dvořák grafted the folk melodies of his hometown Bohemia into classical music. His music is simple and affectionate like the smell of earth, approaching everyone in a friendly way.</p>
+      </section>
+
+      <section>
+        <h2>2. Humoresque Inspired by Train Sounds</h2>
+        <p>'Humoresque' means 'humorous piece'. No. 7 is said to have been composed by Dvořák inspired by the clattering rhythm while riding a train. It features a unique rhythm that is elegant yet somewhat comical, addictive enough to hum along once heard.</p>
+      </section>
+
+      <section>
+        <h2>3. Listening Points for Prenatal Care</h2>
+        <p><strong>Mood Change and Vitality Charge:</strong> The skipping dotted rhythm has the effect of uplifting a sunken mood. Ask "Is our baby dancing in the belly?" and lightly tap to the beat.</p>
+        <p><strong>Cerebellum Development Stimulation:</strong> The unique and irregular rhythm positively affects the development of the cerebellum responsible for the fetus's motor nerves.</p>
+      </section>
+
+      <section>
+        <h2>4. Best Time to Listen</h2>
+        <p>Recommended when taking a light walk or tidying up the house. If played when the baby is playing in the womb, you can feel more active fetal movements.</p>
+      </section>
+    `
   }
 ];
